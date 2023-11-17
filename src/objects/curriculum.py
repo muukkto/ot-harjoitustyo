@@ -15,6 +15,7 @@ class Curriculum:
         print(f"subjects classified as national voluntary subjects: {self.rules['national_voluntary_subjects']}")
         print(f"rules for art basket: {self.rules['basket_subjects']['arts']}")
 
+
     def return_all_subject_codes(self):
         all_subject_codes = []
 
@@ -23,6 +24,19 @@ class Curriculum:
         
         return all_subject_codes
 
+
+    def get_subject_code_from_course_code(self, course_code):
+        all_subject_codes = self.return_all_subject_codes()
+
+        for subject in all_subject_codes:
+            if(course_code.find(subject)!=-1):
+                return subject
+            
+        return False
+
+    def get_credits_from_course_code(self, course_code):
+        return self.subjects[self.get_subject_code_from_course_code(course_code)]["courses"][course_code]["credits"]
+    
 
     def print_courses(self):
         for subject_key in self.subjects.keys():

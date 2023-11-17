@@ -13,7 +13,7 @@ class Plan:
             self.courses_plan[subject_code] = {}
 
             for course in subject_courses["courses"]:
-                self.courses_plan[subject_code][course] = Course(course)
+                self.courses_plan[subject_code][course] = Course(course, subject_code)
 
     def add_existing_course_to_plan (self, code):
         course = self.find_course(code)
@@ -29,13 +29,13 @@ class Plan:
             course.change_status(False)
 
 
-    def find_course (self, code):
-        for subject in self.curriculum.return_all_subject_codes():
-            if(code.find(subject)!=-1):
-                if(code in self.courses_plan[subject]):
-                    return self.courses_plan[subject][code]
-                else:
-                    return False
+    def find_course (self, course_code):
+        subject_code = self.curriculum.get_subject_code_from_course_code(course_code)
+
+        if(course_code in self.courses_plan[subject_code]):
+            return self.courses_plan[subject_code][course_code]
+        else:
+            return False
         
         return False
 
