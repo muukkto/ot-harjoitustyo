@@ -36,11 +36,17 @@ class Plan:
             return self.courses_plan[subject_code][course_code]
         else:
             return False
-        
-        return False
 
-    def print_courses_on_plan (self):
+    def get_courses_on_plan (self):
+        planned_courses = []
         for subject in self.courses_plan.values():
             for course in subject.values():
                 if course.status:
-                    print(course)
+                    planned_courses.append(course)
+
+        return planned_courses
+
+
+    def print_courses_on_plan (self):
+        for course in self.get_courses_on_plan():
+            print(course)
