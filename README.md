@@ -26,3 +26,8 @@ poetry run invoke test
 ```
 poetry run invoke coverage-report
 ```
+
+### Koodin laaduun analyysi
+```
+poetry run invoke lint
+```
