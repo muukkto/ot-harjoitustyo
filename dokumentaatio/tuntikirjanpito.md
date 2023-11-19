@@ -6,3 +6,4 @@
 | 14.11.2023  | 4    | Ensimmäiset toiminnallisuudet ohjelmaan - perutietorakenteet kasassa |
 | 17.11.2023  | 3    | Pohja validoinnille |
 | 18.11.2023  | 3    | Validoinnin jatkaminen ja testien aloittaminen |
+| 19.11.2023  | 2    | Perustietorakenteiden testit valmiiksi |
