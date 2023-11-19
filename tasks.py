@@ -1,3 +1,4 @@
+from subprocess import call
 from invoke import task
 import sys
 
@@ -20,6 +21,8 @@ def coverage(ctx):
 def coverage_report(ctx):
     pty = sys.platform != 'win32'
     ctx.run("coverage html", pty=pty)
+    if sys.platform != "win32":
+        call(("xdg-open", "htmlcov/index.html"))
 
 @task
 def lint(ctx):
