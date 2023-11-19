@@ -4,8 +4,9 @@ from config.lops21_curriculum import lops21_curriculum
 
 from services.validation_service import ValidationService
 
+
 class PlanService:
-    def __init__ (self):
+    def __init__(self):
         self.curriculum = Curriculum(lops21_curriculum())
         self.plan = Plan(self.curriculum)
 
@@ -30,4 +31,3 @@ class PlanService:
         courses = self.plan.get_courses_on_plan()
         for course in courses:
             print(course)
-

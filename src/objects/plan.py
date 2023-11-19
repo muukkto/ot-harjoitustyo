@@ -1,8 +1,9 @@
 from objects.course import Course
 from objects.curriculum import Curriculum
 
+
 class Plan:
-    def __init__ (self, curriculum: Curriculum):
+    def __init__(self, curriculum: Curriculum):
         self.curriculum = curriculum
         self.courses_plan = {}
 
@@ -13,48 +14,46 @@ class Plan:
             self.courses_plan[subject_code] = {}
 
             for course in subject_courses["courses"]:
-                self.courses_plan[subject_code][course] = Course(course, subject_code)
+                self.courses_plan[subject_code][course] = Course(
+                    course, subject_code)
 
-    def add_existing_course_to_plan (self, code):
+    def add_existing_course_to_plan(self, code):
         course = self.find_course(code)
         if course:
             course.change_status(True)
             return True
-        else:
-            return False
 
-    def add_new_course_to_plan (self, code, description, credits):
+        return False
+
+    def add_new_course_to_plan(self, code, description, ects_credits):
         pass
-    
-    def delete_course_from_plan (self, code):
+
+    def delete_course_from_plan(self, code):
         course = self.find_course(code)
         if course:
             course.change_status(False)
             return True
-        else:
-            return False
 
+        return False
 
-    def find_course (self, course_code):
-        subject_code = self.curriculum.get_subject_code_from_course_code(course_code)
+    def find_course(self, course_code):
+        subject_code = self.curriculum.get_subject_code_from_course_code(
+            course_code)
 
-        if (subject_code):
-            if(course_code in self.courses_plan[subject_code]):
+        if subject_code:
+            if course_code in self.courses_plan[subject_code]:
                 return self.courses_plan[subject_code][course_code]
-            else:
-                return None
-        
+
         return None
 
     def check_if_course_on_plan(self, course_code):
         found_course = self.find_course(course_code)
-        if (found_course):
+        if found_course:
             return found_course.status()
-        else:
-            return False
 
+        return False
 
-    def get_courses_on_plan (self):
+    def get_courses_on_plan(self):
         planned_courses = []
         for subject in self.courses_plan.values():
             for course in subject.values():

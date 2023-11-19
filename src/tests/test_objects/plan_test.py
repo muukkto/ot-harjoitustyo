@@ -4,6 +4,7 @@ from objects.curriculum import Curriculum
 
 from config.lops21_curriculum import lops21_curriculum
 
+
 class TestPlan(unittest.TestCase):
     def setUp(self):
         curriculum = Curriculum(lops21_curriculum())

@@ -20,3 +20,11 @@ def coverage(ctx):
 def coverage_report(ctx):
     pty = sys.platform != 'win32'
     ctx.run("coverage html", pty=pty)
+
+@task
+def lint(ctx):
+    ctx.run("pylint src")
+
+@task
+def format(ctx):
+    ctx.run("autopep8 --in-place --recursive src")
