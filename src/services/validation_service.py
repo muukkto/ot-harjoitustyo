@@ -27,29 +27,21 @@ class ValidationService:
         ]
         basket_subjects = curriculum.rules["basket_subjects"]
 
+        mandatory_courses_status = True
+
         for subject in simple_subjects:
-            if self.check_mandatory_credits_one_subject(plan, curriculum, subject):
-                print(f"{subject} OK")
-            else:
-                print(f"{subject} missing")
+            if not self.check_mandatory_credits_one_subject(plan, curriculum, subject):
+                mandatory_courses_status = False
 
         for group in group_subjects:
-            subject_list = curriculum.rules[group]
-            subject_status = False
-            for subject in subject_list:
-                if self.check_mandatory_credits_one_subject(plan, curriculum, subject):
-                    subject_status = True
-
-            if subject_status:
-                print(f"{group} OK")
-            else:
-                print(f"{group} missing")
+            if not self.check_mandatory_credits_one_group(plan, curriculum, group):
+                mandatory_courses_status = False
 
         for basket in basket_subjects.items():
-            if self.check_mandatory_credits_basket(plan, curriculum, basket[1]):
-                print(f"{basket[0]} basket OK")
-            else:
-                print(f"{basket[0]} basket missing")
+            if not self.check_mandatory_credits_one_basket(plan, curriculum, basket):
+                mandatory_courses_status = False
+
+        return mandatory_courses_status
 
 
     def get_mandatory_credits_on_plan(self, plan, curriculum_subject_courses):
@@ -62,28 +54,47 @@ class ValidationService:
 
         return plan_mandatory_credits
 
-    def check_mandatory_credits_basket(self, plan, curriculum, basket):
+    def check_mandatory_credits_one_basket(self, plan, curriculum, basket):
         plan_total_mandatory_credits = 0
+        basket_rules = basket[1]
 
-        for subject in basket["subjects"]:
+        for subject in basket_rules["subjects"]:
             subject_courses = curriculum.subjects[subject]["courses"]
             ects_credits = self.get_mandatory_credits_on_plan(plan, subject_courses)
-            if ects_credits < basket["minimum_compulsory_per_subject"]:
+            if ects_credits < basket_rules["minimum_compulsory_per_subject"]:
                 return False
 
             plan_total_mandatory_credits += ects_credits
 
-        if plan_total_mandatory_credits >= basket["minimum_compulsory_total"]:
+        if plan_total_mandatory_credits >= basket_rules["minimum_compulsory_total"]:
+            print(f"{basket[0]} basket OK")
             return True
 
+        print(f"{basket[0]} basket missing")
         return False
 
-    def check_mandatory_credits_one_subject(self, plan, curriculum, subject_code):
-        subject_courses = curriculum.subjects[subject_code]["courses"]
-        curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(subject_code)
+    def check_mandatory_credits_one_subject(self, plan, curriculum, subject):
+        subject_courses = curriculum.subjects[subject]["courses"]
+        curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(subject)
         plan_mandatory_credits = self.get_mandatory_credits_on_plan(plan, subject_courses)
 
         if curriculum_mandatory_credits <= plan_mandatory_credits:
+            print(f"{subject} OK")
             return True
 
+        print(f"{subject} missing")
+        return False
+
+    def check_mandatory_credits_one_group(self, plan, curriculum, group):
+        subject_list = curriculum.rules[group]
+        subject_status = False
+        for subject in subject_list:
+            if self.check_mandatory_credits_one_subject(plan, curriculum, subject):
+                subject_status = True
+
+        if subject_status:
+            print(f"{group} OK")
+            return True
+
+        print(f"{group} missing")
         return False

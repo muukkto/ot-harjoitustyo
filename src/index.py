@@ -15,8 +15,8 @@ def print_commands():
 
 def import_courses(file_name, plan_service):
     file_handler = FileHandler()
-
     dirname = Path(__file__).parent
+
     file_path = dirname.joinpath(f"help_files/{file_name}")
     course_list = file_handler.import_courses_from_txt(file_path)
     plan_service.add_multiple_courses(course_list)
@@ -44,7 +44,7 @@ def main():
             case 4:
                 plan_service.validate_plan()
             case 5:
-                import_courses("list_of_subjects_in_valid_plan.txt", plan_service)
+                import_courses("list_of_subjects_45_credits.txt", plan_service)
             case 6:
                 plan_service.print_stats()
             case 8:
