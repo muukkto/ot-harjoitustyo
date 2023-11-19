@@ -5,8 +5,8 @@ from objects.curriculum import Curriculum
 class ValidationService:
     def validate(self, plan: Plan, curriculum: Curriculum):
         print(self.check_total_credits(plan, curriculum))
-        #print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 1))
-        #print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 0.5))
+        # print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 1))
+        # print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 0.5))
 
         print(self.check_mandatory_credits(plan, curriculum))
 
@@ -43,7 +43,6 @@ class ValidationService:
 
         return mandatory_courses_status
 
-
     def get_mandatory_credits_on_plan(self, plan, curriculum_subject_courses):
         plan_mandatory_credits = 0
 
@@ -60,7 +59,8 @@ class ValidationService:
 
         for subject in basket_rules["subjects"]:
             subject_courses = curriculum.subjects[subject]["courses"]
-            ects_credits = self.get_mandatory_credits_on_plan(plan, subject_courses)
+            ects_credits = self.get_mandatory_credits_on_plan(
+                plan, subject_courses)
             if ects_credits < basket_rules["minimum_compulsory_per_subject"]:
                 return False
 
@@ -75,8 +75,10 @@ class ValidationService:
 
     def check_mandatory_credits_one_subject(self, plan, curriculum, subject):
         subject_courses = curriculum.subjects[subject]["courses"]
-        curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(subject)
-        plan_mandatory_credits = self.get_mandatory_credits_on_plan(plan, subject_courses)
+        curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(
+            subject)
+        plan_mandatory_credits = self.get_mandatory_credits_on_plan(
+            plan, subject_courses)
 
         if curriculum_mandatory_credits <= plan_mandatory_credits:
             print(f"{subject} OK")

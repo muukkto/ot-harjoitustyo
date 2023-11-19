@@ -34,7 +34,6 @@ class Curriculum:
 
         return mandatory_credits
 
-
     def print_courses(self):
         for subject_key in self.subjects.keys():
             for course_name in self.subjects[subject_key]["courses"].keys():
@@ -50,12 +49,19 @@ class Curriculum:
         # tämä pois pylint, koska pelkästään kehityksen aikaiseen testailuun
         # pylint: disable=line-too-long
         print(f"minimum credits: {self.rules['minimum_credits']}")
-        print(f"minimum national voluntary credits: {self.rules['minimum_national_voluntary_credits']}")
-        print(f"code for special task courses: {self.rules['special_task_code']}")
-        print(f"subjects classified as mother tongue: {self.rules['mother_tongue']}")
-        print(f"subjects classified as 2nd national lang: {self.rules['second_national_language']}")
-        print(f"subjects classified as long foreign lang: {self.rules['long_foreign_language']}")
+        print(
+            f"minimum national voluntary credits: {self.rules['minimum_national_voluntary_credits']}")
+        print(
+            f"code for special task courses: {self.rules['special_task_code']}")
+        print(
+            f"subjects classified as mother tongue: {self.rules['mother_tongue']}")
+        print(
+            f"subjects classified as 2nd national lang: {self.rules['second_national_language']}")
+        print(
+            f"subjects classified as long foreign lang: {self.rules['long_foreign_language']}")
         print(f"subjects classified as maths: {self.rules['maths']}")
-        print(f"subjects classified as nat mandatory subjects: {self.rules['national_mandatory_subjects']}")
-        print(f"subjects classified as nat voluntary subjects: {self.rules['national_voluntary_subjects']}")
+        print(
+            f"subjects classified as nat mandatory subjects: {self.rules['national_mandatory_subjects']}")
+        print(
+            f"subjects classified as nat voluntary subjects: {self.rules['national_voluntary_subjects']}")
         print(f"rules for art basket: {self.rules['basket_subjects']['arts']}")
