@@ -32,7 +32,8 @@ def main():
             plan_service.validate_plan()
         elif command == 5:
             dirname = Path(__file__).parent
-            file_path = dirname.joinpath("help_files/list_of_subjects_45_credits.txt")
+            file_name = "list_of_subjects_in_valid_plan.txt"
+            file_path = dirname.joinpath(f"help_files/{file_name}")
             course_list = file_handler.import_courses_from_txt(file_path)
             plan_service.add_multiple_courses(course_list)
 

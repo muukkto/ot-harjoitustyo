@@ -35,8 +35,10 @@ def lops21_curriculum():
             "YH": { "courses": {"YH1": {"credits": 2, "mandatory": True, "national": True}, "YH2": {"credits": 2, "mandatory": True, "national": True}, "YH3": {"credits": 2, "mandatory": True, "national": True}, "YH4": {"credits": 2, "mandatory": False, "national": True}}},
             "TE": { "courses": {"TE1": {"credits": 2, "mandatory": True, "national": True}, "TE2": {"credits": 2, "mandatory": False, "national": True}, "TE3": {"credits": 2, "mandatory": False, "national": True}}},
             "LI": { "courses": {"LI1": {"credits": 2, "mandatory": True, "national": True}, "LI2": {"credits": 2, "mandatory": True, "national": True}, "LI3": {"credits": 2, "mandatory": False, "national": True}, "LI4": {"credits": 2, "mandatory": False, "national": True}, "LI5": {"credits": 2, "mandatory": False, "national": True}}},
-            "OP": { "courses": {"OP1": {"credits": 2, "mandatory": True, "national": True}, "OP2": {"credits": 2, "mandatory": True, "national": True}}}
-        }
+            "OP": { "courses": {"OP1": {"credits": 2, "mandatory": True, "national": True}, "OP2": {"credits": 2, "mandatory": True, "national": True}}},
+            "KU": { "courses": {"KU1": {"credits": 2, "mandatory": True, "national": True}, "KU2": {"credits": 2, "mandatory": True, "national": True}, "KU3": {"credits": 2, "mandatory": False, "national": True}, "KU4": {"credits": 2, "mandatory": False, "national": True}}},        
+            "MU": { "courses": {"MU1": {"credits": 2, "mandatory": True, "national": True}, "MU2": {"credits": 2, "mandatory": True, "national": True}, "MU3": {"credits": 2, "mandatory": False, "national": True}, "MU4": {"credits": 2, "mandatory": False, "national": True}}},        
+            }
     }
 
     return lops21

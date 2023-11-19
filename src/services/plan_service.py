@@ -27,5 +27,7 @@ class PlanService:
         validation_service.validate(self.plan, self.curriculum)
 
     def print_courses(self):
-        self.plan.print_courses_on_plan()
+        courses = self.plan.get_courses_on_plan()
+        for course in courses:
+            print(course)
 
