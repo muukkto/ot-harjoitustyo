@@ -1,3 +1,6 @@
+# pois pylint, koska tämä ainoastaan käytössä luodessa opetussuunnitelma kehitystä varten
+# tulavisuudessa tämän funktion tehtävä siirretään json tiedostolle
+
 # pylint: disable=line-too-long
 
 def lops21_curriculum():

@@ -31,3 +31,11 @@ class TestCurriculum(unittest.TestCase):
             self.curriculum.get_credits_from_course_code("MU2"), 2)
         self.assertEqual(
             self.curriculum.get_credits_from_course_code("RUB4"), 2)
+
+    def test_get_mandatory_credits(self):
+        self.assertEqual(
+            self.curriculum.get_mandatory_credits_subject("AI"), 12)
+        self.assertEqual(
+            self.curriculum.get_mandatory_credits_subject("BI"), 4)
+        self.assertEqual(
+            self.curriculum.get_mandatory_credits_subject("MAA"), 20)

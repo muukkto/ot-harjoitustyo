@@ -26,10 +26,13 @@ class Curriculum:
 
     def get_mandatory_credits_subject(self, subject_code):
         subject_courses = self.subjects[subject_code]["courses"]
+        mandatory_credits = 0
 
         for course_code in subject_courses:
             if subject_courses[course_code]["mandatory"]:
-                curriculum_amount_mandatory_credits += subject_courses[course_code]["credits"]
+                mandatory_credits += subject_courses[course_code]["credits"]
+
+        return mandatory_credits
 
 
     def print_courses(self):
@@ -44,6 +47,7 @@ class Curriculum:
                     f"{course_name}  {ects_credits} op  {valtakunnallinen} {pakollisuus}")
 
     def print_rules(self):
+        # tämä pois pylint, koska pelkästään kehityksen aikaiseen testailuun
         # pylint: disable=line-too-long
         print(f"minimum credits: {self.rules['minimum_credits']}")
         print(f"minimum national voluntary credits: {self.rules['minimum_national_voluntary_credits']}")
