@@ -8,7 +8,7 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 
 - [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
-- [Changelog](dokumentaatio\changelog.md)
+- [Changelog](dokumentaatio/changelog.md)
 
 ## Komentorivikomennot
 
