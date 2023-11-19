@@ -14,6 +14,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [ ] Kaikki pakolliset opintojaksot täytyy käydä
     - [ ] Vähintää 20 op valtakunnallisia valinnaisia
 - [ ] Ylppärisuunnitelman tarkistaminen
+    - [ ] Ylppärisuunnitelman laatiminen    
     - [ ] Suunnitelma tarkistetaan YTL:n palvelusta. [Linkki API:n dokumentaatioon](https://ilmo.ylioppilastutkinto.fi/v1/api-docs/).
     - [ ] Ei päälekkäisiä kokeita suunnitelmassa (esim. reaalit samana päivänä) - tämä tehdään paikallisesti
 - [ ] Suunnitelman tarkastaminen (erityistehtävä)
