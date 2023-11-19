@@ -6,11 +6,11 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 
 ## Perustoiminnallisuudet
 
-- [ ] Opintojaksojen merkitseminen suunnitelmaan kuuluvaksi. Toteutetaan ensiksi komentoriviltä, esim `add MAA12`.
-- [ ] Opintojakson poistaminen suunnitelmasta - `delete MAA12`
+- [x] Opintojaksojen merkitseminen suunnitelmaan kuuluvaksi. Toteutetaan ensiksi komentoriviltä, esim `add MAA12`.
+- [x] Opintojakson poistaminen suunnitelmasta - `delete MAA12`
 - [ ] Suunnitelmaan voi lisätä oppilaitoskohtaisia valinnaisia opintojaksoja - täytyy itse antaa nimi ja opintopistemäärä
 - [ ] Suunnitelman tarkastaminen (perus)
-    - [ ] Valmistua voi pelkästään kun 150 op kasassa
+    - [x] Valmistua voi pelkästään kun 150 op kasassa
     - [ ] Kaikki pakolliset opintojaksot täytyy käydä
     - [ ] Vähintää 20 op valtakunnallisia valinnaisia
 - [ ] Ylppärisuunnitelman tarkistaminen
@@ -19,7 +19,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 - [ ] Suunnitelman tarkastaminen (erityistehtävä)
     - [ ] Pakollisia voi jättää pois 16 op, jos erityistehtävä opintojaksoja on 24 op
     - [ ] Puolet pakollisista kuitenkin käytävä
-- [ ] Yksinkertainen tekstikäyttöliittymä
+- [x] Yksinkertainen tekstikäyttöliittymä
 - [ ] Suunnitelman tallentaminen JSON-tiedostoon
 - [ ] Suunnitelman lukeminen JSON-tiedostosta
 - [ ] Mahdollisuus tulostaa perustilastoja
