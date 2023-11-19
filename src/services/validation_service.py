@@ -4,11 +4,10 @@ from objects.curriculum import Curriculum
 
 class ValidationService:
     def validate(self, plan: Plan, curriculum: Curriculum):
-        print(self.check_total_credits(plan, curriculum))
-        # print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 1))
-        # print(self.check_mandatory_credits_one_subject(plan, curriculum, "AI", 0.5))
+        if self.check_total_credits(plan, curriculum) and self.check_mandatory_credits(plan, curriculum):
+            return True
 
-        print(self.check_mandatory_credits(plan, curriculum))
+        return False
 
     def check_total_credits(self, plan, curriculum):
         total_credit_rule = curriculum.rules["minimum_credits"]
