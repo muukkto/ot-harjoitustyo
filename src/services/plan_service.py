@@ -21,7 +21,7 @@ class PlanService:
         self.plan.delete_course_from_plan(course_code)
 
     def print_stats(self):
-        print("STATS")
+        print(f"Total credits: {self.plan.get_total_credits_on_plan()}")
 
     def validate_plan(self):
         validation_service = ValidationService()

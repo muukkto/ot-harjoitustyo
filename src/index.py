@@ -10,6 +10,7 @@ def print_commands():
     print("3: print courses added to your plan")
     print("4: validate plan")
     print("5: import courses from file")
+    print("6: print stats")
     print("8: exit the program")
 
 def import_courses(file_name, plan_service):
@@ -30,27 +31,26 @@ def delete_course(plan_service):
 
 def main():
     plan_service = PlanService()
-
     while True:
-        command = int(input("Choose command (0 for help): "))
-
-        if command == 0:
-            print_commands()
-        elif command == 1:
-            add_course(plan_service)
-        elif command == 2:
-            delete_course(plan_service)
-        elif command == 3:
-            plan_service.print_courses()
-        elif command == 4:
-            plan_service.validate_plan()
-        elif command == 5:
-            import_courses("list_of_subjects_in_valid_plan.txt", plan_service)
-        elif command == 8:
-            break
-        else:
-            print("Command not found")
-
+        match int(input("Choose command (0 for help): ")):
+            case 0:
+                print_commands()
+            case 1:
+                add_course(plan_service)
+            case 2:
+                delete_course(plan_service)
+            case 3:
+                plan_service.print_courses()
+            case 4:
+                plan_service.validate_plan()
+            case 5:
+                import_courses("list_of_subjects_in_valid_plan.txt", plan_service)
+            case 6:
+                plan_service.print_stats()
+            case 8:
+                break
+            case _ :
+                print("Command not found")
 
 if __name__ == "__main__":
     main()

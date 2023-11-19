@@ -1,6 +1,6 @@
+import sys
 from subprocess import call
 from invoke import task
-import sys
 
 @task
 def start(ctx):
@@ -31,3 +31,4 @@ def lint(ctx):
 @task
 def format(ctx):
     ctx.run("autopep8 --in-place --recursive src")
+    

@@ -9,11 +9,7 @@ class ValidationService:
 
     def check_total_credits(self, plan, curriculum):
         total_credit_rule = curriculum.rules["minimum_credits"]
-        total_credits = 0
-        for course in plan.get_courses_on_plan():
-            if course.status:
-                total_credits += curriculum.get_credits_from_course_code(
-                    course.code)
+        total_credits = plan.get_total_credits_on_plan()
 
         return total_credits >= total_credit_rule
 

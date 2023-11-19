@@ -51,3 +51,10 @@ class TestPlan(unittest.TestCase):
 
     def test_adding_existing_course_return_false_if_broken_course(self):
         self.assertEqual(self.plan.delete_course_from_plan("HÄH2"), False)
+
+    def test_get_correct_total_credits_1(self):
+        self.plan.add_existing_course_to_plan("FI1")
+        self.plan.add_existing_course_to_plan("MAA2")
+        self.plan.add_existing_course_to_plan("MAA4")
+
+        self.assertEqual(self.plan.get_total_credits_on_plan(), 8)
