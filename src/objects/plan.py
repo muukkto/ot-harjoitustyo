@@ -65,9 +65,8 @@ class Plan:
     def get_total_credits_on_plan(self):
         total_credits = 0
         for course in self.get_courses_on_plan():
-            if course.status:
-                total_credits += self.curriculum.get_credits_from_course_code(
-                    course.code)
+            total_credits += self.curriculum.get_credits_from_course_code(
+                course.code)
 
         return total_credits
     
