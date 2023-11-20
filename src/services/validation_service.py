@@ -4,8 +4,10 @@ from objects.curriculum import Curriculum
 
 class ValidationService:
     def validate(self, plan: Plan, curriculum: Curriculum):
-        if self.check_total_credits(plan, curriculum) and self.check_mandatory_credits(plan, curriculum):
-            return True
+        if self.check_total_credits(plan, curriculum):
+            if self.check_mandatory_credits(plan, curriculum):
+                if self.check_national_voluntary_credits(plan, curriculum):
+                    return True
 
         return False
 
@@ -41,6 +43,14 @@ class ValidationService:
                 mandatory_courses_status = False
 
         return mandatory_courses_status
+
+    def check_national_voluntary_credits(self, plan, curriculum):
+        voluntary_credit_rule = curriculum.rules["minimum_national_voluntary_credits"]
+        voluntary_credits = plan.get_credits_by_criteria(mandatory=False, national=True)
+        if voluntary_credits >= voluntary_credit_rule:
+            return True
+
+        return False
 
     def get_mandatory_credits_on_plan(self, plan, curriculum_subject_courses):
         plan_mandatory_credits = 0

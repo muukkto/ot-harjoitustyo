@@ -20,9 +20,18 @@ class Curriculum:
 
         return None
 
-    def get_credits_from_course_code(self, course_code):
+    def get_course_from_course_code(self, course_code):
         subject_code = self.get_subject_code_from_course_code(course_code)
-        return self.subjects[subject_code]["courses"][course_code]["credits"]
+        return self.subjects[subject_code]["courses"][course_code]
+
+
+    def get_credits_from_course_code(self, course_code):
+        course = self.get_course_from_course_code(course_code)
+        return course["credits"]
+
+    def get_course_status_from_course_code(self, course_code):
+        course = self.get_course_from_course_code(course_code)
+        return {"mandatory": course["mandatory"], "national": course["national"]}
 
     def get_mandatory_credits_subject(self, subject_code):
         subject_courses = self.subjects[subject_code]["courses"]
@@ -34,7 +43,8 @@ class Curriculum:
 
         return mandatory_credits
 
-    def print_courses(self):
+    def return_all_courses(self):
+        return_list = []
         for subject_key in self.subjects.keys():
             for course_name in self.subjects[subject_key]["courses"].keys():
                 ects_credits = self.subjects[subject_key]['courses'][course_name]['credits']
@@ -42,11 +52,13 @@ class Curriculum:
                     'courses'][course_name]['mandatory'] else "valinnainen"
                 valtakunnallinen = "Valtakunnallinen" if self.subjects[subject_key][
                     'courses'][course_name]['national'] else "Paikallinen"
-                print(
+                return_list.append(
                     f"{course_name}  {ects_credits} op  {valtakunnallinen} {pakollisuus}")
 
-    def print_rules(self):
-        # tämä pois pylint, koska pelkästään kehityksen aikaiseen testailuun
+        return return_list
+
+    def print_rules(self): # pragma: no cover
+        # tämä pois pylint ja coverage, koska pelkästään kehityksen aikaiseen testailuun
         # pylint: disable=line-too-long
         print(f"minimum credits: {self.rules['minimum_credits']}")
         print(

@@ -29,6 +29,10 @@ class PlanService:
 
         return return_print
 
+    def print_curriculum(self):
+        return_print = self.curriculum.return_all_courses()
+        return return_print
+
     def validate_plan(self):
         validation_service = ValidationService()
         validation_service.validate(self.plan, self.curriculum)

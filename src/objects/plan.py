@@ -99,13 +99,30 @@ class Plan:
 
         return planned_courses
 
-    def get_total_credits_on_plan(self):
+    def get_credits_by_criteria(self, mandatory: bool, national: bool):
         total_credits = 0
         for course in self.get_curriculum_courses_on_plan():
-            total_credits += self.curriculum.get_credits_from_course_code(
-                course.code)
+            course_code = course.code
+            course_status = self.curriculum.get_course_status_from_course_code(course_code)
+            if course_status["mandatory"] == mandatory and course_status["national"] == national:
+                course_credits = self.curriculum.get_credits_from_course_code(course_code)
+                total_credits += course_credits
+
+        return total_credits
+
+    def get_credits_own_course(self):
+        total_credits = 0
 
         for course in self.get_own_courses_on_plan():
             total_credits += course.get_ects()
+
+        return total_credits
+
+    def get_total_credits_on_plan(self):
+        total_credits = 0
+        total_credits += self.get_credits_by_criteria(True, True)
+        total_credits += self.get_credits_by_criteria(False, True)
+        total_credits += self.get_credits_by_criteria(False, False)
+        total_credits += self.get_credits_own_course()
 
         return total_credits

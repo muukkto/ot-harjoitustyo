@@ -39,3 +39,8 @@ class TestCurriculum(unittest.TestCase):
             self.curriculum.get_mandatory_credits_subject("BI"), 4)
         self.assertEqual(
             self.curriculum.get_mandatory_credits_subject("MAA"), 20)
+
+    def test_course_print(self):
+        output_print = self.curriculum.return_all_courses() 
+        self.assertIn("KE1  1 op  Valtakunnallinen pakollinen", output_print)
+        self.assertIn("LI4  2 op  Valtakunnallinen valinnainen", output_print)

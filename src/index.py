@@ -7,11 +7,12 @@ from services.file_service import FileHandler
 def print_commands():
     print("1: add course to your plan")
     print("2: delete course from your plan")
-    print("3: print courses added to your plan")
-    print("4: validate plan")
-    print("5: import courses from file")
+    print("3: import courses from file")
+    print("4: print courses added to your plan")
+    print("5: validate plan")
     print("6: print stats")
-    print("8: exit the program")
+    print("7: print courses on curriculum")
+    print("10: exit the program")
 
 
 def import_courses(file_name, plan_service):
@@ -38,6 +39,7 @@ def print_list(output_list):
 
 
 def main():
+    # pylint: disable=too-many-arguments
     plan_service = PlanService()
     while True:
         match int(input("Choose command (0 for help): ")):
@@ -48,14 +50,20 @@ def main():
             case 2:
                 delete_course(plan_service)
             case 3:
-                print_list(plan_service.print_courses())
+                #vaihda tiedotstonimeksi haluamasia
+                #suunnitelman jolla validiointi menee läpi: "list_of_subjects_in_valid_plan.txt"
+                #suunnitelma jolla tilastoissa on 45 credits: "list_of_subjects_45_credits.txt"
+                import_courses("list_of_subjects_in_valid_plan.txt", plan_service)
             case 4:
-                plan_service.validate_plan()
+                print_list(plan_service.print_courses())
             case 5:
-                import_courses("list_of_subjects_45_credits.txt", plan_service)
+                plan_service.validate_plan()
             case 6:
                 print_list(plan_service.print_stats())
+            case 7:
+                print_list(plan_service.print_curriculum())
             case 8:
+                print("exiting...")
                 break
             case _:
                 print("Command not found")
