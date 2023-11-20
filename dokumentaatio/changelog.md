@@ -19,3 +19,10 @@
     - Ei vielä mahdollista saada ihmisluettavaa palautetta
 - Lisätty mahdollisuus lukea txt-tiedostosta opintojaksoja - tämä toiminnallisuus tarkoitettu lähinnä kehityksen helpottamiseksi 
 - Perutietorakenteille löytyy testit. Voidaan suorittaa `poetry run invoke test` ja testikattavuus saadan `poetry run invoke coverage-report`
+
+## Viikko 4
+
+- Validoinnin parantaminen
+    - Mahdollisuus tarkistaa, että pakolliset suoritettu kaikissa oppiaineissa. Ottaa huomioon mahdolliset eri oppimäärät ja taideaineiden poikkeavuudet.
+- Lisätty testit PlanService-luokalle sekä validoinneille.
+- Perustietorakenteet tukevat omia opintojaksoja
