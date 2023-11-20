@@ -8,6 +8,8 @@ def lops21_curriculum():
         "rules": {
             "minimum_credits": 150,
             "minimum_national_voluntary_credits": 20,
+            "minimum_special_task_credits": 24,
+            "maximum_excluded_credits_special_task": 16,
             "mother_tongue": ["AI", "S2"],
             "second_national_language": ["RUA", "RUB"],
             "long_foreign_language": ["ENA", "RAA", "SAA", "VEA"],
@@ -50,6 +52,7 @@ def lops21_curriculum():
             "OP": {"courses": {"OP1": {"credits": 2, "mandatory": True, "national": True}, "OP2": {"credits": 2, "mandatory": True, "national": True}}},
             "KU": {"courses": {"KU1": {"credits": 2, "mandatory": True, "national": True}, "KU2": {"credits": 2, "mandatory": True, "national": True}, "KU3": {"credits": 2, "mandatory": False, "national": True}, "KU4": {"credits": 2, "mandatory": False, "national": True}}},
             "MU": {"courses": {"MU1": {"credits": 2, "mandatory": True, "national": True}, "MU2": {"credits": 2, "mandatory": True, "national": True}, "MU3": {"credits": 2, "mandatory": False, "national": True}, "MU4": {"credits": 2, "mandatory": False, "national": True}}},
+            "ERI": {"courses": {"ERI1": {"credits": 2, "mandatory": False, "national": False}, "ERI2": {"credits": 2, "mandatory": False, "national": False}, "ERI3": {"credits": 2, "mandatory": False, "national": False}, "ERI4": {"credits": 2, "mandatory": False, "national": False}, "ERI5": {"credits": 2, "mandatory": False, "national": False}, "ERI6": {"credits": 2, "mandatory": False, "national": False}, "ERI7": {"credits": 2, "mandatory": False, "national": False}, "ERI8": {"credits": 2, "mandatory": False, "national": False}, "ERI9": {"credits": 2, "mandatory": False, "national": False}, "ERI10": {"credits": 2, "mandatory": False, "national": False}, "ERI11": {"credits": 2, "mandatory": False, "national": False}, "ERI12": {"credits": 2, "mandatory": False, "national": False}}}
         }
     }
 

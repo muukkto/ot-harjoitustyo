@@ -7,6 +7,7 @@ class Plan:
         self.curriculum = curriculum
         self.courses_plan = {}
         self.own_courses = {}
+        self.special_task = False
 
         for subject in curriculum.subjects.items():
             subject_code = subject[0]
@@ -83,12 +84,18 @@ class Plan:
 
         return cur_courses + own_courses
 
-    def get_curriculum_courses_on_plan(self):
+    def get_curriculum_courses_on_plan(self, subject_code: str = None):
         planned_courses = []
-        for subject in self.courses_plan.values():
-            for course in subject.values():
+
+        if subject_code:
+            for course in self.courses_plan[subject_code].values():
                 if course.status():
                     planned_courses.append(course)
+        else:
+            for subject in self.courses_plan.values():
+                for course in subject.values():
+                    if course.status():
+                        planned_courses.append(course)
 
         return planned_courses
 
@@ -99,13 +106,15 @@ class Plan:
 
         return planned_courses
 
-    def get_credits_by_criteria(self, mandatory: bool, national: bool):
+    def get_credits_by_criteria(self, mandatory: bool, national: bool, subject: str = None):
         total_credits = 0
-        for course in self.get_curriculum_courses_on_plan():
+        for course in self.get_curriculum_courses_on_plan(subject):
             course_code = course.code
-            course_status = self.curriculum.get_course_status_from_course_code(course_code)
+            course_status = self.curriculum.get_course_status_from_course_code(
+                course_code)
             if course_status["mandatory"] == mandatory and course_status["national"] == national:
-                course_credits = self.curriculum.get_credits_from_course_code(course_code)
+                course_credits = self.curriculum.get_credits_from_course_code(
+                    course_code)
                 total_credits += course_credits
 
         return total_credits
@@ -126,3 +135,9 @@ class Plan:
         total_credits += self.get_credits_own_course()
 
         return total_credits
+
+    def is_special_task(self):
+        return self.special_task
+
+    def change_special_task(self, status):
+        self.special_task = status

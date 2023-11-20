@@ -33,6 +33,7 @@ def delete_course(plan_service):
     course_code = input("Which course do you want to remove from your plan? ")
     plan_service.delete_course(course_code)
 
+
 def print_list(output_list):
     for row in output_list:
         print(row)
@@ -50,10 +51,11 @@ def main():
             case 2:
                 delete_course(plan_service)
             case 3:
-                #vaihda tiedotstonimeksi haluamasia
-                #suunnitelman jolla validiointi menee läpi: "list_of_subjects_in_valid_plan.txt"
-                #suunnitelma jolla tilastoissa on 45 credits: "list_of_subjects_45_credits.txt"
-                import_courses("list_of_subjects_in_valid_plan.txt", plan_service)
+                # vaihda tiedotstonimeksi haluamasia
+                # suunnitelman jolla validiointi menee läpi: "list_of_subjects_in_valid_plan.txt"
+                # suunnitelma jolla tilastoissa on 45 credits: "list_of_subjects_45_credits.txt"
+                import_courses(
+                    "list_of_subjects_in_valid_plan.txt", plan_service)
             case 4:
                 print_list(plan_service.print_courses())
             case 5:

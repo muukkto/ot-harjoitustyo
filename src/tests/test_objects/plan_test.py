@@ -28,7 +28,7 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(self.plan.check_if_course_on_plan("AI2"), True)
         self.assertEqual(self.plan.check_if_course_on_plan("AI3"), True)
         self.assertEqual(len(self.plan.get_courses_on_plan()), 2)
-    
+
     def test_adding_curriculum_courses_work_3(self):
         self.plan.add_curriculum_course_to_plan("PS02")
         self.assertEqual(self.plan.check_if_course_on_plan("PS02"), True)

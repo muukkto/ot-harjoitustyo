@@ -24,7 +24,6 @@ class Curriculum:
         subject_code = self.get_subject_code_from_course_code(course_code)
         return self.subjects[subject_code]["courses"][course_code]
 
-
     def get_credits_from_course_code(self, course_code):
         course = self.get_course_from_course_code(course_code)
         return course["credits"]
@@ -57,7 +56,7 @@ class Curriculum:
 
         return return_list
 
-    def print_rules(self): # pragma: no cover
+    def print_rules(self):  # pragma: no cover
         # tämä pois pylint ja coverage, koska pelkästään kehityksen aikaiseen testailuun
         # pylint: disable=line-too-long
         print(f"minimum credits: {self.rules['minimum_credits']}")

@@ -14,7 +14,8 @@ class TestPlanService(unittest.TestCase):
     def test_add_course_2(self):
         self.plan_service.add_course("PS02")
         self.plan_service.add_course("ENA5")
-        self.assertCountEqual(self.plan_service.print_courses(), ["PS02", "ENA5"])
+        self.assertCountEqual(
+            self.plan_service.print_courses(), ["PS02", "ENA5"])
 
     def test_add_own_course(self):
         self.plan_service.add_course("OMA1", "Oma kurssi", 3, False)
@@ -29,7 +30,8 @@ class TestPlanService(unittest.TestCase):
     def test_delete_course_2(self):
         self.plan_service.add_course("S27")
         self.plan_service.add_course("UR1", "Urbaani kurssi", 5, False)
-        self.assertCountEqual(self.plan_service.print_courses(), ["S27", "UR1"])
+        self.assertCountEqual(
+            self.plan_service.print_courses(), ["S27", "UR1"])
         self.plan_service.delete_course("UR1")
         self.assertCountEqual(self.plan_service.print_courses(), ["S27"])
 

@@ -25,7 +25,8 @@ class PlanService:
 
     def print_stats(self):
         return_print = []
-        return_print.append(f"Total credits: {self.plan.get_total_credits_on_plan()}")
+        return_print.append(
+            f"Total credits: {self.plan.get_total_credits_on_plan()}")
 
         return return_print
 
