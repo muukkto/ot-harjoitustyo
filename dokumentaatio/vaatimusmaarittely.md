@@ -17,9 +17,9 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [ ] Ylppärisuunnitelman laatiminen    
     - [ ] Suunnitelma tarkistetaan YTL:n palvelusta. [Linkki API:n dokumentaatioon](https://ilmo.ylioppilastutkinto.fi/v1/api-docs/).
     - [ ] Ei päälekkäisiä kokeita suunnitelmassa (esim. reaalit samana päivänä) - tämä tehdään paikallisesti
-- [ ] Suunnitelman tarkastaminen (erityistehtävä)
-    - [ ] Pakollisia voi jättää pois 16 op, jos erityistehtävä opintojaksoja on 24 op
-    - [ ] Puolet pakollisista kuitenkin käytävä
+- [x] Suunnitelman tarkastaminen (erityistehtävä)
+    - [x] Pakollisia voi jättää pois 16 op, jos erityistehtävä opintojaksoja on 24 op
+    - [x] Puolet pakollisista kuitenkin käytävä
 - [x] Yksinkertainen tekstikäyttöliittymä
 - [ ] Suunnitelman tallentaminen JSON-tiedostoon
 - [ ] Suunnitelman lukeminen JSON-tiedostosta
