@@ -84,10 +84,8 @@ class ValidationService:
             plan_total_mandatory_credits += ects_credits
 
         if plan_total_mandatory_credits >= basket_rules["minimum_compulsory_total"]:
-            print(f"{basket[0]} basket OK")
             return True
 
-        print(f"{basket[0]} basket missing")
         return False
 
     def check_mandatory_credits_one_subject(self, plan, curriculum, subject):
@@ -96,10 +94,8 @@ class ValidationService:
         plan_mandatory_credits = plan.get_mandatory_credits_subject(subject)
 
         if curriculum_mandatory_credits <= plan_mandatory_credits:
-            print(f"{subject} OK")
             return True
 
-        print(f"{subject} missing")
         return False
 
     def check_mandatory_credits_one_group(self, plan, curriculum, group):
@@ -110,8 +106,6 @@ class ValidationService:
                 subject_status = True
 
         if subject_status:
-            print(f"{group} OK")
             return True
-
-        print(f"{group} missing")
+        
         return False
