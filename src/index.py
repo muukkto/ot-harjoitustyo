@@ -55,7 +55,7 @@ def main():
                 # suunnitelman jolla validiointi menee läpi: "list_of_subjects_in_valid_plan.txt"
                 # suunnitelma jolla tilastoissa on 45 credits: "list_of_subjects_45_credits.txt"
                 import_courses(
-                    "list_of_subjects_in_valid_plan.txt", plan_service)
+                    "list_of_subjects_45_credits.txt", plan_service)
             case 4:
                 print_list(plan_service.print_courses())
             case 5:

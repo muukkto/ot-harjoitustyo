@@ -29,7 +29,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertTrue(self.validation_service.validate(
+        self.assertFalse(self.validation_service.validate(
             plan, self.curriculum))
 
     def test_validate_legal_special_task_plan(self):
@@ -50,7 +50,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertTrue(self.validation_service.validate(
+        self.assertFalse(self.validation_service.validate(
             plan, self.curriculum))
 
     def test_validate_illegal_plan_not_enough_special_task_credits(self):
@@ -71,7 +71,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded(self):
@@ -92,7 +92,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_in_basket_subject(self):
@@ -113,7 +113,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_one_subject(self):
@@ -133,7 +133,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_group_subject(self):
@@ -154,7 +154,7 @@ class TestValidationService(unittest.TestCase):
         for course in legal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_enough_credits(self):
@@ -173,7 +173,7 @@ class TestValidationService(unittest.TestCase):
         for course in illegal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_all_mandatory(self):
@@ -191,7 +191,7 @@ class TestValidationService(unittest.TestCase):
         for course in illegal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_all_mandatory_arts(self):
@@ -210,5 +210,5 @@ class TestValidationService(unittest.TestCase):
         for course in illegal_courses:
             plan.add_curriculum_course_to_plan(course)
 
-        self.assertFalse(
+        self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))

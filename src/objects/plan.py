@@ -127,6 +127,9 @@ class Plan:
 
         return total_credits
 
+    def get_mandatory_credits_subject(self, subject_code):
+        return self.get_credits_by_criteria(mandatory=True, national=True, subject=subject_code)
+
     def get_total_credits_on_plan(self):
         total_credits = 0
         total_credits += self.get_credits_by_criteria(True, True)

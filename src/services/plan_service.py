@@ -25,11 +25,16 @@ class PlanService:
 
     def print_stats(self):
         total_credits = self.plan.get_total_credits_on_plan()
-        mandatory_credits = self.plan.get_credits_by_criteria(mandatory=True, national=True)
-        national_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False, national=True)
-        local_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False, national=False)
-        local_voluntary_credits += self.plan.get_credits_own_course()
+        mandatory_credits = self.plan.get_credits_by_criteria(mandatory=True,
+                                                              national=True)
 
+        national_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False,
+                                                                       national=True)
+
+        local_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False,
+                                                                    national=False)
+
+        local_voluntary_credits += self.plan.get_credits_own_course()
 
         return_print = []
         return_print.append(
@@ -47,9 +52,14 @@ class PlanService:
         return_print = self.curriculum.return_all_courses()
         return return_print
 
+    def validation_print(self, status):
+        print(status)
+
     def validate_plan(self):
         validation_service = ValidationService()
-        validation_service.validate(self.plan, self.curriculum)
+        validation_status = validation_service.validate(
+            self.plan, self.curriculum)
+        self.validation_print(validation_status)
 
     def print_courses(self):
         return_print = []
