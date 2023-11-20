@@ -24,5 +24,6 @@
 
 - Validoinnin parantaminen
     - Mahdollisuus tarkistaa, että pakolliset suoritettu kaikissa oppiaineissa. Ottaa huomioon mahdolliset eri oppimäärät ja taideaineiden poikkeavuudet.
+    - Validiointi tarkistaa myös valtakunnalliset valinnaiset opinnot
 - Lisätty testit PlanService-luokalle sekä validoinneille.
 - Perustietorakenteet tukevat omia opintojaksoja
