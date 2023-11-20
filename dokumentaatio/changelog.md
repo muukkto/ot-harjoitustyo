@@ -27,4 +27,5 @@
     - Validiointi tarkistaa myös valtakunnalliset valinnaiset opinnot
     - Validointi mahdollista erityistehtävä-opintosuunnitelmalle
 - Lisätty testit PlanService-luokalle sekä validoinneille.
+- Luotu testit ValidationService-luokalle.
 - Perustietorakenteet tukevat omia opintojaksoja
