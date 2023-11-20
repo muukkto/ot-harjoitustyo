@@ -23,10 +23,10 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 - [x] Yksinkertainen tekstikäyttöliittymä
 - [ ] Suunnitelman tallentaminen JSON-tiedostoon
 - [ ] Suunnitelman lukeminen JSON-tiedostosta
-- [ ] Mahdollisuus tulostaa perustilastoja
+- [x] Mahdollisuus tulostaa perustilastoja
     - [x] Opintojaksojen kokonaismäärä
-    - [ ] Pakollisten määrä
-    - [ ] Valinnaisten määrä
+    - [x] Pakollisten määrä
+    - [x] Valinnaisten määrä
 
 
 ## Jatkokehitysideat
