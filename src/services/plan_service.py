@@ -24,9 +24,22 @@ class PlanService:
         self.plan.delete_course_from_plan(course_code)
 
     def print_stats(self):
+        total_credits = self.plan.get_total_credits_on_plan()
+        mandatory_credits = self.plan.get_credits_by_criteria(mandatory=True, national=True)
+        national_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False, national=True)
+        local_voluntary_credits = self.plan.get_credits_by_criteria(mandatory=False, national=False)
+        local_voluntary_credits += self.plan.get_credits_own_course()
+
+
         return_print = []
         return_print.append(
-            f"Total credits: {self.plan.get_total_credits_on_plan()}")
+            f"Total credits: {total_credits}")
+        return_print.append(
+            f"Mandatory credits: {mandatory_credits}")
+        return_print.append(
+            f"National voluntary credits: {national_voluntary_credits}")
+        return_print.append(
+            f"Local voluntary credits: {local_voluntary_credits}")
 
         return return_print
 
