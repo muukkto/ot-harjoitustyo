@@ -1,7 +1,5 @@
 # Arkkitehtuurikuvaus
 
-Arkkitehtuurikuvaukseen on merkitty ainoastaan loppuohjelman kannalta oleelliset luokat ja funktiot. Kehityksen aikaiset apufunktiot ja -metodit on jätetty tarkoituksella pois.
-
 **EDIT**: Jostain syystä luokkakaavio ei näy GitHubissa, vaikka se näkyy VSCoden esikatselussa🤷‍♂️
 
 ```mermaid
