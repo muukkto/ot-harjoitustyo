@@ -107,5 +107,5 @@ class ValidationService:
 
         if subject_status:
             return True
-        
+
         return False
