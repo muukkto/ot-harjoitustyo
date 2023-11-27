@@ -63,4 +63,4 @@ classDiagram
 ```
 
 
-![Luokkakaavio](/kuvat/luokkakaavio_271123.png)
+![Luokkakaavio](kuvat/luokkakaavio_271123.png)
