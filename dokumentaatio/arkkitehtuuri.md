@@ -1,10 +1,7 @@
 # Arkkitehtuurikuvaus
 
-**EDIT**: Jostain syystä luokkakaavio ei näy GitHubissa, vaikka se näkyy VSCoden esikatselussa🤷‍♂️ Siksi se nyt myös kuvatiedostona!
-
 ```mermaid
 classDiagram
-    namespace Objects {
         class Course {
             bool status
             bool on_cur
@@ -32,10 +29,8 @@ classDiagram
             get_credits_from_course_code(course_code)
             get_status_from_course_code(course_code)
         }
-    }
     Course "1" <-- "*" Plan
     Course "1" -- "1" Curriculum
-    namespace Services {
         class PlanService {
             add_course(course_code, name, ects_credits, in_cur)
             delete_course(course_code)
@@ -52,7 +47,6 @@ classDiagram
         class SpecialValidationService {
             validate(plan, curriculum)
         }
-    }
     ValidationService -- SpecialValidationService
     ValidationService -- ValidationFunctions
     SpecialValidationService -- ValidationFunctions
@@ -61,6 +55,3 @@ classDiagram
     ValidationService -- Plan
     ValidationService -- Curriculum
 ```
-
-
-![Luokkakaavio](kuvat/luokkakaavio_271123.png)
