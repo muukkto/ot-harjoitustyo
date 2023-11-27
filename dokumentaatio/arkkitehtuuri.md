@@ -1,6 +1,6 @@
 # Arkkitehtuurikuvaus
 
-**EDIT**: Jostain syystä luokkakaavio ei näy GitHubissa, vaikka se näkyy VSCoden esikatselussa🤷‍♂️
+**EDIT**: Jostain syystä luokkakaavio ei näy GitHubissa, vaikka se näkyy VSCoden esikatselussa🤷‍♂️ Siksi se nyt myös kuvatiedostona!
 
 ```mermaid
 classDiagram
@@ -61,3 +61,6 @@ classDiagram
     ValidationService -- Plan
     ValidationService -- Curriculum
 ```
+
+
+![Luokkakaavio](/kuvat/luokkakaavio_271123.png)
