@@ -15,9 +15,18 @@ def print_commands():
     print("10: exit the program")
 
 
-def import_courses(file_name, plan_service):
+def import_courses(plan_service):
     file_handler = FileHandler()
     dirname = Path(__file__).parent
+
+    plans = {1: "list_of_subjects_in_valid_plan.txt",
+             2: "list_of_subjects_45_credits.txt",
+             3: "list_of_subjects_valid_special_task.txt"}
+
+    print("Plan alternatives:\n1 - a valid plan\n2 - plan with only 45 credits\n3 - a valid special task plan")
+    plan_id = int(input("Which plan do you want: "))
+
+    file_name = plans[plan_id]
 
     file_path = dirname.joinpath(f"help_files/{file_name}")
     course_list = file_handler.import_courses_from_txt(file_path)
@@ -51,11 +60,7 @@ def main():
             case 2:
                 delete_course(plan_service)
             case 3:
-                # vaihda tiedotstonimeksi haluamasia
-                # suunnitelman jolla validiointi menee läpi: "list_of_subjects_in_valid_plan.txt"
-                # suunnitelma jolla tilastoissa on 45 credits: "list_of_subjects_45_credits.txt"
-                import_courses(
-                    "list_of_subjects_45_credits.txt", plan_service)
+                import_courses(plan_service)
             case 4:
                 print_list(plan_service.print_courses())
             case 5:
@@ -64,7 +69,7 @@ def main():
                 print_list(plan_service.print_stats())
             case 7:
                 print_list(plan_service.print_curriculum())
-            case 8:
+            case 10:
                 print("exiting...")
                 break
             case _:
