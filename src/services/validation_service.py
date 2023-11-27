@@ -2,6 +2,7 @@ from objects.plan import Plan
 from objects.curriculum import Curriculum
 
 from services.special_validation_service import SpecialValidationService
+from services.validation_functions import ValidationFunctions
 
 
 class ValidationService:
@@ -9,12 +10,14 @@ class ValidationService:
         validation_problems = []
 
         self.check_total_credits(plan, curriculum, validation_problems)
-        self.check_national_voluntary_credits(plan, curriculum, validation_problems)
-        self.check_mandatory_credits(plan, curriculum, validation_problems)
+        self.check_national_voluntary_credits(
+            plan, curriculum, validation_problems)
+        self.check_mandatory_credits_new(plan, curriculum, validation_problems)
 
         if plan.is_special_task():
             special_validator = SpecialValidationService()
-            special_plan_problems = special_validator.validate(plan, curriculum)
+            special_plan_problems = special_validator.validate(
+                plan, curriculum)
 
             if len(special_plan_problems) != 0:
                 validation_problems.append({"name": "special_task_problems",
@@ -29,37 +32,17 @@ class ValidationService:
         total_credits = plan.get_total_credits_on_plan()
 
         if total_credits < total_credit_rule:
-            validation_problems.append({"name": "not_enough_credits", "details": total_credits})
+            validation_problems.append(
+                {"name": "not_enough_credits", "details": total_credits})
 
-    def check_mandatory_credits(self, plan, curriculum, validation_problems):
-        simple_subjects = curriculum.rules["national_mandatory_subjects"]
-        group_subjects = [
-            "mother_tongue",
-            "second_national_language",
-            "long_foreign_language",
-            "maths",
-            "worldview"
-        ]
-        basket_subjects = curriculum.rules["basket_subjects"]
-
+    def check_mandatory_credits_new(self, plan, curriculum, validation_problems):
+        validation_functions = ValidationFunctions()
         mandatory_credits_problems = []
 
-        for subject in simple_subjects:
-            if not self.check_mandatory_credits_one_subject(plan, curriculum, subject):
-                mandatory_credits_problems.append(
-                    {"name": "problem_with_simple_subjects", "details": subject})
+        missing_credits = validation_functions.check_total_mandatory(
+            plan, curriculum, mandatory_credits_problems)
 
-        for group in group_subjects:
-            if not self.check_mandatory_credits_one_group(plan, curriculum, group):
-                mandatory_credits_problems.append(
-                    {"name": "problem_with_group_subjects", "details": group})
-
-        for basket in basket_subjects.items():
-            if not self.check_mandatory_credits_one_basket(plan, basket):
-                mandatory_credits_problems.append(
-                    {"name": "problem_with_basket_subjects", "details": basket[0]})
-
-        if len(mandatory_credits_problems) != 0:
+        if missing_credits != 0:
             validation_problems.append({"name": "not_all_compulsory_credits",
                                         "details": mandatory_credits_problems})
 
@@ -71,41 +54,3 @@ class ValidationService:
         if voluntary_credits < voluntary_credit_rule:
             validation_problems.append({"name": "not_enough_national_voluntary_credits",
                                         "details": voluntary_credits})
-
-    def check_mandatory_credits_one_basket(self, plan, basket):
-        plan_total_mandatory_credits = 0
-        basket_rules = basket[1]
-
-        for subject in basket_rules["subjects"]:
-            ects_credits = plan.get_mandatory_credits_subject(subject)
-            if ects_credits < basket_rules["minimum_compulsory_per_subject"]:
-                return False
-
-            plan_total_mandatory_credits += ects_credits
-
-        if plan_total_mandatory_credits >= basket_rules["minimum_compulsory_total"]:
-            return True
-
-        return False
-
-    def check_mandatory_credits_one_subject(self, plan, curriculum, subject):
-        curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(
-            subject)
-        plan_mandatory_credits = plan.get_mandatory_credits_subject(subject)
-
-        if curriculum_mandatory_credits <= plan_mandatory_credits:
-            return True
-
-        return False
-
-    def check_mandatory_credits_one_group(self, plan, curriculum, group):
-        subject_list = curriculum.rules[group]
-        subject_status = False
-        for subject in subject_list:
-            if self.check_mandatory_credits_one_subject(plan, curriculum, subject):
-                subject_status = True
-
-        if subject_status:
-            return True
-
-        return False
