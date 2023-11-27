@@ -11,4 +11,4 @@
 | 20.11.2023  | 1    | Validoinnin viimeistely valtakunnallista tuntijakoa varten |
 | 20.11.2023  | 2    | Validointi eritystehtävälle ja testit |
 | 27.11.2023  | 2    | Validoinnin refaktorointi |
-| **Summa**  | 23 | Validoinnin refaktorointi |
+| **Summa**  | 23 ||
