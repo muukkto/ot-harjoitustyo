@@ -11,7 +11,7 @@ def print_commands():
     print("4: print courses added to your plan")
     print("5: validate plan")
     print("6: print stats")
-    # print("7: print courses on curriculum")
+    print("7: update matriculation examination plan")
     print("10: exit the program")
 
 
@@ -58,6 +58,9 @@ def print_list(output_list):
     for row in output_list:
         print(row)
 
+def matriculation_examination(plan_service):
+    print("You want to compete with YTL?")
+
 
 def main():
     # pylint: disable=too-many-arguments
@@ -78,8 +81,8 @@ def main():
                 plan_service.validate_plan()
             case 6:
                 print_list(plan_service.print_stats())
-            #case 7:
-            #   print_list(plan_service.get_reserved_codes())
+            case 7:
+               matriculation_examination(plan_service)
             case 10:
                 print("exiting...")
                 break

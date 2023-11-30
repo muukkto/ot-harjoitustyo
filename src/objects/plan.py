@@ -1,6 +1,8 @@
 from objects.course import Course
 from objects.curriculum import Curriculum
 
+from config.meb_config import get_meb_codes
+
 
 class Plan:
     def __init__(self, curriculum: Curriculum):
@@ -8,6 +10,8 @@ class Plan:
         self.courses_plan = {}
         self.own_courses = {}
         self.special_task = False
+
+        self.matriculation_examination_plan = {1: [], 2: [], 3: []}
 
         for subject in curriculum.subjects.items():
             subject_code = subject[0]
@@ -144,3 +148,22 @@ class Plan:
 
     def change_special_task(self, status):
         self.special_task = status
+
+    def add_subject_to_me_plan(self, subject_code, examination_period):
+        if subject_code in get_meb_codes() and examination_period > 0 and examination_period < 4:
+            self.matriculation_examination_plan[examination_period].append(subject_code)
+            return True
+
+        return False
+
+    def remove_subject_from_me_plan(self, subject_code, examination_period):
+        sub_list = self.matriculation_examination_plan[examination_period]
+        sub_list.remove(subject_code)
+        self.matriculation_examination_plan[examination_period] = sub_list
+
+    def return_me_plan(self):
+        return self.matriculation_examination_plan
+
+    def return_subject_in_me_plan(self):
+        all_subjects = set(self.matriculation_examination_plan[1] + self.matriculation_examination_plan[2] + self.matriculation_examination_plan[3])
+        return list(all_subjects)
