@@ -58,9 +58,10 @@ def print_list(output_list):
     for row in output_list:
         print(row)
 
+
 def matriculation_examination(plan_service):
     print("You want to compete with YTL?")
-
+    plan_service.validate_meb()
 
 def main():
     # pylint: disable=too-many-arguments
@@ -82,7 +83,7 @@ def main():
             case 6:
                 print_list(plan_service.print_stats())
             case 7:
-               matriculation_examination(plan_service)
+                matriculation_examination(plan_service)
             case 10:
                 print("exiting...")
                 break

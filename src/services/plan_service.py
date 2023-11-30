@@ -70,3 +70,6 @@ class PlanService:
             return_print.append(str(course))
 
         return return_print
+
+    def validate_meb(self):
+        pass

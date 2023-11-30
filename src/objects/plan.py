@@ -150,8 +150,9 @@ class Plan:
         self.special_task = status
 
     def add_subject_to_me_plan(self, subject_code, examination_period):
-        if subject_code in get_meb_codes() and examination_period > 0 and examination_period < 4:
-            self.matriculation_examination_plan[examination_period].append(subject_code)
+        if subject_code in get_meb_codes() and 4 > examination_period > 0:
+            self.matriculation_examination_plan[examination_period].append(
+                subject_code)
             return True
 
         return False
@@ -165,5 +166,6 @@ class Plan:
         return self.matriculation_examination_plan
 
     def return_subject_in_me_plan(self):
-        all_subjects = set(self.matriculation_examination_plan[1] + self.matriculation_examination_plan[2] + self.matriculation_examination_plan[3])
+        all_subjects = set(
+            self.matriculation_examination_plan[1] + self.matriculation_examination_plan[2] + self.matriculation_examination_plan[3])
         return list(all_subjects)

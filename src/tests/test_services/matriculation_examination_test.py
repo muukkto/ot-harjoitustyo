@@ -6,6 +6,7 @@ from services.meb_validation_service import MebValidationService
 
 from config.lops21_curriculum import lops21_curriculum
 
+
 class TestPlan(unittest.TestCase):
     def setUp(self):
         curriculum = Curriculum(lops21_curriculum())
@@ -15,12 +16,14 @@ class TestPlan(unittest.TestCase):
     def test_adding_subject_to_me_plan(self):
         self.plan.add_subject_to_me_plan("BI", 1)
         self.plan.add_subject_to_me_plan("YH", 2)
-        self.assertCountEqual(self.plan.return_subject_in_me_plan(), ["BI", "YH"])
+        self.assertCountEqual(
+            self.plan.return_subject_in_me_plan(), ["BI", "YH"])
 
     def test_removing_subject_from_me_plan(self):
         self.plan.add_subject_to_me_plan("M", 1)
         self.plan.add_subject_to_me_plan("EA", 2)
-        self.assertCountEqual(self.plan.return_subject_in_me_plan(), ["M", "EA"])
+        self.assertCountEqual(
+            self.plan.return_subject_in_me_plan(), ["M", "EA"])
 
         self.plan.remove_subject_from_me_plan("EA", 2)
         self.assertCountEqual(self.plan.return_subject_in_me_plan(), ["M"])
