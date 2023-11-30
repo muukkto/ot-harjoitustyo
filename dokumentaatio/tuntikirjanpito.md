@@ -12,4 +12,5 @@
 | 20.11.2023  | 2    | Validointi eritystehtävälle ja testit |
 | 27.11.2023  | 2    | Validoinnin refaktorointi |
 | 28.11.2023  | 1    | Arkkitehtuurikuvauksen tekeminen |
-| **Summa**  | 24 ||
+| 30.11.2023  | 4    | Omien opintojaksojen lisäämisen viimeistely, YO-suunnitelman taustarakenteet kunnossa |
+| **Summa**  | 28 ||
