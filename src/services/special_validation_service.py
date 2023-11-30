@@ -25,7 +25,7 @@ class SpecialValidationService:
             return []
 
         return [{"name": "not_enough_special_task_credits",
-               "details": special_task_credits}]
+                 "details": special_task_credits}]
 
     def check_excluded_credits(self, plan, curriculum):
         mandatory_courses_excluded_rule = curriculum.rules["maximum_excluded_credits_special_task"]

@@ -15,7 +15,7 @@ class Curriculum:
         all_subject_codes = self.return_all_subject_codes()
 
         for subject in all_subject_codes:
-            if course_code.find(subject) != -1:
+            if course_code.startswith(subject):
                 return subject
 
         return None

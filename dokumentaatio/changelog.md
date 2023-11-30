@@ -29,3 +29,7 @@
 - Lisätty testit PlanService-luokalle sekä validoinneille.
 - Luotu testit ValidationService-luokalle.
 - Perustietorakenteet tukevat omia opintojaksoja
+
+## Viikko 5
+
+- Omat opintojaksot toimivat käyttöliittymässä ja PlanServicessä

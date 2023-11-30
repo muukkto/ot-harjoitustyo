@@ -12,16 +12,16 @@ class PlanService:
 
     def add_course(self, course_code, name=None, ects_credits=0, in_cur=True):
         if in_cur:
-            self.plan.add_curriculum_course_to_plan(course_code)
-        else:
-            self.plan.add_own_course_to_plan(course_code, name, ects_credits)
+            return self.plan.add_curriculum_course_to_plan(course_code)
+
+        return self.plan.add_own_course_to_plan(course_code, name, ects_credits)
 
     def add_multiple_courses(self, courses: list):
         for course in courses:
             self.add_course(course)
 
     def delete_course(self, course_code):
-        self.plan.delete_course_from_plan(course_code)
+        return self.plan.delete_course_from_plan(course_code)
 
     def print_stats(self):
         total_credits = self.plan.get_total_credits_on_plan()
@@ -48,9 +48,11 @@ class PlanService:
 
         return return_print
 
-    def print_curriculum(self):
-        return_print = self.curriculum.return_all_courses()
-        return return_print
+    def check_reserved_codes(self, course_code):
+        if self.curriculum.get_subject_code_from_course_code(course_code):
+            return True
+
+        return False
 
     def validation_print(self, status):
         print(status)

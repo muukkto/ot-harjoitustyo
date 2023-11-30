@@ -30,8 +30,8 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(len(self.plan.get_courses_on_plan()), 2)
 
     def test_adding_curriculum_courses_work_3(self):
-        self.plan.add_curriculum_course_to_plan("PS02")
-        self.assertEqual(self.plan.check_if_course_on_plan("PS02"), True)
+        self.plan.add_curriculum_course_to_plan("PS2")
+        self.assertEqual(self.plan.check_if_course_on_plan("PS2"), True)
         self.assertEqual(len(self.plan.get_courses_on_plan()), 1)
 
     def test_adding_own_courses_work_1(self):
@@ -71,6 +71,11 @@ class TestPlan(unittest.TestCase):
     def test_cannot_add_own_course_with_curriculum_code(self):
         self.assertEqual(self.plan.add_own_course_to_plan(
             "BI9", "Biologian kertauskurssi", 2), False)
+
+    def test_cannot_add_own_course_two_times_same_code(self):
+        self.plan.add_own_course_to_plan("OMA1", "Oma kurssi 1", 2)
+        self.assertEqual(self.plan.add_own_course_to_plan(
+            "OMA1", "Toinen oma kurssi", 2), False)
 
     def test_deleting_course_return_true_if_working_course(self):
         self.plan.add_curriculum_course_to_plan("FI1")

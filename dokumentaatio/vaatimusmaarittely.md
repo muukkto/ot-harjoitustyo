@@ -8,7 +8,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 
 - [x] Opintojaksojen merkitseminen suunnitelmaan kuuluvaksi. Toteutetaan ensiksi komentoriviltä, esim `add MAA12`.
 - [x] Opintojakson poistaminen suunnitelmasta - `delete MAA12`
-- [ ] Suunnitelmaan voi lisätä oppilaitoskohtaisia valinnaisia opintojaksoja - täytyy itse antaa nimi ja opintopistemäärä
+- [x] Suunnitelmaan voi lisätä oppilaitoskohtaisia valinnaisia opintojaksoja - täytyy itse antaa nimi ja opintopistemäärä
 - [x] Suunnitelman tarkastaminen (perus)
     - [x] Valmistua voi pelkästään kun 150 op kasassa
     - [x] Kaikki pakolliset opintojaksot täytyy käydä

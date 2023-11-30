@@ -11,7 +11,7 @@ def print_commands():
     print("4: print courses added to your plan")
     print("5: validate plan")
     print("6: print stats")
-    print("7: print courses on curriculum")
+    # print("7: print courses on curriculum")
     print("10: exit the program")
 
 
@@ -34,8 +34,19 @@ def import_courses(plan_service):
 
 
 def add_course(plan_service):
-    course_code = input("Which course do you want to add to your plan? ")
-    plan_service.add_course(course_code)
+    course_code = input("Which course do you want to add to your plan?")
+    if plan_service.check_reserved_codes(course_code):
+        status = plan_service.add_course(course_code)
+    else:
+        course_name = input("What name does this course have?")
+        ects_credits = int(input("How many credits (ECTS) is the course?"))
+        status = plan_service.add_course(course_code, name=course_name,
+                                         ects_credits=ects_credits, in_cur=False)
+
+    if status:
+        print("Course added succesfully!")
+    else:
+        print("Couldn't add course!")
 
 
 def delete_course(plan_service):
@@ -67,8 +78,8 @@ def main():
                 plan_service.validate_plan()
             case 6:
                 print_list(plan_service.print_stats())
-            case 7:
-                print_list(plan_service.print_curriculum())
+            #case 7:
+            #   print_list(plan_service.get_reserved_codes())
             case 10:
                 print("exiting...")
                 break
