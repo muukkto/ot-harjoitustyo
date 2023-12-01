@@ -23,6 +23,9 @@ class Plan:
                 self.courses_plan[subject_code][course] = Course(
                     course, subject_code, True)
 
+    def get_curriculum_tree(self):
+        return self.curriculum.return_all_courses_dict()
+
     def add_curriculum_course_to_plan(self, code):
         course = self.find_cur_course(code)
         if course:

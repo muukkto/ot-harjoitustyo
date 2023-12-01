@@ -24,6 +24,12 @@ class PlanService:
     def delete_course(self, course_code):
         return self.plan.delete_course_from_plan(course_code)
 
+    def get_curriculum_tree(self):
+        return self.plan.get_curriculum_tree()
+
+    def get_course_status(self, course_code):
+        return self.plan.check_if_course_on_plan(course_code)
+
     def print_stats(self):
         total_credits = self.plan.get_total_credits_on_plan()
         mandatory_credits = self.plan.get_credits_by_criteria(mandatory=True,

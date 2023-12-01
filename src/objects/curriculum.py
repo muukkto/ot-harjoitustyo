@@ -56,6 +56,9 @@ class Curriculum:
 
         return return_list
 
+    def return_all_courses_dict(self):
+        return self.subjects
+
     def print_rules(self):  # pragma: no cover
         # tämä pois pylint ja coverage, koska pelkästään kehityksen aikaiseen testailuun
         # pylint: disable=line-too-long
