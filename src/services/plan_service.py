@@ -3,6 +3,7 @@ from objects.curriculum import Curriculum
 from config.lops21_curriculum import lops21_curriculum
 
 from services.validation_service import ValidationService
+from services.meb_validation_service import MebValidationService
 
 
 class PlanService:
@@ -71,5 +72,15 @@ class PlanService:
 
         return return_print
 
+    def add_exam_meb(self, exam_code, exam_period):
+        return self.plan.add_exam_to_meb_plan(exam_code, exam_period)
+
+    def remove_exam_meb(self, exam_code, exam_period):
+        return self.plan.remove_exam_from_meb_plan(exam_code, exam_period)
+
     def validate_meb(self):
-        pass
+        validation_service = MebValidationService()
+        validation_service.validate(self.plan)
+
+    def get_meb_plan(self):
+        return self.plan.return_meb_plan()
