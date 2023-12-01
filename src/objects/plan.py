@@ -149,23 +149,24 @@ class Plan:
     def change_special_task(self, status):
         self.special_task = status
 
-    def add_subject_to_me_plan(self, subject_code, examination_period):
-        if subject_code in get_meb_codes() and 4 > examination_period > 0:
+    def add_exam_to_meb_plan(self, exam_code, examination_period):
+        if exam_code in get_meb_codes() and 4 > examination_period > 0:
             self.matriculation_examination_plan[examination_period].append(
-                subject_code)
+                exam_code)
             return True
 
         return False
 
-    def remove_subject_from_me_plan(self, subject_code, examination_period):
+    def remove_exam_from_meb_plan(self, exam_code, examination_period):
         sub_list = self.matriculation_examination_plan[examination_period]
-        sub_list.remove(subject_code)
+        sub_list.remove(exam_code)
         self.matriculation_examination_plan[examination_period] = sub_list
 
-    def return_me_plan(self):
+    def return_meb_plan(self):
         return self.matriculation_examination_plan
 
-    def return_subject_in_me_plan(self):
-        all_subjects = set(
-            self.matriculation_examination_plan[1] + self.matriculation_examination_plan[2] + self.matriculation_examination_plan[3])
-        return list(all_subjects)
+    def return_exams_in_meb_plan(self):
+        all_exams = set(self.matriculation_examination_plan[1])
+        all_exams.update(self.matriculation_examination_plan[2])
+        all_exams.update(self.matriculation_examination_plan[3])
+        return list(all_exams)

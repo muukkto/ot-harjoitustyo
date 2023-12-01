@@ -33,3 +33,4 @@
 ## Viikko 5
 
 - Omat opintojaksot toimivat käyttöliittymässä ja PlanServicessä
+- Ylioppilastutkintosuunnitelma toimii. Luotu myös testit tälle.

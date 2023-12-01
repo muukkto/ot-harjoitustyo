@@ -33,7 +33,7 @@ class MebValidationService:
 
         validation_problems = []
 
-        me_plan = plan.return_me_plan()
+        me_plan = plan.return_meb_plan()
 
         for period in range(1, 4):
             period_exams = set(me_plan[period])
@@ -51,7 +51,7 @@ class MebValidationService:
             lang}"
         exam_parameters = ""
 
-        list_subjects = plan.return_subject_in_me_plan()
+        list_subjects = plan.return_exams_in_meb_plan()
 
         for subject in list_subjects:
             exam_parameters = exam_parameters + "&exams=" + subject

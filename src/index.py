@@ -11,7 +11,8 @@ def print_commands():
     print("4: print courses added to your plan")
     print("5: validate plan")
     print("6: print stats")
-    print("7: update matriculation examination plan")
+    print("7: update or validate matriculation examination plan")
+    print("8: print matriculation examination plan")
     print("10: exit the program")
 
 
@@ -59,9 +60,44 @@ def print_list(output_list):
         print(row)
 
 
+def print_meb_plan(plan_service):
+    meb_plan = plan_service.get_meb_plan()
+
+    print("Current matriculation examination plan")
+
+    for i in range(1, 4):
+        print(f"Exam period {i}: {" ".join(meb_plan[i])}")
+
 def matriculation_examination(plan_service):
-    print("You want to compete with YTL?")
-    plan_service.validate_meb()
+    print_meb_plan(plan_service)
+
+    match int(input("Choose command (1 = add exam, 2 = remove exam, 3 = validate plan): ")):
+        case 1:
+            exam_code = input("Which exam do you want to add?")
+            exam_period = int(input("Which period do you want to write this exam?"))
+
+            status = plan_service.add_exam_meb(exam_code, exam_period)
+
+            if status:
+                print("Exam added succesfully!")
+            else:
+                print("Couldn't add exam!")
+
+        case 2:
+            exam_code = input("Which exam do you want to remove?")
+            exam_period = int(input("In which period is this exam?"))
+
+            status = plan_service.remove_exam_meb(exam_code, exam_period)
+
+            if status:
+                print("Exam removed succesfully!")
+            else:
+                print("Couldn't remove exam!")
+
+        case 3:
+            plan_service.validate_meb()
+        case _:
+            print("Command not found")
 
 def main():
     # pylint: disable=too-many-arguments
@@ -84,6 +120,8 @@ def main():
                 print_list(plan_service.print_stats())
             case 7:
                 matriculation_examination(plan_service)
+            case 8:
+                print_meb_plan(plan_service)
             case 10:
                 print("exiting...")
                 break
