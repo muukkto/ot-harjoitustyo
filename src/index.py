@@ -83,7 +83,6 @@ def matriculation_examination(plan_service):
             else:
                 print("Couldn't add exam!")
 
-
         case 2:
             exam_code = input("Which exam do you want to remove?")
             exam_period = int(input("In which period is this exam?"))

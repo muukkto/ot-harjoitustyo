@@ -166,7 +166,7 @@ class Plan:
         return self.matriculation_examination_plan
 
     def return_exams_in_meb_plan(self):
-        all_exams = set(self.matriculation_examination_plan[1]) 
+        all_exams = set(self.matriculation_examination_plan[1])
         all_exams.update(self.matriculation_examination_plan[2])
         all_exams.update(self.matriculation_examination_plan[3])
         return list(all_exams)

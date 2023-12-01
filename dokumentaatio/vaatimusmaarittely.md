@@ -13,10 +13,10 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [x] Valmistua voi pelkästään kun 150 op kasassa
     - [x] Kaikki pakolliset opintojaksot täytyy käydä
     - [x] Vähintää 20 op valtakunnallisia valinnaisia
-- [ ] Ylppärisuunnitelman tarkistaminen
-    - [ ] Ylppärisuunnitelman laatiminen    
-    - [ ] Suunnitelma tarkistetaan YTL:n palvelusta. [Linkki API:n dokumentaatioon](https://ilmo.ylioppilastutkinto.fi/v1/api-docs/).
-    - [ ] Ei päälekkäisiä kokeita suunnitelmassa (esim. reaalit samana päivänä) - tämä tehdään paikallisesti
+- [x] Ylppärisuunnitelman tarkistaminen
+    - [x] Ylppärisuunnitelman laatiminen    
+    - [x] Suunnitelma tarkistetaan YTL:n palvelusta. [Linkki API:n dokumentaatioon](https://ilmo.ylioppilastutkinto.fi/v1/api-docs/).
+    - [x] Ei päälekkäisiä kokeita suunnitelmassa (esim. reaalit samana päivänä) - tämä tehdään paikallisesti
 - [x] Suunnitelman tarkastaminen (erityistehtävä)
     - [x] Pakollisia voi jättää pois 16 op, jos erityistehtävä opintojaksoja on 24 op
     - [x] Puolet pakollisista kuitenkin käytävä
