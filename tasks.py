@@ -5,7 +5,7 @@ from invoke import task
 @task
 def start(ctx):
     pty = sys.platform != 'win32'
-    ctx.run("python3 src/index_ui.py", pty=pty)
+    ctx.run("python3 src/index_gui.py", pty=pty)
 
 @task
 def test(ctx):
