@@ -13,4 +13,6 @@
 | 27.11.2023  | 2    | Validoinnin refaktorointi |
 | 28.11.2023  | 1    | Arkkitehtuurikuvauksen tekeminen |
 | 30.11.2023  | 4    | Omien opintojaksojen lisäämisen viimeistely, YO-suunnitelman taustarakenteet kunnossa |
-| **Summa**  | 28 ||
+| 1.12.2023  | 5    | Graafisen käyttöliittymän pystytys. LOPS puu valmis. |
+| 2.12.2023  | 2 | Validoinnin ja tulostusten lisääminen graafiseen käyttöliittymään |
+| **Summa**  | 35 ||
