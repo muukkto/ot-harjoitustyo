@@ -68,7 +68,8 @@ class PlanService:
         validation_service = ValidationService()
         validation_status = validation_service.validate(
             self.plan, self.curriculum)
-        self.validation_print(validation_status)
+        
+        return validation_status
 
     def print_courses(self):
         return_print = []

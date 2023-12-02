@@ -176,6 +176,28 @@ class TestValidationService(unittest.TestCase):
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
 
+    def test_validate_illegal_plan_not_enough_voluntary_credits(self):
+        plan = Plan(self.curriculum)
+        illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8",
+                           "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6",
+                           "RUB1", "RUB2", "RUB3", "RUB4", "RUB5",
+                           "MAA1", "MAA2", "MAA3", "MAA4", "MAA5", "MAA6", "MAA7", "MAA8", "MAA9",
+                           "BI1", "BI2", "BI3",
+                           "GE1",
+                           "FY1", "FY2",
+                           "KE1", "KE2",
+                           "FI1", "FI2", "PS1", "HI1", "HI2", "HI3", "YH1", "YH2", "YH3",
+                           "ET1", "ET2", "TE1", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2",
+                           "VAPA1", "VAPA2", "VAPA3", "VAPA4", "VAPA5", "VAPA6", "VAPA7", "VAPA8", "VAPA9", "VAPA10",
+                           "VAPA11", "VAPA12", "VAPA13", "VAPA14", "VAPA15", "VAPA16", "VAPA17", "VAPA18", "VAPA19", "VAPA20",
+                           "VAPA21", "VAPA22", "VAPA23", "VAPA24", "VAPA25"]
+
+        for course in illegal_courses:
+            plan.add_curriculum_course_to_plan(course)
+
+        self.assertTrue(
+            self.validation_service.validate(plan, self.curriculum))
+
     def test_validate_illegal_plan_not_all_mandatory(self):
         plan = Plan(self.curriculum)
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI10", "AI11",
