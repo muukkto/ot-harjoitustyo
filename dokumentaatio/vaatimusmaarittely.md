@@ -33,7 +33,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 
 - [ ] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
 - [ ] Graafinen käyttöliittymä
-    - [ ] Opintojaksot voidaan kliksutella LOPS-puusta
+    - [x] Opintojaksot voidaan kliksutella LOPS-puusta
 - [ ] LOPS-puu voidaan ladata JSON-tiedostosta
     - [ ] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
 - [ ] Ehdotukset mitä puuttuu valmistumisesta, esim `pakollisista puuttuu ENA6, BI2, BI3 ...`
