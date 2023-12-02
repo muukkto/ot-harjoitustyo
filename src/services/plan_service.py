@@ -87,7 +87,7 @@ class PlanService:
 
     def validate_meb(self):
         validation_service = MebValidationService()
-        validation_service.validate(self.plan)
+        return validation_service.validate(self.plan)
 
     def get_meb_plan(self):
         return self.plan.return_meb_plan()

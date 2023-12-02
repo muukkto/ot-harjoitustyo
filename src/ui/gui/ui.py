@@ -6,6 +6,7 @@ from services.plan_service import PlanService
 from ui.gui.curriculum_tree import CurriculumTree
 from ui.gui.stats import Statistics
 from ui.gui.validate import Validate
+from ui.gui.meb import MEB
 
 
 class UI:
@@ -24,12 +25,15 @@ class UI:
 
         stats_frame = ttk.Frame(container)
         validate_frame = ttk.Frame(container)
+        meb_frame = ttk.Frame(container)
 
         stats_frame.grid(column=0, row=0)
         validate_frame.grid(column=0, row=1)
+        meb_frame.grid(column=1, row=0)
 
         self._stats = Statistics(stats_frame, self._plan_service)
         Validate(validate_frame, self._plan_service)
+        MEB(meb_frame, self._plan_service)
 
     def curriculum_container(self):
         container = ttk.Frame(self._root)

@@ -13,9 +13,8 @@ class MebValidationService:
                 {"structure_problems": structure_status})
 
         if timing_status:
-            validation_problems.append({"timing_status": timing_status})
+            validation_problems.append({"timing_problems": timing_status})
 
-        print(validation_problems)
         return validation_problems
 
     def check_exam_timing(self, plan):
@@ -62,8 +61,8 @@ class MebValidationService:
         if response.status_code == 200:
             validation_result = response.json()["validationResult"]
             if validation_result == "ok":
-                return []
+                return None
 
             return validation_result
 
-        return ["meb-api-not-working"]
+        return "meb-api-not-working"
