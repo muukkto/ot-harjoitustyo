@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 
 class CurriculumTree:
     def __init__(self, root, plan_service, stats):

@@ -30,7 +30,7 @@ class PlanService:
     def get_course_status(self, course_code):
         return self.plan.check_if_course_on_plan(course_code)
 
-    def print_stats(self):
+    def get_stats(self):
         total_credits = self.plan.get_total_credits_on_plan()
         mandatory_credits = self.plan.get_credits_by_criteria(mandatory=True,
                                                               national=True)
@@ -61,17 +61,14 @@ class PlanService:
 
         return False
 
-    def validation_print(self, status):
-        print(status)
-
     def validate_plan(self):
         validation_service = ValidationService()
         validation_status = validation_service.validate(
             self.plan, self.curriculum)
-        
+
         return validation_status
 
-    def print_courses(self):
+    def get_courses(self):
         return_print = []
         courses = self.plan.get_courses_on_plan()
         for course in courses:
@@ -88,6 +85,15 @@ class PlanService:
     def validate_meb(self):
         validation_service = MebValidationService()
         return validation_service.validate(self.plan)
+
+    def get_study_plan(self):
+        return self.plan.return_study_plan()
+
+    def import_study_plan(self, study_plan_dict):
+        new_plan = Plan(self.curriculum)
+        self.plan = new_plan
+
+        return self.plan.import_study_plan(study_plan_dict)
 
     def get_meb_plan(self):
         return self.plan.return_meb_plan()

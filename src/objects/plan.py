@@ -168,8 +168,43 @@ class Plan:
     def return_meb_plan(self):
         return self.matriculation_examination_plan
 
+    def return_study_plan(self):
+        plan_json_object = {}
+        plan_json_object["special_task"] = self.special_task
+
+        courses = []
+
+        for course in self.get_courses_on_plan():
+            if course.status():
+                courses.append(course.to_json())
+
+        plan_json_object["courses"] = courses
+
+        meb_plan = self.return_meb_plan()
+
+        plan_json_object["meb_plan"] = meb_plan
+
+        return plan_json_object
+
     def return_exams_in_meb_plan(self):
         all_exams = set(self.matriculation_examination_plan[1])
         all_exams.update(self.matriculation_examination_plan[2])
         all_exams.update(self.matriculation_examination_plan[3])
         return list(all_exams)
+
+    def import_study_plan(self, study_plan_dict):
+        self.special_task = study_plan_dict["special_task"]
+
+        courses = study_plan_dict["courses"]
+        for course in courses:
+            if course["on_cur"]:
+                self.add_curriculum_course_to_plan(course["code"])
+            else:
+                self.add_own_course_to_plan(course["code"], course["name"], course["ects"])
+
+        meb_plan = study_plan_dict["meb_plan"]
+        for (period, exams) in meb_plan.items():
+            for exam in exams:
+                self.add_exam_to_meb_plan(exam, period)
+
+        return True

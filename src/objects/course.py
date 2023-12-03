@@ -7,12 +7,12 @@ class Course:
 
         self.code = code
         self.on_cur = on_cur
+        self.subject = subject
+        self.name = name
+        self.ects = ects
         if on_cur:
-            self.subject = subject
             self.on_plan = False
         else:
-            self.name = name
-            self.ects = ects
             self.on_plan = True
 
     def change_status(self, new_status: bool):
@@ -29,3 +29,12 @@ class Course:
 
     def __str__(self):
         return self.code
+
+    def to_json(self):
+        json_object = {"on_cur": self.on_cur,
+                       "code": self.code,
+                       "subject": self.subject,
+                       "name": self.name,
+                       "ects": self.ects}
+
+        return json_object
