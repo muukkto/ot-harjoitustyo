@@ -8,7 +8,8 @@ def print_meb_plan(plan_service):
     print("Current matriculation examination plan")
 
     for i in range(1, 4):
-        print(f"Exam period {i}: {" ".join(meb_plan[i])}")
+        exams = " ".join(meb_plan[i])
+        print(f"Exam period {i}: {exams}")
 
 def print_handler(plan_service):
     print("1: print stats\n2: print courses on plan\n3: print exams on meb plan")
