@@ -34,7 +34,8 @@ class MEB:
 
         meb_plan = self._plan_service.get_meb_plan()
         for i in range(1, 4):
-            text = f"Examination period {i}: {" ".join(meb_plan[i])}"
+            exams = " ".join(meb_plan[i])
+            text = f"Examination period {i}: {exams}"
             label = ttk.Label(self._print_area, text=text)
             label.grid(column=0, row=i-1)
 
