@@ -15,4 +15,5 @@
 | 30.11.2023  | 4    | Omien opintojaksojen lisäämisen viimeistely, YO-suunnitelman taustarakenteet kunnossa |
 | 1.12.2023  | 5    | Graafisen käyttöliittymän pystytys. LOPS puu valmis. |
 | 2.12.2023  | 2 | Validoinnin ja tulostusten lisääminen graafiseen käyttöliittymään |
-| **Summa**  | 35 ||
+| 3.12.2023  | 4 | Tekstikäyttöliittymän refaktorointi ja JSON-tiedostojen lisäys |
+| **Summa**  | 39 ||

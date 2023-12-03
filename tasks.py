@@ -8,6 +8,11 @@ def start(ctx):
     ctx.run("python3 src/index_gui.py", pty=pty)
 
 @task
+def start_text(ctx):
+    pty = sys.platform != 'win32'
+    ctx.run("python3 src/index_text.py", pty=pty)
+
+@task
 def test(ctx):
     pty = sys.platform != 'win32'
     ctx.run("pytest src", pty=pty)

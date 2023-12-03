@@ -21,8 +21,8 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [x] Pakollisia voi jättää pois 16 op, jos erityistehtävä opintojaksoja on 24 op
     - [x] Puolet pakollisista kuitenkin käytävä
 - [x] Yksinkertainen tekstikäyttöliittymä
-- [ ] Suunnitelman tallentaminen JSON-tiedostoon
-- [ ] Suunnitelman lukeminen JSON-tiedostosta
+- [x] Suunnitelman tallentaminen JSON-tiedostoon
+- [x] Suunnitelman lukeminen JSON-tiedostosta
 - [x] Mahdollisuus tulostaa perustilastoja
     - [x] Opintojaksojen kokonaismäärä
     - [x] Pakollisten määrä

@@ -14,9 +14,16 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 ## Komentorivikomennot
 
 ### Ohjelman suorittaminen
+Graafinen käyttöliittymä
 ```
 poetry run invoke start
 ```
+
+Tekstikäyttöliittymä
+```
+poetry run invoke start-text
+```
+
 
 ### Ohjelman testaaminen
 ```

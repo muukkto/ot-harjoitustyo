@@ -19,7 +19,7 @@ class Statistics:
         self._print_area = ttk.Frame(self._root)
         self._print_area.grid(column=0, row=1)
 
-        stats = self._plan_service.print_stats()
+        stats = self._plan_service.get_stats()
         for i, stat in enumerate(stats):
             label = ttk.Label(self._print_area, text=stat)
             label.grid(column=0, row=i)

@@ -1,4 +1,5 @@
 from pathlib import Path
+from tkinter import filedialog as fd
 
 from services.file_service import FileService
 
@@ -22,12 +23,23 @@ def import_courses_txt(plan_service):
 def import_plan_json(plan_service):
     file_service = FileService()
 
-    file_service.import_plan_from_json(plan_service)
+    filetypes = (('Plan file (*.json)', '*.json'),)
+    file_path = fd.askopenfilename(filetypes=filetypes)
+
+    status = file_service.import_plan_from_json(plan_service, file_path)
+
+    if status:
+        print("Plan imported succesfully!")
+    else:
+        print("Plan couldn't be imported!")
 
 def export_plan_json(plan_service):
     file_service = FileService()
 
-    file_service.export_plan_to_json(plan_service)
+    filetypes = (('Plan file (*.json)', '*.json'),)
+    file_path = fd.asksaveasfilename(filetypes=filetypes)
+
+    file_service.export_plan_to_json(plan_service, file_path)
 
 def file_handler(plan_service):
     print("1: import plan (JSON)\n2: export plan (JSON)\n3: import courses (txt)")
