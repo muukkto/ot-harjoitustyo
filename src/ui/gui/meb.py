@@ -19,7 +19,7 @@ class MEB:
 
         self.print_meb_plan()
 
-        add_button = ttk.Button(self._root, command=self.change_exams, text="Add exam")
+        add_button = ttk.Button(self._root, command=self.change_exams, text="Update exams")
         add_button.grid(column=0, row=2)
 
         validate_button = ttk.Button(self._root, command=self.validate_plan, text="Validate MEB plan")

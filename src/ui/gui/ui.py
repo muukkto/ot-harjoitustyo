@@ -8,6 +8,7 @@ from ui.gui.stats import Statistics
 from ui.gui.validate import Validate
 from ui.gui.meb import MEB
 from ui.gui.config import Config
+from ui.gui.files import Files
 
 
 class UI:
@@ -15,12 +16,10 @@ class UI:
         self._root = root
         self._plan_service = PlanService()
         self._stats = None
+        self._curriculum_tree = None
+        self._meb = None
 
     def start(self):
-        self.info_container()
-        self.curriculum_container()
-
-    def info_container(self):
         container = ttk.Frame(self._root)
         container.grid(column=1, row=0, sticky=tk.N+tk.E+tk.S)
 
@@ -28,16 +27,22 @@ class UI:
         validate_frame = ttk.Frame(container)
         meb_frame = ttk.Frame(container)
         config_frame = ttk.Frame(container)
+        files_frame = ttk.Frame(container)
 
         stats_frame.grid(column=0, row=0)
         validate_frame.grid(column=0, row=1)
         meb_frame.grid(column=1, row=0)
         config_frame.grid(column=1, row=1)
+        files_frame.grid(column=1, row=2)
 
         self._stats = Statistics(stats_frame, self._plan_service)
+        self._meb = MEB(meb_frame, self._plan_service)
+
+        self.curriculum_container()
+
         Validate(validate_frame, self._plan_service)
-        MEB(meb_frame, self._plan_service)
         Config(config_frame, self._plan_service)
+        Files(files_frame, self._plan_service, self._curriculum_tree, self._meb)
 
     def curriculum_container(self):
         container = ttk.Frame(self._root)
@@ -57,7 +62,8 @@ class UI:
         canvas.configure(yscrollcommand=scrollbar_v.set)
         canvas.configure(xscrollcommand=scrollbar_h.set)
 
-        CurriculumTree(curriculum_frame, self._plan_service, self._stats)
+        self._curriculum_tree = CurriculumTree(curriculum_frame, self._plan_service, self._stats)
+        self._curriculum_tree.init_curriculum_tree()
 
         container.grid(column=0, row=0, sticky=tk.N+tk.W+tk.S+tk.E)
         canvas.grid(column=0, row=0, sticky=tk.N+tk.W+tk.S+tk.E)

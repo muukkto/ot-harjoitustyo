@@ -16,4 +16,6 @@
 | 1.12.2023  | 5    | Graafisen käyttöliittymän pystytys. LOPS puu valmis. |
 | 2.12.2023  | 2 | Validoinnin ja tulostusten lisääminen graafiseen käyttöliittymään |
 | 3.12.2023  | 4 | Tekstikäyttöliittymän refaktorointi ja JSON-tiedostojen lisäys |
-| **Summa**  | 39 ||
+| 4.12.2023  | 2 | Suunnitelman konfiguraation muokkauksen mahdollistaminen. 
+| 4.12.2023  | 2 | JSON tiedosto graafisen käyttöliittymään. Pieniä bugi korjauksia. |
+| **Summa**  | 43 ||

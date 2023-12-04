@@ -27,4 +27,12 @@ class FileService:
 
         import_dict = json.loads(import_json)
 
+        import_meb_plan = import_dict["meb_plan"]
+        new_meb_plan = {}
+
+        for (period, subjects) in import_meb_plan.items():
+            new_meb_plan[int(period)] = subjects
+
+        import_dict["meb_plan"] = new_meb_plan
+
         return plan_service.import_study_plan(import_dict)

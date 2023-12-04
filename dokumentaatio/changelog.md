@@ -32,9 +32,9 @@
 
 ## Viikko 5
 
-- Omat opintojaksot toimivat tekstikäyttöliittymässä ja PlanServicessä
-- Ylioppilastutkintosuunnitelma toimii. Luotu myös testit tälle
+- Omat opintojaksot toimivat tekstikäyttöliittymässä ja PlanServicessä.
+- Ylioppilastutkintosuunnitelma toimii. Luotu myös testit tälle.
 - Ensimmäinen versio graafisesta käyttöliittymästä. Opintosuunnitelmaan kuuluvat kurssit on mahdollista valita ja tarkistaa. 
 - Ylppärisuunnitelmaa pystyy muokkamaan ja tarkistamaan graafisessa käyttöliittymässä.
-- Mahdollisuus tallentaa ja lukea suunnitelma JSON tiedostoon/tiedostosta.
+- Mahdollisuus tallentaa ja lukea suunnitelma JSON tiedostoon/tiedostosta. Vienti ja tuonti toimivat graafisen käyttöliittymän avulla.
 - Suunnitelman voi vaihtaa eiryistehtäväksi ja takaisin graaffisessa käyttöliittymässä.

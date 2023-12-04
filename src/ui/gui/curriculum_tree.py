@@ -2,13 +2,15 @@ import tkinter as tk
 
 class CurriculumTree:
     def __init__(self, root, plan_service, stats):
+        self._root = root
         self._plan_service = plan_service
         self._stats = stats
 
+    def init_curriculum_tree(self):
         curriculum = self._plan_service.get_curriculum_tree()
 
         for i, (subject, data) in enumerate(curriculum.items()):
-            self.subject(root, i, subject, data)
+            self.subject(self._root, i, subject, data)
 
     def change_status(self, event):
         course_code = event.widget.cget("text")
