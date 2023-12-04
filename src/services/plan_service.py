@@ -97,3 +97,12 @@ class PlanService:
 
     def get_meb_plan(self):
         return self.plan.return_meb_plan()
+
+    def change_special_task_status(self, new_status):
+        self.plan.change_special_task(new_status)
+
+    def get_special_task_status(self):
+        return self.plan.is_special_task()
+
+    def get_config(self):
+        return [{"special_task": self.plan.is_special_task()}]

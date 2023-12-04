@@ -9,12 +9,12 @@ class ValidationService:
     def validate(self, plan: Plan, curriculum: Curriculum):
         validation_problems = []
 
-        self.check_total_credits(plan, curriculum, validation_problems)
+        total_credits_status = self.check_total_credits(plan, curriculum, validation_problems)
         self.check_national_voluntary_credits(
             plan, curriculum, validation_problems)
         self.check_mandatory_credits(plan, curriculum, validation_problems)
 
-        if plan.is_special_task():
+        if plan.is_special_task() and total_credits_status:
             special_validator = SpecialValidationService()
             special_plan_problems = special_validator.validate(
                 plan, curriculum)
@@ -34,6 +34,9 @@ class ValidationService:
         if total_credits < total_credit_rule:
             validation_problems.append(
                 {"name": "not_enough_credits", "details": total_credits})
+            return False
+
+        return True
 
     def check_mandatory_credits(self, plan, curriculum, validation_problems):
         validation_functions = ValidationFunctions()

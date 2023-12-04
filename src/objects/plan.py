@@ -27,7 +27,7 @@ class Plan:
         return self.curriculum.return_all_courses_dict()
 
     def add_curriculum_course_to_plan(self, code):
-        course = self.find_cur_course(code)
+        course = self.__find_cur_course(code)
         if course:
             course.change_status(True)
             return True
@@ -35,7 +35,7 @@ class Plan:
         return False
 
     def add_own_course_to_plan(self, code, name, ects_credits):
-        course = self.find_own_course(code)
+        course = self.__find_own_course(code)
         subject = self.curriculum.get_subject_code_from_course_code(code)
         if not course and not subject:
             new_course = Course(code, on_cur=False,
@@ -46,19 +46,19 @@ class Plan:
         return False
 
     def delete_course_from_plan(self, code):
-        course = self.find_cur_course(code)
+        course = self.__find_cur_course(code)
         if course:
             course.change_status(False)
             return True
 
-        own_course = self.find_own_course(code)
+        own_course = self.__find_own_course(code)
         if own_course:
             del self.own_courses[code]
             return True
 
         return False
 
-    def find_cur_course(self, course_code):
+    def __find_cur_course(self, course_code):
         subject_code = self.curriculum.get_subject_code_from_course_code(
             course_code)
 
@@ -68,30 +68,30 @@ class Plan:
 
         return None
 
-    def find_own_course(self, course_code):
+    def __find_own_course(self, course_code):
         if course_code in self.own_courses:
             return self.own_courses[course_code]
 
         return None
 
     def check_if_course_on_plan(self, course_code):
-        found_course = self.find_cur_course(course_code)
+        found_course = self.__find_cur_course(course_code)
         if found_course:
             return found_course.status()
 
-        found_course_2 = self.find_own_course(course_code)
+        found_course_2 = self.__find_own_course(course_code)
         if found_course_2:
             return found_course_2.status()
 
         return False
 
     def get_courses_on_plan(self):
-        cur_courses = self.get_curriculum_courses_on_plan()
-        own_courses = self.get_own_courses_on_plan()
+        cur_courses = self.__get_curriculum_courses_on_plan()
+        own_courses = self.__get_own_courses_on_plan()
 
         return cur_courses + own_courses
 
-    def get_curriculum_courses_on_plan(self, subject_code: str = None):
+    def __get_curriculum_courses_on_plan(self, subject_code: str = None):
         planned_courses = []
 
         if subject_code:
@@ -106,7 +106,7 @@ class Plan:
 
         return planned_courses
 
-    def get_own_courses_on_plan(self):
+    def __get_own_courses_on_plan(self):
         planned_courses = []
         for course in self.own_courses.values():
             planned_courses.append(course)
@@ -115,7 +115,7 @@ class Plan:
 
     def get_credits_by_criteria(self, mandatory: bool, national: bool, subject: str = None):
         total_credits = 0
-        for course in self.get_curriculum_courses_on_plan(subject):
+        for course in self.__get_curriculum_courses_on_plan(subject):
             course_code = course.code
             course_status = self.curriculum.get_course_status_from_course_code(
                 course_code)
@@ -129,7 +129,7 @@ class Plan:
     def get_credits_own_course(self):
         total_credits = 0
 
-        for course in self.get_own_courses_on_plan():
+        for course in self.__get_own_courses_on_plan():
             total_credits += course.get_ects()
 
         return total_credits

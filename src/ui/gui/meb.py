@@ -57,9 +57,6 @@ class MEB:
         else:
             label = ttk.Label(self._valid_print_area, text="MEB plan OK!")
             label.grid(column=0, row=0)
-    
-    def close_pop_up(self,pop_up):
-        pop_up.destroy()
 
     def save_exams(self, pop_up, values):
         for i in range(1, 4):
@@ -76,7 +73,7 @@ class MEB:
                     self._plan_service.add_exam_meb(exam_code, i)
 
         self.print_meb_plan()
-        self.close_pop_up(pop_up)
+        pop_up.destroy()
 
     def get_current_exam(self, period, day):
         old_meb_plan = self._plan_service.get_meb_plan()

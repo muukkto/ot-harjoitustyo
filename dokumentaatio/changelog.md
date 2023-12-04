@@ -37,3 +37,4 @@
 - Ensimmäinen versio graafisesta käyttöliittymästä. Opintosuunnitelmaan kuuluvat kurssit on mahdollista valita ja tarkistaa. 
 - Ylppärisuunnitelmaa pystyy muokkamaan ja tarkistamaan graafisessa käyttöliittymässä.
 - Mahdollisuus tallentaa ja lukea suunnitelma JSON tiedostoon/tiedostosta.
+- Suunnitelman voi vaihtaa eiryistehtäväksi ja takaisin graaffisessa käyttöliittymässä.

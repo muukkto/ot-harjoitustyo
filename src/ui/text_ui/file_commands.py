@@ -42,13 +42,16 @@ def export_plan_json(plan_service):
     file_service.export_plan_to_json(plan_service, file_path)
 
 def file_handler(plan_service):
-    print("1: import plan (JSON)\n2: export plan (JSON)\n3: import courses (txt)")
-    match int(input("Choose command: ")):
-        case 1:
-            import_plan_json(plan_service)
-        case 2:
-            export_plan_json(plan_service)
-        case 3:
-            import_courses_txt(plan_service)
-        case _:
-            print("Command not found")
+    while True:
+        print("1: import plan (JSON)\n2: export plan (JSON)\n3: import courses (txt)\n0: main menu")
+        match int(input("Choose command: ")):
+            case 1:
+                import_plan_json(plan_service)
+            case 2:
+                export_plan_json(plan_service)
+            case 3:
+                import_courses_txt(plan_service)
+            case 0:
+                break
+            case _:
+                print("Command not found")
