@@ -6,7 +6,7 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 
 ## Julkaisut
 
-[Viikon 5 julkaisu](releases/viikko5)
+[Viikon 5 julkaisu](https://github.com/muukkto/ot-harjoitustyo/releases/viikko5)
 
 ## Dokumentaatio
 
