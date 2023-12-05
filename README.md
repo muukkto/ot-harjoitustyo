@@ -11,6 +11,17 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 - [Changelog](dokumentaatio/changelog.md)
 - [Arkkitehtuuri](dokumentaatio/arkkitehtuuri.md)
 
+## Asennus
+1. Riipuvuudet täytyy asentaa komennolla:
+```
+poetry install
+```
+
+2. Graafisen käyttöliittymän saa käynnistettyä komennolla:
+```
+poetry run invoke start
+```
+
 ## Komentorivikomennot
 
 ### Ohjelman suorittaminen

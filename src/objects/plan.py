@@ -142,6 +142,7 @@ class Plan:
         total_credits += self.get_credits_by_criteria(True, True)
         total_credits += self.get_credits_by_criteria(False, True)
         total_credits += self.get_credits_by_criteria(False, False)
+        total_credits += self.get_credits_by_criteria(True, False)
         total_credits += self.get_credits_own_course()
 
         return total_credits

@@ -1,5 +1,7 @@
 # Arkkitehtuurikuvaus
 
+## Luokat
+
 ```mermaid
 classDiagram
         class Course {
@@ -54,4 +56,50 @@ classDiagram
     PlanService -- Plan
     ValidationService -- Plan
     ValidationService -- Curriculum
+```
+
+## Toiminnallisuudet
+
+### Validiointi
+
+```mermaid
+sequenceDiagram
+actor User
+participant UI
+User ->> UI: click "validate plan" button
+participant PlanService
+UI ->> PlanService: validate_plan()
+participant ValidationService
+PlanService ->> ValidationService: validate(plan, curriculum)
+participant Plan
+ValidationService ->> Plan: get_total_credits_on_plan()
+Plan --> ValidationService: return total_credits
+ValidationService ->> Plan: get_credits_by_criteria(mandatory=False,national=True)
+Plan --> ValidationService: return credits
+participant ValidationFunctions
+ValidationService ->> ValidationFunctions: check_total_mandatory(plan, curriculum, problem_list)
+loop all subjects
+    ValidationFunctions ->> Plan: get_mandatory_credits_subject(subject)
+    Plan --> ValidationFunctions: return credits
+end
+ValidationFunctions --> ValidationService: return missing_credits
+ValidationService ->> Plan: is_special_task
+Plan --> ValidationService: return bool
+alt if special_task
+    participant SpecialValidationService
+    ValidationService ->> SpecialValidationService: validate(plan, curriculum)
+    SpecialValidationService ->> Plan: get_credits_by_criteria(mandatory=False, national=False, subject="ERI)
+    Plan --> SpecialValidationService: return credits
+    SpecialValidationService ->> ValidationFunctions: check_total_mandatory(plan, curriculum, problem_list)
+    loop all subjects
+        ValidationFunctions ->> Plan: get_mandatory_credits_subject(subject)
+        Plan --> ValidationFunctions: return credits
+    end
+    ValidationFunctions --> SpecialValidationService: return missing_credits
+    SpecialValidationService --> ValidationService: return validation_problems
+end
+ValidationService --> PlanService: return validation_problems
+PlanService --> UI: return validation_problems
+UI --> User: print validation problems
+
 ```
