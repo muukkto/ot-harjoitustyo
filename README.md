@@ -4,6 +4,10 @@
 
 Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääkö suunnitellut opinnot valmistumiseen.
 
+## Julkaisut
+
+[Viikon 5 julkaisu](https://github.com/muukkto/ot-harjoitustyo/releases/viikko5)
+
 ## Dokumentaatio
 
 - [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
