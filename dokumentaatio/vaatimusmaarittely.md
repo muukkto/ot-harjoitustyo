@@ -35,7 +35,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [x] Opintojaksot voidaan kliksutella LOPS-puusta
     - [x] YO-suunnitelman aineet voidaan valita vetovalikosta.
     - [ ] Validiointi tulostaa "kauniit" vastaukset 
-    - [ ] Oman opintojakson voi syöttää käyttöliittymästä. Se ilmestyy häntäkurssina.
+    - [x] Oman opintojakson voi syöttää käyttöliittymästä. Se ilmestyy häntäkurssina.
 - [ ] LOPS-puu voidaan ladata JSON-tiedostosta
     - [ ] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
 - [ ] Ehdotukset mitä puuttuu valmistumisesta, esim `pakollisista puuttuu ENA6, BI2, BI3 ...`

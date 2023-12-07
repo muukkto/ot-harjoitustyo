@@ -38,3 +38,7 @@
 - Ylppärisuunnitelmaa pystyy muokkamaan ja tarkistamaan graafisessa käyttöliittymässä.
 - Mahdollisuus tallentaa ja lukea suunnitelma JSON tiedostoon/tiedostosta. Vienti ja tuonti toimivat graafisen käyttöliittymän avulla.
 - Suunnitelman voi vaihtaa eiryistehtäväksi ja takaisin graaffisessa käyttöliittymässä.
+
+## Viikko 6
+
+- Omia kursseja voi lisätä ja poistaa graafisesta käyttöliittymästä.

@@ -87,7 +87,7 @@ class Plan:
 
     def get_courses_on_plan(self):
         cur_courses = self.__get_curriculum_courses_on_plan()
-        own_courses = self.__get_own_courses_on_plan()
+        own_courses = self.get_own_courses_on_plan()
 
         return cur_courses + own_courses
 
@@ -106,7 +106,7 @@ class Plan:
 
         return planned_courses
 
-    def __get_own_courses_on_plan(self):
+    def get_own_courses_on_plan(self):
         planned_courses = []
         for course in self.own_courses.values():
             planned_courses.append(course)
@@ -129,7 +129,7 @@ class Plan:
     def get_credits_own_course(self):
         total_credits = 0
 
-        for course in self.__get_own_courses_on_plan():
+        for course in self.get_own_courses_on_plan():
             total_credits += course.get_ects()
 
         return total_credits

@@ -9,6 +9,7 @@ from ui.gui.validate import Validate
 from ui.gui.meb import MEB
 from ui.gui.config import Config
 from ui.gui.files import Files
+from ui.gui.own_course import OwnCourse
 
 
 class UI:
@@ -28,12 +29,14 @@ class UI:
         meb_frame = ttk.Frame(container)
         config_frame = ttk.Frame(container)
         files_frame = ttk.Frame(container)
+        own_course_frame = ttk.Frame(container)
 
         stats_frame.grid(column=0, row=0)
         validate_frame.grid(column=0, row=1)
         meb_frame.grid(column=1, row=0)
         config_frame.grid(column=1, row=1)
         files_frame.grid(column=1, row=2)
+        own_course_frame.grid(column=0, row=2)
 
         self._stats = Statistics(stats_frame, self._plan_service)
         self._meb = MEB(meb_frame, self._plan_service)
@@ -42,7 +45,8 @@ class UI:
 
         Validate(validate_frame, self._plan_service)
         Config(config_frame, self._plan_service)
-        Files(files_frame, self._plan_service, self._curriculum_tree, self._meb)
+        Files(files_frame, self._plan_service, self._curriculum_tree, self._meb, self._stats)
+        OwnCourse(own_course_frame, self._plan_service, self._curriculum_tree, self._stats)
 
     def curriculum_container(self):
         container = ttk.Frame(self._root)

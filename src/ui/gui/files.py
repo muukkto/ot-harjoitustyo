@@ -3,10 +3,11 @@ from tkinter import ttk, filedialog
 from services.file_service import FileService
 
 class Files:
-    def __init__(self, root, plan_service, curriculum_tree, meb):
+    def __init__(self, root, plan_service, curriculum_tree, meb, stats):
         self._plan_service = plan_service
         self._curriculum_tree = curriculum_tree
         self._meb = meb
+        self._stats = stats
 
         self._root = root
 
@@ -29,6 +30,7 @@ class Files:
 
         self._curriculum_tree.init_curriculum_tree()
         self._meb.print_meb_plan()
+        self._stats.print_stats()
 
     def _export_json(self):
         file_service = FileService()

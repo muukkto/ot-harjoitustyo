@@ -76,6 +76,9 @@ class PlanService:
 
         return return_print
 
+    def get_own_courses(self):
+        return self.plan.get_own_courses_on_plan()
+
     def add_exam_meb(self, exam_code, exam_period):
         return self.plan.add_exam_to_meb_plan(exam_code, exam_period)
 
