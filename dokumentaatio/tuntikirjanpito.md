@@ -18,4 +18,7 @@
 | 3.12.2023  | 4 | Tekstikäyttöliittymän refaktorointi ja JSON-tiedostojen lisäys |
 | 4.12.2023  | 2 | Suunnitelman konfiguraation muokkauksen mahdollistaminen. 
 | 4.12.2023  | 2 | JSON tiedosto graafisen käyttöliittymään. Pieniä bugi korjauksia. |
-| **Summa**  | 43 ||
+| 7.12.2023  | 3 | Omien kurssien editorin lisäämien graafiseen käyttöliittymään |
+| 8.12.2023  | 4 | Pohja tietokannoille. Käyttäjät ja tietokannat toimiviksi tekstikäyttöliittymään. |
+| 9.12.2023  | 5 | Käyttäjät ja tietokantaoperaatiot graafisen käyttöliittymään. Graafisen käyttöliittymän refakotorointi. |
+| **Summa**  | 55 ||
