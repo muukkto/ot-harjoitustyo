@@ -10,7 +10,7 @@ from config.lops21_curriculum import lops21_curriculum
 class TestPlan(unittest.TestCase):
     def setUp(self):
         curriculum = Curriculum(lops21_curriculum())
-        self.plan = Plan(curriculum)
+        self.plan = Plan(curriculum, "User1")
         self.validation = MebValidationService()
 
     def test_adding_subject_to_me_plan(self):

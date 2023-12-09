@@ -9,8 +9,8 @@ class OwnCourse:
 
         self._root = root
 
-        self._curriculum_tree = curriculum_tree
-        self._stats = stats
+        self._curriculum_tree_reload = curriculum_tree
+        self._stats_reload = stats
 
         edit_button = ttk.Button(self._root, command=self.add_course, text="Add own course")
         edit_button.grid(column=0, row=0)
@@ -19,8 +19,8 @@ class OwnCourse:
         self._plan_service.add_course(code, name, int(ects), in_cur=False)
         pop_up.destroy()
         
-        self._curriculum_tree.init_curriculum_tree()
-        self._stats.print_stats()
+        self._curriculum_tree_reload()
+        self._stats_reload()
 
     def add_course(self):
         pop_up = tk.Toplevel(self._root)

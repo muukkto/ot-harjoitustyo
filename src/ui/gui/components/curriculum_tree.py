@@ -1,11 +1,11 @@
 import tkinter as tk
 
 class CurriculumTree:
-    def __init__(self, root, plan_service, stats):
+    def __init__(self, root, plan_service, stats_reload):
         self._root = root
         self._print_area = None
         self._plan_service = plan_service
-        self._stats = stats
+        self._stats_reload = stats_reload
 
     def init_curriculum_tree(self):
         if self._print_area:
@@ -48,13 +48,13 @@ class CurriculumTree:
             self._plan_service.add_course(course_code)
             event.widget["bg"]="grey"
 
-        self._stats.print_stats()
+        self._stats_reload()
 
     def remove_own_course(self, event):
         self._plan_service.delete_course(event.widget["text"])
         self.init_curriculum_tree()
 
-        self._stats.print_stats()
+        self._stats_reload()
 
     def own_course(self, course_object, master_frame):
         bg = "grey"

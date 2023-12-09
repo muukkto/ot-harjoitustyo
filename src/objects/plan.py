@@ -5,11 +5,13 @@ from config.meb_config import get_meb_codes
 
 
 class Plan:
-    def __init__(self, curriculum: Curriculum):
+    def __init__(self, curriculum: Curriculum, username):
         self.curriculum = curriculum
         self.courses_plan = {}
         self.own_courses = {}
         self.special_task = False
+
+        self.username = username
 
         self.matriculation_examination_plan = {1: [], 2: [], 3: []}
 
@@ -30,9 +32,9 @@ class Plan:
         course = self.__find_cur_course(code)
         if course:
             course.change_status(True)
-            return True
+            return course
 
-        return False
+        return None
 
     def add_own_course_to_plan(self, code, name, ects_credits):
         course = self.__find_own_course(code)
@@ -41,9 +43,9 @@ class Plan:
             new_course = Course(code, on_cur=False,
                                 name=name, ects=ects_credits)
             self.own_courses[code] = new_course
-            return True
+            return new_course
 
-        return False
+        return None
 
     def delete_course_from_plan(self, code):
         course = self.__find_cur_course(code)
@@ -162,9 +164,14 @@ class Plan:
         return False
 
     def remove_exam_from_meb_plan(self, exam_code, examination_period):
-        sub_list = self.matriculation_examination_plan[examination_period]
-        sub_list.remove(exam_code)
-        self.matriculation_examination_plan[examination_period] = sub_list
+        if exam_code in get_meb_codes() and 4 > examination_period > 0:
+            sub_list = self.matriculation_examination_plan[examination_period]
+            sub_list.remove(exam_code)
+            self.matriculation_examination_plan[examination_period] = sub_list
+
+            return True
+
+        return False
 
     def return_meb_plan(self):
         return self.matriculation_examination_plan

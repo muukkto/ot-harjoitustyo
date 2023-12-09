@@ -5,9 +5,9 @@ from services.file_service import FileService
 class Files:
     def __init__(self, root, plan_service, curriculum_tree, meb, stats):
         self._plan_service = plan_service
-        self._curriculum_tree = curriculum_tree
-        self._meb = meb
-        self._stats = stats
+        self._curriculum_tree_reload = curriculum_tree
+        self._meb_reload = meb
+        self._stats_reload = stats
 
         self._root = root
 
@@ -28,9 +28,9 @@ class Files:
 
         file_service.import_plan_from_json(self._plan_service, file_path)
 
-        self._curriculum_tree.init_curriculum_tree()
-        self._meb.print_meb_plan()
-        self._stats.print_stats()
+        self._curriculum_tree_reload()
+        self._meb_reload()
+        self._stats_reload()
 
     def _export_json(self):
         file_service = FileService()

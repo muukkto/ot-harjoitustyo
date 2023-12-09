@@ -14,7 +14,7 @@ class TestValidationService(unittest.TestCase):
         self.validation_service = ValidationService()
 
     def test_validate_legal_plan(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
                          "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",
@@ -33,7 +33,7 @@ class TestValidationService(unittest.TestCase):
             plan, self.curriculum))
 
     def test_validate_legal_special_task_plan(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
@@ -54,7 +54,7 @@ class TestValidationService(unittest.TestCase):
             plan, self.curriculum))
 
     def test_validate_illegal_plan_not_enough_special_task_credits(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
@@ -75,7 +75,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_special_task_plan_not_enough_total_credits(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6",
@@ -96,7 +96,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA8", "ENA7",
@@ -117,7 +117,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_in_basket_subject(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
@@ -138,7 +138,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_one_subject(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
@@ -158,7 +158,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_too_much_excluded_group_subject(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         legal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                          "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
@@ -179,7 +179,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_enough_credits(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8",
                            "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
                            "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",
@@ -198,7 +198,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_enough_voluntary_credits(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8",
                            "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6",
                            "RUB1", "RUB2", "RUB3", "RUB4", "RUB5",
@@ -220,7 +220,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_all_mandatory(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI10", "AI11",
                            "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
                            "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",
@@ -238,7 +238,7 @@ class TestValidationService(unittest.TestCase):
             self.validation_service.validate(plan, self.curriculum))
 
     def test_validate_illegal_plan_not_all_mandatory_arts(self):
-        plan = Plan(self.curriculum)
+        plan = Plan(self.curriculum, "User1")
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI6", "AI7", "AI8", "AI10", "AI11",
                            "ENA1", "ENA2", "ENA3", "ENA4", "ENA5", "ENA6", "ENA8", "ENA7",
                            "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",

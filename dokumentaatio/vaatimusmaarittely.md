@@ -42,8 +42,9 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 - [ ] Opintojakson yhteyteen voidaan valita suoritusaika
 - [ ] Edistyneet tilastot
     - [ ] Vuosittainen opintopistemäärä
-- [ ] Tietojen tallentaminen tietokantaan
-- [ ] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
+- [x] Tietojen tallentaminen tietokantaan
+- [x] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
+- [] Tietokanta polut ja muut konfiguroinnit saadaan tiedostosta
 
 
 ## Edistyneitä jatkokehitysiedoita
