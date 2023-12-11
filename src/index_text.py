@@ -12,6 +12,7 @@ from ui.text_ui.print_commands import print_handler
 user_service = UserService()
 plan_service = PlanService(user_service)
 
+
 def print_commands():
     print("1: modify your plan")
     print("2: update matriculation examination plan")
@@ -21,6 +22,7 @@ def print_commands():
 
     print("9: change plan config")
     print("10: exit the program")
+
 
 def main_page():
     while True:
@@ -45,6 +47,7 @@ def main_page():
                 break
             case _:
                 print("Command not found")
+
 
 def main():
     username = input("Choose username: ")

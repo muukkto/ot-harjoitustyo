@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 
 from config.meb_config import get_meb_names_and_codes_by_day, get_meb_names_and_codes
+from config.config import MAX_MEB_PERIODS, N_MEB_DAYS
+
 
 class MEB:
     def __init__(self, root, plan_service):
@@ -11,18 +13,24 @@ class MEB:
         self._print_area = None
         self._valid_print_area = None
 
-        self._options = get_meb_names_and_codes_by_day()
-        self._meb_names_codes = get_meb_names_and_codes()
+        self._plan_config = plan_service.get_config()
+
+        self._options = get_meb_names_and_codes_by_day(
+            self._plan_config["meb_language"])
+        self._meb_names_codes = get_meb_names_and_codes(
+            self._plan_config["meb_language"])
 
         title = ttk.Label(self._root, text="Matriculation examination")
         title.grid(column=0, row=0)
 
         self.print_meb_plan()
 
-        add_button = ttk.Button(self._root, command=self.change_exams, text="Update exams")
+        add_button = ttk.Button(
+            self._root, command=self.change_exams, text="Update exams")
         add_button.grid(column=0, row=2)
 
-        validate_button = ttk.Button(self._root, command=self.validate_plan, text="Validate MEB plan")
+        validate_button = ttk.Button(
+            self._root, command=self.validate_plan, text="Validate MEB plan")
         validate_button.grid(column=0, row=3)
 
     def print_meb_plan(self):
@@ -33,7 +41,7 @@ class MEB:
         self._print_area.grid(column=0, row=1)
 
         meb_plan = self._plan_service.get_meb_plan()
-        for i in range(1, 4):
+        for i in range(1, MAX_MEB_PERIODS+1):
             exams = " ".join(meb_plan[i])
             text = f"Examination period {i}: {exams}"
             label = ttk.Label(self._print_area, text=text)
@@ -52,15 +60,16 @@ class MEB:
             print(validation_status)
             for problem in validation_status:
                 if "structure_problems" in problem.keys():
-                    label = ttk.Label(self._valid_print_area, text=problem["structure_problems"])
+                    label = ttk.Label(self._valid_print_area,
+                                      text=problem["structure_problems"])
                     label.grid(column=0, row=0)
         else:
             label = ttk.Label(self._valid_print_area, text="MEB plan OK!")
             label.grid(column=0, row=0)
 
     def save_exams(self, pop_up, values):
-        for i in range(1, 4):
-            for j in range(1, 9):
+        for i in range(1, MAX_MEB_PERIODS+1):
+            for j in range(1, N_MEB_DAYS+1):
                 exam_name = values[i][j].get()
 
                 old_exam = self.get_current_exam(i, j)
@@ -78,15 +87,13 @@ class MEB:
     def get_current_exam(self, period, day):
         old_meb_plan = self._plan_service.get_meb_plan()
 
-        old_course = set(old_meb_plan[period]).intersection(set(self._options[day].values()))
+        old_course = set(old_meb_plan[period]).intersection(
+            set(self._options[day].values()))
 
         if old_course:
             return self._meb_names_codes[old_course.pop()]
 
         return None
-
-
-
 
     def change_exams(self):
         pop_up = tk.Toplevel(self._root)
@@ -107,12 +114,11 @@ class MEB:
 
         meb_drop_downs = tk.Frame(pop_up)
 
-
-        for k in range(1, 9):
+        for k in range(1, N_MEB_DAYS+1):
             label = tk.Label(meb_drop_downs, text=day_str[k])
             label.grid(column=k, row=0)
 
-        for i in range(1, 4):
+        for i in range(1, MAX_MEB_PERIODS+1):
             label = ttk.Label(meb_drop_downs, text=f"Examination period {i}")
             label.grid(column=0, row=i)
 
@@ -127,11 +133,12 @@ class MEB:
 
                 values[i][j] = tk.StringVar()
 
-                drop = ttk.OptionMenu(meb_drop_downs, values[i][j], default_value, *self._options[j].keys())
+                drop = ttk.OptionMenu(
+                    meb_drop_downs, values[i][j], default_value, *self._options[j].keys())
                 drop.grid(column=j, row=i)
-
 
         meb_drop_downs.grid(column=0, row=0)
 
-        button = tk.Button(pop_up, text= "Save", command=lambda: self.save_exams(pop_up, values))
+        button = tk.Button(pop_up, text="Save",
+                           command=lambda: self.save_exams(pop_up, values))
         button.grid(column=0, row=1)

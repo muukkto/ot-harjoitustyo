@@ -1,22 +1,43 @@
+from objects.plan import Plan
+from objects.curriculum import Curriculum
+
 from services.validation_functions import ValidationFunctions
 
 
 class SpecialValidationService:
-    def validate(self, plan, curriculum):
+    """Luokka, joka vastaa opintosuunnitelman validioinnista 
+       mikäli suunnitelma noudattaa eritysitehtävän tuntijakoa
+    """
+    def validate(self, plan: Plan, curriculum: Curriculum) -> list:
+        """Validioi erityistehtväopintosuunnitelma
+
+        Hyväksytyn tuloksen saa seuraavilla ehdoilla:
+        - Erityistehtävä opintoja on vähintään "minimum_special_task_credits"
+        - Jokaisesta oppiaineesta käyty vähintään puolet pakollisista opintopisteistä
+        - Puuttuvia pakollisia opintopisteitä korkeintaan "maximum_excluded_credits_special_task"
+
+        Args:
+            plan (Plan): Validioitava suunnitelma
+            curriculum (Curriculum): Opetussunnitelma, jonka sääntöjä käyetään
+
+        Returns:
+            list: Validiointivirheet (tyhjä jos validiointi menee läpi)
+        """
         validation_problems = []
 
-        special_task_credits_status = self.check_special_task_credits(
+        special_task_credits_status = self.__check_special_task_credits(
             plan, curriculum)
-        excluded_courses_status = self.check_excluded_credits(plan, curriculum)
+        excluded_courses_status = self.__check_excluded_credits(plan, curriculum)
 
         validation_problems.extend(special_task_credits_status)
         validation_problems.extend(excluded_courses_status)
 
         return validation_problems
 
-    def check_special_task_credits(self, plan, curriculum):
-        special_task_code = curriculum.rules["special_task_code"]
-        special_task_credits_rule = curriculum.rules["minimum_special_task_credits"]
+    def __check_special_task_credits(self, plan: Plan, curriculum: Curriculum) -> list:
+        special_task_code = curriculum.return_rules()["special_task_code"]
+        special_task_credits_rule = curriculum.return_rules()[
+            "minimum_special_task_credits"]
 
         special_task_credits = plan.get_credits_by_criteria(
             mandatory=False, national=False, subject=special_task_code)
@@ -27,8 +48,9 @@ class SpecialValidationService:
         return [{"name": "not_enough_special_task_credits",
                  "details": special_task_credits}]
 
-    def check_excluded_credits(self, plan, curriculum):
-        mandatory_courses_excluded_rule = curriculum.rules["maximum_excluded_credits_special_task"]
+    def __check_excluded_credits(self, plan: Plan, curriculum: Curriculum) -> list:
+        mandatory_courses_excluded_rule = curriculum.return_rules(
+        )["maximum_excluded_credits_special_task"]
 
         validation_functions = ValidationFunctions()
 

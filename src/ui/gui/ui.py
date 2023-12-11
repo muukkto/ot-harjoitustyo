@@ -5,6 +5,7 @@ from ui.gui.views.login_view import LoginView
 from ui.gui.views.plan_view import PlanView
 from ui.gui.views.create_user_view import CreateUserView
 
+
 class UI:
     def __init__(self, root):
         self._root = root

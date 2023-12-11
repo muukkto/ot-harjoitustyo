@@ -1,12 +1,14 @@
 from ui.text_ui.print_commands import print_meb_plan
 
+
 def meb_editor(plan_service):
     while True:
         print("1: add exam\n2: remove exam\n3: print meb plan\n0: main menu")
         match int(input("Choose command: ")):
             case 1:
                 exam_code = input("Which exam do you want to add?")
-                exam_period = int(input("Which period do you want to write this exam?"))
+                exam_period = int(
+                    input("Which period do you want to write this exam?"))
 
                 status = plan_service.add_exam_meb(exam_code, exam_period)
 

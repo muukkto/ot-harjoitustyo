@@ -1,5 +1,6 @@
 from ui.text_ui.print_commands import print_list
 
+
 def add_course(plan_service):
     course_code = input("Which course do you want to add to your plan?")
     if plan_service.check_reserved_codes(course_code):
@@ -15,9 +16,11 @@ def add_course(plan_service):
     else:
         print("Couldn't add course!")
 
+
 def delete_course(plan_service):
     course_code = input("Which course do you want to remove from your plan? ")
     plan_service.delete_course(course_code)
+
 
 def plan_editor(plan_service):
     while True:
@@ -31,6 +34,7 @@ def plan_editor(plan_service):
                 break
             case _:
                 print("Command not found")
+
 
 def config_editor(plan_service):
     while True:

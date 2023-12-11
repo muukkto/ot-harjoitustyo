@@ -1,38 +1,45 @@
 import json
 
-class FileService:
-    def import_courses_from_txt(self, file_path):
-        with open(file_path, "r", encoding="UTF-8") as file:
-            courses = file.readlines()
+from services.plan_service import PlanService
 
-            course_list = []
 
-            for course in courses:
-                course_list.append(course.strip())
+def export_plan_to_json(plan_service: PlanService, file_path: str):
+    """Vie suunnitelman JSON-tiedostoon
 
-        return course_list
+    Args:
+        plan_service (PlanService): Suunnitelmasta vastaava PlanService
+        file_path (str): Vientitiedoston polku
+    """
 
-    def export_plan_to_json(self, plan_service, file_path):
+    study_plan_dict = plan_service.get_study_plan()
 
-        study_plan_dict = plan_service.get_study_plan()
+    json_object = json.dumps(study_plan_dict, indent=4)
 
-        json_object = json.dumps(study_plan_dict, indent=4)
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(json_object)
 
-        with open(file_path, "w", encoding="utf-8") as file:
-            file.write(json_object)
 
-    def import_plan_from_json(self, plan_service, file_path):
-        with open(file_path, "r", encoding="utf-8") as file:
-            import_json = file.read()
+def import_plan_from_json(plan_service: PlanService, file_path: str) -> bool:
+    """Tuo suunnitelma JSON-tiedostosta
 
-        import_dict = json.loads(import_json)
+    Args:
+        plan_service (PlanService): Suunnitelmasta vastaava PlanService
+        file_path (str): Tuontitiedoston polku
 
-        import_meb_plan = import_dict["meb_plan"]
-        new_meb_plan = {}
+    Returns:
+        bool: Onnistuiko tuonti
+    """
+    with open(file_path, "r", encoding="utf-8") as file:
+        import_json = file.read()
 
-        for (period, subjects) in import_meb_plan.items():
-            new_meb_plan[int(period)] = subjects
+    import_dict = json.loads(import_json)
 
-        import_dict["meb_plan"] = new_meb_plan
+    import_meb_plan = import_dict["meb_plan"]
+    new_meb_plan = {}
 
-        return plan_service.import_study_plan(import_dict)
+    for (period, subjects) in import_meb_plan.items():
+        new_meb_plan[int(period)] = subjects
+
+    import_dict["meb_plan"] = new_meb_plan
+
+    return plan_service.import_study_plan(import_dict)

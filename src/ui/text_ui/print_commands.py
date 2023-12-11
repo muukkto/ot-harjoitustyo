@@ -2,6 +2,7 @@ def print_list(output_list):
     for row in output_list:
         print(row)
 
+
 def print_meb_plan(plan_service):
     meb_plan = plan_service.get_meb_plan()
 
@@ -10,6 +11,7 @@ def print_meb_plan(plan_service):
     for i in range(1, 4):
         exams = " ".join(meb_plan[i])
         print(f"Exam period {i}: {exams}")
+
 
 def print_handler(plan_service):
     while True:

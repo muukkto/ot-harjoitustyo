@@ -3,32 +3,79 @@ from objects.curriculum import Curriculum
 
 from config.meb_config import get_meb_codes
 
+from config.config import MAX_MEB_PERIODS
+
 
 class Plan:
-    def __init__(self, curriculum: Curriculum, username):
-        self.curriculum = curriculum
-        self.courses_plan = {}
-        self.own_courses = {}
-        self.special_task = False
+    """Luokka, joka vastaa opiskelusuunnitelmasta 
 
-        self.username = username
+    Luokka säilöö tiedon sekä opetussuunnitelmaan kuuluvista kursseista, että omista kursseista.
+    Luokka säilöö myös ylioppilastutkintosuunnitelman.
 
-        self.matriculation_examination_plan = {1: [], 2: [], 3: []}
 
-        for subject in curriculum.subjects.items():
+    Attributes:
+        curriculum: Opetussuunnitelma, jonka perusteella opiskelusuunnitelma on luotu
+        cur_courses: Opetussuunnitelmasta löytyvien kurssien tiedot.
+        own_courses: Omien kurssien tiedot.
+        special_task: Noudattaako suunnitelma erityistehtävätuntijakoa.
+        username: Suunnitelman käyttäjätunnus
+        meb_plan: Ylioppilastutkintosuunnitelma
+        meb_language: Millä kielellä YO-tutkintosuoritetaan (tällä hetkellä tuki vain fi)
+
+
+    """
+
+    def __init__(self, curriculum: Curriculum, username: str):
+        """Luokan konstruktori, joka luo tyhjän opiskelusuunnitelman.
+
+        Tyhjässä suunnitelmassa on kaikki opetusuunnitelmasta löytyvät kurssit statuksella False. 
+        Erityistehtävästatus on oletuksena False.
+        Omille kursseille ja ylioppilastutkintosuunnitelmalle löytyy tyhjät rakenteet.
+
+        Args:
+            curriculum (Curriculum): Opetusuunnitelma, jonka perusteella suunnitelma luodaan.
+            username (str): Opetussuunnitelman käyttäjätunnus
+        """
+        self._curriculum = curriculum
+        self._cur_courses = {}
+        self._own_courses = {}
+        self._special_task = False
+
+        self._username = username
+
+        self._meb_plan = {}
+        for i in range(1, MAX_MEB_PERIODS+1):
+            self._meb_plan[i] = []
+
+        for subject in curriculum.return_all_courses_dict().items():
             subject_code = subject[0]
             subject_courses = subject[1]
 
-            self.courses_plan[subject_code] = {}
+            self._cur_courses[subject_code] = {}
 
             for course in subject_courses["courses"]:
-                self.courses_plan[subject_code][course] = Course(
+                self._cur_courses[subject_code][course] = Course(
                     course, subject_code, True)
 
-    def get_curriculum_tree(self):
-        return self.curriculum.return_all_courses_dict()
+        self._meb_language = "fi"
 
-    def add_curriculum_course_to_plan(self, code):
+    def get_curriculum_tree(self) -> dict:
+        """Palauttaa suunnitelmaan liittyvän opetusuunnitelman.
+
+        Returns:
+            dict: Kaikki opetussuunnitelman kurssit sisältävä dict-objekti.
+        """
+        return self._curriculum.return_all_courses_dict()
+
+    def add_curriculum_course_to_plan(self, code: str) -> Course:
+        """Lisää opetussuunnitelmasta löytyvän kurssin suunnitelmaan.
+
+        Args:
+            code (str): Kurssikoodi
+
+        Returns:
+            Course: Lisätty kurssiobjekti. Palauttaa None mikäli kurssia ei löydy.
+        """
         course = self.__find_cur_course(code)
         if course:
             course.change_status(True)
@@ -36,18 +83,36 @@ class Plan:
 
         return None
 
-    def add_own_course_to_plan(self, code, name, ects_credits):
+    def add_own_course_to_plan(self, code: str, name: str, ects_credits: int) -> Course:
+        """Lisää oman kurssin suunnitelmaan.
+
+        Args:
+            code (str): Kurssikoodi
+            name (str): Kurssin nimi
+            ects_credits (int): Opintopistemäärä
+
+        Returns:
+            Course: Lisätty kurssiobjekti. Palauttaa None mikäli kurssia ei voida lisätä.
+        """
         course = self.__find_own_course(code)
-        subject = self.curriculum.get_subject_code_from_course_code(code)
+        subject = self._curriculum.get_subject_code_from_course_code(code)
         if not course and not subject:
             new_course = Course(code, on_cur=False,
                                 name=name, ects=ects_credits)
-            self.own_courses[code] = new_course
+            self._own_courses[code] = new_course
             return new_course
 
         return None
 
-    def delete_course_from_plan(self, code):
+    def delete_course_from_plan(self, code: str) -> bool:
+        """Poistaa kurssin suunnitelmasta
+
+        Args:
+            code (str): Kurssikoodi
+
+        Returns:
+            bool: True mikäli poistaminen onnistui ja False mikäli poistaminen epäonnistui.
+        """
         course = self.__find_cur_course(code)
         if course:
             course.change_status(False)
@@ -55,28 +120,36 @@ class Plan:
 
         own_course = self.__find_own_course(code)
         if own_course:
-            del self.own_courses[code]
+            del self._own_courses[code]
             return True
 
         return False
 
-    def __find_cur_course(self, course_code):
-        subject_code = self.curriculum.get_subject_code_from_course_code(
+    def __find_cur_course(self, course_code: str) -> Course:
+        subject_code = self._curriculum.get_subject_code_from_course_code(
             course_code)
 
         if subject_code:
-            if course_code in self.courses_plan[subject_code]:
-                return self.courses_plan[subject_code][course_code]
+            if course_code in self._cur_courses[subject_code]:
+                return self._cur_courses[subject_code][course_code]
 
         return None
 
-    def __find_own_course(self, course_code):
-        if course_code in self.own_courses:
-            return self.own_courses[course_code]
+    def __find_own_course(self, course_code: str) -> Course:
+        if course_code in self._own_courses:
+            return self._own_courses[course_code]
 
         return None
 
-    def check_if_course_on_plan(self, course_code):
+    def check_if_course_on_plan(self, course_code: str) -> bool:
+        """Palauttaa tiedon onko kurssi suunnitelmassa.
+
+        Args:
+            course_code (str): Kurssikoodi
+
+        Returns:
+            bool: True jos kurssi löytyy suunnitelmasta, False muulloin.
+        """
         found_course = self.__find_cur_course(course_code)
         if found_course:
             return found_course.status()
@@ -87,48 +160,73 @@ class Plan:
 
         return False
 
-    def get_courses_on_plan(self):
+    def get_courses_on_plan(self) -> list:
+        """Palauttaa listan suunnitelman kursseista
+
+        Returns:
+            list: Suunnitelmasta löytyvät kurssit
+        """
         cur_courses = self.__get_curriculum_courses_on_plan()
         own_courses = self.get_own_courses_on_plan()
 
         return cur_courses + own_courses
 
-    def __get_curriculum_courses_on_plan(self, subject_code: str = None):
+    def __get_curriculum_courses_on_plan(self, subject_code: str = None) -> list:
         planned_courses = []
 
         if subject_code:
-            for course in self.courses_plan[subject_code].values():
+            for course in self._cur_courses[subject_code].values():
                 if course.status():
                     planned_courses.append(course)
         else:
-            for subject in self.courses_plan.values():
+            for subject in self._cur_courses.values():
                 for course in subject.values():
                     if course.status():
                         planned_courses.append(course)
 
         return planned_courses
 
-    def get_own_courses_on_plan(self):
+    def get_own_courses_on_plan(self) -> list:
+        """Palauttaa listan suunnitelman omista kursseista
+
+        Returns:
+            list: Suunnitelmalta löytyvät omat kurssit
+        """
         planned_courses = []
-        for course in self.own_courses.values():
+        for course in self._own_courses.values():
             planned_courses.append(course)
 
         return planned_courses
 
-    def get_credits_by_criteria(self, mandatory: bool, national: bool, subject: str = None):
+    def get_credits_by_criteria(self, mandatory: bool, national: bool, subject: str = None) -> int:
+        """Palauttaa hakuehtojen mukaisen opintopistemäärä
+
+        Args:
+            mandatory (bool): True = pakollisey opintojaksot, False = valinnaiset opintojaksot
+            national (bool): True = valtakunnalliset opintojaksot, False = paikalliset opintojaksot
+            subject (str, optional): Oppiainekoodi. Oletuksena None.
+
+        Returns:
+            int: Opintopistemäärä
+        """
         total_credits = 0
         for course in self.__get_curriculum_courses_on_plan(subject):
-            course_code = course.code
-            course_status = self.curriculum.get_course_status_from_course_code(
+            course_code = course.get_code()
+            course_status = self._curriculum.get_course_status_from_course_code(
                 course_code)
             if course_status["mandatory"] == mandatory and course_status["national"] == national:
-                course_credits = self.curriculum.get_credits_from_course_code(
+                course_credits = self._curriculum.get_credits_from_course_code(
                     course_code)
                 total_credits += course_credits
 
         return total_credits
 
-    def get_credits_own_course(self):
+    def get_credits_own_course(self) -> int:
+        """Palauttaa omien kurssien opintopistemäärän.
+
+        Returns:
+            int: Opintopistemäärä
+        """
         total_credits = 0
 
         for course in self.get_own_courses_on_plan():
@@ -136,10 +234,23 @@ class Plan:
 
         return total_credits
 
-    def get_mandatory_credits_subject(self, subject_code):
+    def get_mandatory_credits_subject(self, subject_code: str) -> int:
+        """Palauttaa yksittäisen oppaineen pakollisten opintopisteiden määrän.
+
+        Args:
+            subject_code (str): Oppiainekoodi
+
+        Returns:
+            int: Opintopistemäärä
+        """
         return self.get_credits_by_criteria(mandatory=True, national=True, subject=subject_code)
 
-    def get_total_credits_on_plan(self):
+    def get_total_credits_on_plan(self) -> int:
+        """Palauttaa suunnitelman opintopisteiden kokonaismäärän
+
+        Returns:
+            int: Opintopistemäärä
+        """
         total_credits = 0
         total_credits += self.get_credits_by_criteria(True, True)
         total_credits += self.get_credits_by_criteria(False, True)
@@ -149,36 +260,88 @@ class Plan:
 
         return total_credits
 
-    def is_special_task(self):
-        return self.special_task
+    def is_special_task(self) -> bool:
+        """Palauttaa tiedon noudattaako suunnitelma erityistehtävän tuntijakoa
 
-    def change_special_task(self, status):
-        self.special_task = status
+        Returns:
+            bool: Noudattaako suunnitelma erityistehtävän tuntijakoa
+        """
+        return self._special_task
 
-    def add_exam_to_meb_plan(self, exam_code, examination_period):
-        if exam_code in get_meb_codes() and 4 > examination_period > 0:
-            self.matriculation_examination_plan[examination_period].append(
+    def change_special_task(self, status: bool):
+        """Muuttaa suunnitelman erityistehtävästatuksen
+
+        Args:
+            status (bool): Uusi status
+        """
+        self._special_task = status
+
+    def add_exam_to_meb_plan(self, exam_code: str, examination_period: int) -> bool:
+        """Lisää kokeen ylioppilastutkintosuunnitelmaan
+
+        Args:
+            exam_code (str): Koekoodi (vaihtoehdot config-kansiossa "meb_course_codes.csv")
+            examination_period (int): Kokeen suoritusajankohta (0 ja MAX_MEB_PERIODS välistä)
+
+        Returns:
+            bool: Onnistuiko tallentaminen
+        """
+        if exam_code in get_meb_codes(self._meb_language) and MAX_MEB_PERIODS >= examination_period > 0:
+            self._meb_plan[examination_period].append(
                 exam_code)
             return True
 
         return False
 
-    def remove_exam_from_meb_plan(self, exam_code, examination_period):
-        if exam_code in get_meb_codes() and 4 > examination_period > 0:
-            sub_list = self.matriculation_examination_plan[examination_period]
+    def remove_exam_from_meb_plan(self, exam_code: str, examination_period: int) -> bool:
+        """Poistaa kokeen ylioppilastutkintosuunnitelmasta
+
+        Args:
+            exam_code (str): Koekoodi (täytyy löytyä config-kansion "meb_course_codes.csv" tiedostosta)
+            examination_period (int): Kokeen suoritusajankohta (täytyy olla 0 ja MAX_MEB_PERIODS välistä)
+
+        Returns:
+            bool: Onnistuiko poistaminen
+        """
+        if exam_code in get_meb_codes(self._meb_language) and MAX_MEB_PERIODS >= examination_period > 0:
+            sub_list = self._meb_plan[examination_period]
             sub_list.remove(exam_code)
-            self.matriculation_examination_plan[examination_period] = sub_list
+            self._meb_plan[examination_period] = sub_list
 
             return True
 
         return False
 
-    def return_meb_plan(self):
-        return self.matriculation_examination_plan
+    def return_meb_plan(self) -> dict:
+        """Palauttaa ylioppilastutkintosuunnitelman
 
-    def return_study_plan(self):
+        Returns:
+            dict: YO-suunnitelma dict-objektina
+        """
+        return self._meb_plan
+
+    def return_meb_language(self) -> str:
+        """Palauttaa YO-tutkinnon kielen
+
+        Returns:
+            str: YO-tutkinnon kieli (fi tai sv)
+        """
+
+        return self._meb_language
+
+    def return_study_plan(self) -> dict:
+        """Palauttaa koko opiskelusuunnitelman
+
+        Suunnitelma muodostuu kolmesta osasta:
+        - Tieto eritystehtävästä
+        - Suunnitelmaan kuuluvat kurssit
+        - YO-suunnitelma
+
+        Returns:
+            dict: Opiskelusuunnitelma dict-objektina
+        """
         plan_json_object = {}
-        plan_json_object["special_task"] = self.special_task
+        plan_json_object["special_task"] = self._special_task
 
         courses = []
 
@@ -194,23 +357,39 @@ class Plan:
 
         return plan_json_object
 
-    def return_exams_in_meb_plan(self):
-        all_exams = set(self.matriculation_examination_plan[1])
-        all_exams.update(self.matriculation_examination_plan[2])
-        all_exams.update(self.matriculation_examination_plan[3])
+    def return_exams_in_meb_plan(self) -> list:
+        """Palauttaa listan uniikeista YO-aineista
+
+        Returns:
+            list: Uniikit YO-aineet
+        """
+        all_exams = set()
+
+        for i in range(1, MAX_MEB_PERIODS+1):
+            all_exams.update(self._meb_plan[i])
+
         return list(all_exams)
 
-    def import_study_plan(self, study_plan_dict):
-        self.special_task = study_plan_dict["special_task"]
+    def import_study_plan(self, study_plan: dict) -> bool:
+        """Tuo opiskelusuunnitelman dict-objektista
 
-        courses = study_plan_dict["courses"]
+        Args:
+            study_plan (dict): Opiskelusuunnitelma
+
+        Returns:
+            bool: Onnistuiko tuonti
+        """
+        self._special_task = study_plan["special_task"]
+
+        courses = study_plan["courses"]
         for course in courses:
             if course["on_cur"]:
                 self.add_curriculum_course_to_plan(course["code"])
             else:
-                self.add_own_course_to_plan(course["code"], course["name"], course["ects"])
+                self.add_own_course_to_plan(
+                    course["code"], course["name"], course["ects"])
 
-        meb_plan = study_plan_dict["meb_plan"]
+        meb_plan = study_plan["meb_plan"]
         for (period, exams) in meb_plan.items():
             for exam in exams:
                 self.add_exam_to_meb_plan(exam, period)

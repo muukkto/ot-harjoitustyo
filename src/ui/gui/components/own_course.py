@@ -3,6 +3,7 @@ from tkinter import ttk
 
 from bidict import bidict
 
+
 class OwnCourse:
     def __init__(self, root, plan_service, curriculum_tree, stats):
         self._plan_service = plan_service
@@ -12,13 +13,14 @@ class OwnCourse:
         self._curriculum_tree_reload = curriculum_tree
         self._stats_reload = stats
 
-        edit_button = ttk.Button(self._root, command=self.add_course, text="Add own course")
+        edit_button = ttk.Button(
+            self._root, command=self.add_course, text="Add own course")
         edit_button.grid(column=0, row=0)
 
     def save_course(self, code, name, ects, pop_up):
         self._plan_service.add_course(code, name, int(ects), in_cur=False)
         pop_up.destroy()
-        
+
         self._curriculum_tree_reload()
         self._stats_reload()
 
@@ -45,5 +47,6 @@ class OwnCourse:
         name_input.grid(column=1, row=1)
         ects_input.grid(column=1, row=2)
 
-        button = tk.Button(pop_up, text= "Save", command=lambda: self.save_course(code.get(), name.get(), ects.get(), pop_up))
+        button = tk.Button(pop_up, text="Save", command=lambda: self.save_course(
+            code.get(), name.get(), ects.get(), pop_up))
         button.grid(column=0, row=3, columnspan=2)

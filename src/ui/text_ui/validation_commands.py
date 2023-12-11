@@ -1,5 +1,6 @@
 from ui.text_ui.print_commands import print_list
 
+
 def validation_handler(plan_service):
     while True:
         print("1: validate study plan\n2: validate meb plan\n0: main menu")

@@ -6,13 +6,32 @@ from services.validation_functions import ValidationFunctions
 
 
 class ValidationService:
-    def validate(self, plan: Plan, curriculum: Curriculum):
+    """Luokka, joka vastaa opintosuunnitelman validioinnista.
+    """
+
+    def validate(self, plan: Plan, curriculum: Curriculum) -> list:
+        """Validioi opintosuunnitelma
+
+        Hyväksytyn tuloksen saa seuraavilla ehdoilla:
+        - Opintopisteitä vähintään "minimum_credits"
+        - Valtakunnallisia valinnaisia opintopisteitä 
+          vähintään "minimum_national_voluntary_credits"
+        - Kaikki pakolliset opintopisteet käyty
+
+        Args:
+            plan (Plan): Validioitava suunnitelma
+            curriculum (Curriculum): Opetussunnitelma, jonka sääntöjä käyetään
+
+        Returns:
+            list: Validiointivirheet (tyhjä jos validiointi menee läpi)
+        """
         validation_problems = []
 
-        total_credits_status = self.check_total_credits(plan, curriculum, validation_problems)
-        self.check_national_voluntary_credits(
+        total_credits_status = self.__check_total_credits(
             plan, curriculum, validation_problems)
-        self.check_mandatory_credits(plan, curriculum, validation_problems)
+        self.__check_national_voluntary_credits(
+            plan, curriculum, validation_problems)
+        self.__check_mandatory_credits(plan, curriculum, validation_problems)
 
         if plan.is_special_task() and total_credits_status:
             special_validator = SpecialValidationService()
@@ -27,8 +46,10 @@ class ValidationService:
 
         return validation_problems
 
-    def check_total_credits(self, plan, curriculum, validation_problems):
-        total_credit_rule = curriculum.rules["minimum_credits"]
+    def __check_total_credits(self, plan: Plan,
+                                    curriculum: Curriculum,
+                                    validation_problems: list) -> bool:
+        total_credit_rule = curriculum.return_rules()["minimum_credits"]
         total_credits = plan.get_total_credits_on_plan()
 
         if total_credits < total_credit_rule:
@@ -38,7 +59,9 @@ class ValidationService:
 
         return True
 
-    def check_mandatory_credits(self, plan, curriculum, validation_problems):
+    def __check_mandatory_credits(self, plan: Plan,
+                                        curriculum: Curriculum,
+                                        validation_problems: list) -> bool:
         validation_functions = ValidationFunctions()
         mandatory_credits_problems = []
 
@@ -49,8 +72,11 @@ class ValidationService:
             validation_problems.append({"name": "not_all_compulsory_credits",
                                         "details": mandatory_credits_problems})
 
-    def check_national_voluntary_credits(self, plan, curriculum, validation_problems):
-        voluntary_credit_rule = curriculum.rules["minimum_national_voluntary_credits"]
+    def __check_national_voluntary_credits(self, plan: Plan,
+                                                 curriculum: Curriculum,
+                                                 validation_problems: list):
+        voluntary_credit_rule = curriculum.return_rules(
+        )["minimum_national_voluntary_credits"]
         voluntary_credits = plan.get_credits_by_criteria(
             mandatory=False, national=True)
 

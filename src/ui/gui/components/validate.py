@@ -1,5 +1,6 @@
 from tkinter import ttk
 
+
 class Validate:
     def __init__(self, root, plan_service):
         self._plan_service = plan_service
@@ -10,7 +11,8 @@ class Validate:
         title = ttk.Label(self._root, text="Validation")
         title.grid(column=0, row=0)
 
-        button = ttk.Button(self._root, command=self.print_validation, text="Validate plan")
+        button = ttk.Button(
+            self._root, command=self.print_validation, text="Validate plan")
         button.grid(column=0, row=1)
 
     def print_validation(self):
@@ -29,4 +31,3 @@ class Validate:
         else:
             label = ttk.Label(self._print_area, text="Plan OK!")
             label.grid(column=0, row=0)
-

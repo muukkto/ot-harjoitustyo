@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 
+
 class LoginView:
     def __init__(self, root, user_service, plan_service, plan_view, create_user_view):
         self._root = root
@@ -27,7 +28,6 @@ class LoginView:
     def _hide_error(self):
         self._error_label.grid_remove()
 
-
     def _login_method(self):
         username = self._username_entry.get()
 
@@ -39,7 +39,6 @@ class LoginView:
                 self._show_error("Username not found!")
         else:
             self._show_error("Username not found!")
-
 
     def _create_view(self):
         self._frame = ttk.Frame(self._root)
@@ -58,8 +57,10 @@ class LoginView:
         username_label = ttk.Label(master=self._frame, text="Username")
         self._username_entry = ttk.Entry(master=self._frame)
 
-        button_login = ttk.Button(master=self._frame, text="Login", command=self._login_method)
-        button_create_user = ttk.Button(master=self._frame, text="Create user", command=self._create_user_view)
+        button_login = ttk.Button(
+            master=self._frame, text="Login", command=self._login_method)
+        button_create_user = ttk.Button(
+            master=self._frame, text="Create user", command=self._create_user_view)
 
         heading_label.grid(row=0, column=0, columnspan=2)
         username_label.grid(row=2, column=0)

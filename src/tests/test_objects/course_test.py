@@ -19,7 +19,7 @@ class TestCourse(unittest.TestCase):
         self.assertEqual(str(self.course), "MAA12")
 
     def test_curriculum_course_doesnt_return_ects(self):
-        self.assertEqual(self.course.get_ects(), False)
+        self.assertEqual(self.course.get_ects(), None)
 
     def test_own_course_return_ects(self):
         course = Course("OMA1", on_cur=False, name="Oma kurssi 1", ects=2)

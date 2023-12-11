@@ -26,7 +26,6 @@ class PlanView:
 
         self.start()
 
-
     def destroy(self):
         self._main_frame.destroy()
 
@@ -66,23 +65,24 @@ class PlanView:
         self._meb = MEB(meb_frame, self._plan_service)
         Config(config_frame, self._plan_service)
         Files(files_frame, self._plan_service,
-                           self._reload_curriculum_tree,
-                           self._reload_meb_plan,
-                           self._reload_stats)
+              self._reload_curriculum_tree,
+              self._reload_meb_plan,
+              self._reload_stats)
         OwnCourse(own_course_frame, self._plan_service,
-                                    self._reload_curriculum_tree,
-                                    self._reload_stats)
+                  self._reload_curriculum_tree,
+                  self._reload_stats)
 
-        logout_button = ttk.Button(container, text="logout", command=self._handle_logout)
+        logout_button = ttk.Button(
+            container, text="logout", command=self._handle_logout)
         logout_button.grid(column=0, row=4, columnspan=2)
-
-
 
     def curriculum_container(self):
         container = ttk.Frame(self._main_frame)
         canvas = tk.Canvas(container)
-        scrollbar_v = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
-        scrollbar_h = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+        scrollbar_v = ttk.Scrollbar(
+            container, orient="vertical", command=canvas.yview)
+        scrollbar_h = ttk.Scrollbar(
+            container, orient="horizontal", command=canvas.xview)
         curriculum_frame = ttk.Frame(canvas)
 
         curriculum_frame.bind(
@@ -97,7 +97,7 @@ class PlanView:
         canvas.configure(xscrollcommand=scrollbar_h.set)
 
         self._curriculum_tree = CurriculumTree(curriculum_frame, self._plan_service,
-                                                                 self._reload_stats)
+                                               self._reload_stats)
         self._curriculum_tree.init_curriculum_tree()
 
         container.grid(column=0, row=0, sticky=tk.N+tk.W+tk.S+tk.E)

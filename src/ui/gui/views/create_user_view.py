@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 
+
 class CreateUserView:
     def __init__(self, root, user_service, plan_service, plan_view, login_view):
         self._root = root
@@ -39,7 +40,6 @@ class CreateUserView:
         else:
             self._show_error("Couldn't create user!")
 
-
     def _create_view(self):
         self._frame = ttk.Frame(self._root)
 
@@ -57,8 +57,10 @@ class CreateUserView:
         username_label = ttk.Label(master=self._frame, text="Username")
         self._username_entry = ttk.Entry(master=self._frame)
 
-        button_signup = ttk.Button(master=self._frame, text="Create user", command=self._signup_method)
-        button_login = ttk.Button(master=self._frame, text="Login", command=self._login_view)
+        button_signup = ttk.Button(
+            master=self._frame, text="Create user", command=self._signup_method)
+        button_login = ttk.Button(
+            master=self._frame, text="Login", command=self._login_view)
 
         heading_label.grid(row=0, column=0, columnspan=2)
         username_label.grid(row=2, column=0)

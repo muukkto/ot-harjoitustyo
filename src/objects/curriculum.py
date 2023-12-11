@@ -1,17 +1,48 @@
-class Curriculum:
-    def __init__(self, cur_config):
-        self.rules = cur_config["rules"]
-        self.subjects = cur_config["subjects"]
+from objects.course import Course
 
-    def return_all_subject_codes(self):
+
+class Curriculum:
+    """Luokka, joka hallitsee opetussuunnitelmasta riippuvia toiminnallisuuksia.
+
+    Attributes:
+        rules: Opetussunnitelman säännöt (tarvitaan suunnitelmian validioinnissa)
+        subjects: Opetussuunnitelman kurssit jaettuna oppiaineiden alle.
+    """
+
+    def __init__(self, cur_config: dict):
+        """Luokan konstruktori, joka luo uuden opetussuunnitelma.
+
+        Args:
+            cur_config (dict): Opetussuunnitelman tiedot konfiguraatiotiedostosta.
+        """
+
+        self._rules = cur_config["rules"]
+        self._subjects = cur_config["subjects"]
+
+    def return_all_subject_codes(self) -> list:
+        """Palauttaa kaikki opetussuunnitelmasta löytyvät oppiainekoodit. 
+           Samoja ei voi käyttää omissa opintojaksoissa.
+
+        Returns:
+            list: Lista oppiainekoodeista.
+        """
+
         all_subject_codes = []
 
-        for subject in self.subjects:
+        for subject in self._subjects:
             all_subject_codes.append(subject)
 
         return all_subject_codes
 
-    def get_subject_code_from_course_code(self, course_code):
+    def get_subject_code_from_course_code(self, course_code: str) -> str:
+        """Palauttaa kurssikoodin alusta oppiainekoodin.
+
+        Args:
+            course_code (str):  Kurssinkoodi (esim. ENA1)
+
+        Returns:
+            str: Oppiainekoodi (esim. ENA)
+        """
         all_subject_codes = self.return_all_subject_codes()
 
         for subject in all_subject_codes:
@@ -20,20 +51,59 @@ class Curriculum:
 
         return None
 
-    def get_course_from_course_code(self, course_code):
-        subject_code = self.get_subject_code_from_course_code(course_code)
-        return self.subjects[subject_code]["courses"][course_code]
+    def get_course_from_course_code(self, course_code: str) -> Course:
+        """Palauttaa Course-objektin kurssikoodin perusteella.
 
-    def get_credits_from_course_code(self, course_code):
+        Args:
+            course_code (str): Kurssikoodi
+
+        Returns:
+            Course: Course-objekti
+        """
+        subject_code = self.get_subject_code_from_course_code(course_code)
+        return self._subjects[subject_code]["courses"][course_code]
+
+    def get_credits_from_course_code(self, course_code: str) -> int:
+        """Palauttaa opintopistemäärän kurssikoodin perusteella.
+
+        Args:
+            course_code (str): Kurssikoodi
+
+        Returns:
+            int: opintopistemäärä
+        """
         course = self.get_course_from_course_code(course_code)
         return course["credits"]
 
-    def get_course_status_from_course_code(self, course_code):
+    def get_course_status_from_course_code(self, course_code: str) -> dict:
+        """Palauttaa kurssikoodin perustella kurssin validiointitiedot
+
+        Validiointitiedot palautetaan dict-objektina.
+        Avain "mandatory" kertoo onko kurssi pakollinen opintojakso
+        Avain "national" kertoo onko kurssi valtakunnallinen opintojakso
+
+        Args:
+            course_code (str): Kurssikoodi
+
+        Returns:
+            dict: Validiointitiedot
+        """
         course = self.get_course_from_course_code(course_code)
         return {"mandatory": course["mandatory"], "national": course["national"]}
 
-    def get_mandatory_credits_subject(self, subject_code):
-        subject_courses = self.subjects[subject_code]["courses"]
+    def get_mandatory_credits_subject(self, subject_code: str) -> int:
+        """Palauttaa oppiaineen pakollisten opintopisteiden määrän.
+
+        Esimerkiksi englannissa on 6 pakollista opintojaksoa,
+        joiden yhteenlaksettu opintopistemäärä on 12
+
+        Args:
+            subject_code (str): Oppiainekoodi
+
+        Returns:
+            int: Pakollisten opintopisteiden määrä.
+        """
+        subject_courses = self._subjects[subject_code]["courses"]
         mandatory_credits = 0
 
         for course_code in subject_courses:
@@ -42,40 +112,34 @@ class Curriculum:
 
         return mandatory_credits
 
-    def return_all_courses(self):
-        return_list = []
-        for subject_key in self.subjects.keys():
-            for course_name in self.subjects[subject_key]["courses"].keys():
-                ects_credits = self.subjects[subject_key]['courses'][course_name]['credits']
-                pakollisuus = "pakollinen" if self.subjects[subject_key][
-                    'courses'][course_name]['mandatory'] else "valinnainen"
-                valtakunnallinen = "Valtakunnallinen" if self.subjects[subject_key][
-                    'courses'][course_name]['national'] else "Paikallinen"
-                return_list.append(
-                    f"{course_name}  {ects_credits} op  {valtakunnallinen} {pakollisuus}")
+    # def _return_all_courses(self):
+    #    return_list = []
+    #    for subject_key in self._subjects.keys():
+    #        for course_name in self._subjects[subject_key]["courses"].keys():
+    #            ects_credits = self._subjects[subject_key]['courses'][course_name]['credits']
+    #            pakollisuus = "pakollinen" if self._subjects[subject_key][
+    #                'courses'][course_name]['mandatory'] else "valinnainen"
+    #            valtakunnallinen = "Valtakunnallinen" if self._subjects[subject_key][
+    #                'courses'][course_name]['national'] else "Paikallinen"
+    #            return_list.append(
+    #                f"{course_name}  {ects_credits} op  {valtakunnallinen} {pakollisuus}")
 
-        return return_list
+    #    return return_list
 
-    def return_all_courses_dict(self):
-        return self.subjects
+    def return_all_courses_dict(self) -> dict:
+        """Palauttaa kaikki opetussuunnitelman kurssit
 
-    def print_rules(self):  # pragma: no cover
-        # tämä pois pylint ja coverage, koska pelkästään kehityksen aikaiseen testailuun
-        # pylint: disable=line-too-long
-        print(f"minimum credits: {self.rules['minimum_credits']}")
-        print(
-            f"minimum national voluntary credits: {self.rules['minimum_national_voluntary_credits']}")
-        print(
-            f"code for special task courses: {self.rules['special_task_code']}")
-        print(
-            f"subjects classified as mother tongue: {self.rules['mother_tongue']}")
-        print(
-            f"subjects classified as 2nd national lang: {self.rules['second_national_language']}")
-        print(
-            f"subjects classified as long foreign lang: {self.rules['long_foreign_language']}")
-        print(f"subjects classified as maths: {self.rules['maths']}")
-        print(
-            f"subjects classified as nat mandatory subjects: {self.rules['national_mandatory_subjects']}")
-        print(
-            f"subjects classified as nat voluntary subjects: {self.rules['national_voluntary_subjects']}")
-        print(f"rules for art basket: {self.rules['basket_subjects']['arts']}")
+        Kurssit on järjestetty dict-objektiin oppiaineitain.
+
+        Returns:
+            dict: Kaikki kurssi sisältävä dict-objekti
+        """
+        return self._subjects
+
+    def return_rules(self) -> dict:
+        """Palauttaa opetussuunnitelman säännöt
+
+        Returns:
+            dict: Säännöt sisältävä dict-objekti
+        """
+        return self._rules

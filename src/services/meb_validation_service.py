@@ -1,29 +1,48 @@
 import requests
 
+from config.config import MAX_MEB_PERIODS
+from objects.plan import Plan
+
 
 class MebValidationService:
-    def validate(self, plan):
-        validation_problems = []
+    """Luokka, joka vastaa YO-suunnitelman validioinnista
+    """
 
-        structure_status = self.check_exam_structure(plan)
-        timing_status = self.check_exam_timing(plan)
+    def validate(self, plan: Plan) -> dict:
+        """Validioi YO-suunnitelman
+
+        Paluuarvona on sanakirja virheistä. Mikäli dict on tyhjä, ei virheitä löydy.
+        Indeksillä "structure_problems" on YO-suunnitelman rakenteeseen
+        liittyvät virheet. Esim. liian vähän aineita. 
+        Indeksillä "timing_problems" on virheet, jotka johtuvat, että suunnitelmasta
+        löytyy kaksi ainetta samalla päivälle.
+
+        Args:
+            plan (Plan): Opintosuunnitelma
+
+        Returns:
+            dict: Validioinnin virheet
+        """
+        validation_problems = {}
+
+        structure_status = self._check_exam_structure(plan)
+        timing_status = self._check_exam_timing(plan)
 
         if structure_status:
-            validation_problems.append(
-                {"structure_problems": structure_status})
+            validation_problems["structure_problems"] = structure_status
 
         if timing_status:
-            validation_problems.append({"timing_problems": timing_status})
+            validation_problems["timing_problems"] = timing_status
 
         return validation_problems
 
-    def check_exam_timing(self, plan):
+    def _check_exam_timing(self, plan: Plan) -> list:
         same_days = {
             "mother_tongue": ("A", "A5", "O", "O5"),
             "nat_and_hum_day_1": ("UO", "UE", "ET", "YH", "KE", "GE", "TE"),
             "nat_and_hum_day_2": ("PS", "FF", "HI", "FY", "BI"),
             "long_foreign": ("EA", "FA", "PA", "SA", "VA"),
-            "short_foreign": ("EC", "FC", "PC", "SC", "VC", "TC", 
+            "short_foreign": ("EC", "FC", "PC", "SC", "VC", "TC",
                               "GC", "L1", "L7", "IC", "DC", "QC"),
             "second_national": ("BA", "BB", "CA", "CB"),
             "maths": ("N", "M"),
@@ -34,7 +53,7 @@ class MebValidationService:
 
         me_plan = plan.return_meb_plan()
 
-        for period in range(1, 4):
+        for period in range(1, MAX_MEB_PERIODS+1):
             period_exams = set(me_plan[period])
 
             for day, subjects in same_days.items():
@@ -43,10 +62,11 @@ class MebValidationService:
 
         return validation_problems
 
-    def check_exam_structure(self, plan):
+    def _check_exam_structure(self, plan: Plan) -> list:
         lang = "fi"
 
-        base_url = f"https://ilmo.ylioppilastutkinto.fi/api/v1/validate?teachingLanguage={lang}"
+        base_url = f"https://ilmo.ylioppilastutkinto.fi/api/v1/validate?teachingLanguage={
+            lang}"
         exam_parameters = ""
 
         list_subjects = plan.return_exams_in_meb_plan()

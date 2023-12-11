@@ -44,3 +44,4 @@
 - Omia kursseja voi lisätä ja poistaa graafisesta käyttöliittymästä.
 - Suunnitelma tallentuu tietokantaan.
 - Tietokannassa voi olla monen käyttäjän suunnitelmat.
+- Ohjelma hakee konfiguraatioita env-tiedostosta.

@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class CurriculumTree:
     def __init__(self, root, plan_service, stats_reload):
         self._root = root
@@ -21,10 +22,10 @@ class CurriculumTree:
 
         curriculum_courses_frame.grid(column=0, row=0)
 
-
         own_courses_frame = tk.Frame(self._print_area)
 
-        own_courses_label = tk.Label(master=own_courses_frame, text="Own courses")
+        own_courses_label = tk.Label(
+            master=own_courses_frame, text="Own courses")
         own_courses_label.grid(row=0, column=0, sticky=tk.W)
 
         own_courses = self._plan_service.get_own_courses()
@@ -32,8 +33,7 @@ class CurriculumTree:
             gui_block = self.own_course(course, own_courses_frame)
             gui_block.grid(column=i, row=1)
 
-        own_courses_frame.grid(row=1,column=0, sticky=tk.W)
-
+        own_courses_frame.grid(row=1, column=0, sticky=tk.W)
 
         self._print_area.grid(column=0, row=0)
 
@@ -46,7 +46,7 @@ class CurriculumTree:
             event.widget["bg"] = event.widget.master["bg"]
         else:
             self._plan_service.add_course(course_code)
-            event.widget["bg"]="grey"
+            event.widget["bg"] = "grey"
 
         self._stats_reload()
 
@@ -59,10 +59,12 @@ class CurriculumTree:
     def own_course(self, course_object, master_frame):
         bg = "grey"
 
-        course_frame = tk.Frame(master_frame, bg=bg, highlightbackground="black", highlightthickness=1)
+        course_frame = tk.Frame(
+            master_frame, bg=bg, highlightbackground="black", highlightthickness=1)
 
         title_label = tk.Label(course_frame, text=str(course_object), bg=bg)
-        ects_label = tk.Label(course_frame, text=course_object.get_ects(), bg=bg)
+        ects_label = tk.Label(
+            course_frame, text=course_object.get_ects(), bg=bg)
 
         title_label.grid(column=0, row=0)
         ects_label.grid(column=0, row=1)
@@ -70,7 +72,6 @@ class CurriculumTree:
         title_label.bind('<Button-1>', self.remove_own_course)
 
         return course_frame
-
 
     def course(self, code, master_frame, information):
         if information["national"]:
@@ -81,7 +82,8 @@ class CurriculumTree:
         else:
             bg = "white"
 
-        course_frame = tk.Frame(master_frame, bg=bg, highlightbackground="black", highlightthickness=1)
+        course_frame = tk.Frame(
+            master_frame, bg=bg, highlightbackground="black", highlightthickness=1)
 
         course_status = self._plan_service.get_course_status(code)
         if course_status:
@@ -106,7 +108,6 @@ class CurriculumTree:
         for j, (code, information) in enumerate(courses.items()):
             courses_obj = self.course(code, courses_frame, information)
             courses_obj.grid(row=1, column=j)
-
 
         subject_label.grid(row=0, column=0, sticky=tk.W)
         courses_frame.grid(row=1, column=0)

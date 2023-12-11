@@ -1,11 +1,12 @@
-from repositories.plan_repository import PlanRepository
+from repositories import plan_repository
+
 
 class UserService:
     def __init__(self):
         self._user = None
 
     def login(self, username):
-        if PlanRepository().find_user(username):
+        if plan_repository.find_user(username):
             self._user = username
             return username
 
@@ -15,10 +16,10 @@ class UserService:
         self._user = None
 
     def create_user(self, username):
-        if PlanRepository().find_user(username):
+        if plan_repository.find_user(username):
             return None
 
-        user = PlanRepository().create_user(username)
+        user = plan_repository.create_user(username)
         self._user = user
 
         return user

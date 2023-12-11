@@ -99,16 +99,16 @@ class TestValidationService(unittest.TestCase):
         plan = Plan(self.curriculum, "User1")
         plan.change_special_task(True)
         illegal_courses = ["AI1", "AI2", "AI3", "AI4", "AI5", "AI10", "AI11",
-                         "ENA1", "ENA2", "ENA3", "ENA4", "ENA8", "ENA7",
-                         "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",
-                         "MAA1", "MAA2", "MAA3", "MAA4", "MAA5", "MAA7", "MAA8", "MAA10", "MAA11", "MAA12",
-                         "BI1", "BI2", "BI3", "BI4", "BI5", "BI6",
-                         "GE1", "GE3",
-                         "FY1", "FY2", "FY3", "FY4", "FY5", "FY6", "FY7", "FY8",
-                         "KE1", "KE2", "KE3", "KE4", "KE5", "KE6",
-                         "FI1", "PS1", "HI1", "HI2", "YH1", "YH2",
-                         "ET1", "TE1", "TE2", "TE3", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2",
-                         "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
+                           "ENA1", "ENA2", "ENA3", "ENA4", "ENA8", "ENA7",
+                           "RUB1", "RUB2", "RUB3", "RUB4", "RUB5", "RUB7",
+                           "MAA1", "MAA2", "MAA3", "MAA4", "MAA5", "MAA7", "MAA8", "MAA10", "MAA11", "MAA12",
+                           "BI1", "BI2", "BI3", "BI4", "BI5", "BI6",
+                           "GE1", "GE3",
+                           "FY1", "FY2", "FY3", "FY4", "FY5", "FY6", "FY7", "FY8",
+                           "KE1", "KE2", "KE3", "KE4", "KE5", "KE6",
+                           "FI1", "PS1", "HI1", "HI2", "YH1", "YH2",
+                           "ET1", "TE1", "TE2", "TE3", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2",
+                           "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in illegal_courses:
             plan.add_curriculum_course_to_plan(course)

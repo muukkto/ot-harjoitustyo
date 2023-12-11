@@ -21,4 +21,5 @@
 | 7.12.2023  | 3 | Omien kurssien editorin lisäämien graafiseen käyttöliittymään |
 | 8.12.2023  | 4 | Pohja tietokannoille. Käyttäjät ja tietokannat toimiviksi tekstikäyttöliittymään. |
 | 9.12.2023  | 5 | Käyttäjät ja tietokantaoperaatiot graafisen käyttöliittymään. Graafisen käyttöliittymän refakotorointi. |
-| **Summa**  | 55 ||
+| 11.12.2023  | 3 | Koodin dokumentointia. |
+| **Summa**  | 58 ||

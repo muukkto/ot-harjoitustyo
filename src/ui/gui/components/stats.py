@@ -1,4 +1,6 @@
 from tkinter import ttk
+import tkinter as tk
+
 
 class Statistics:
     def __init__(self, root, plan_service):
@@ -20,6 +22,8 @@ class Statistics:
         self._print_area.grid(column=0, row=1)
 
         stats = self._plan_service.get_stats()
-        for i, stat in enumerate(stats):
-            label = ttk.Label(self._print_area, text=stat)
-            label.grid(column=0, row=i)
+        for i, (stat_name, stat_value) in enumerate(stats.items()):
+            stat_title = ttk.Label(self._print_area, text=stat_name)
+            stat_title.grid(column=0, row=i, sticky=tk.W)
+            stat_info = ttk.Label(self._print_area, text=stat_value)
+            stat_info.grid(column=1, row=i, sticky=tk.W)
