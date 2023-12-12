@@ -57,12 +57,11 @@ class MEB:
         validation_status = self._plan_service.validate_meb()
 
         if validation_status:
-            print(validation_status)
-            for problem in validation_status:
-                if "structure_problems" in problem.keys():
-                    label = ttk.Label(self._valid_print_area,
-                                      text=problem["structure_problems"])
-                    label.grid(column=0, row=0)
+            if "structure_problems" in validation_status.keys():
+                problem = validation_status["structure_problems"]
+                label = ttk.Label(self._valid_print_area,
+                                  text=problem)
+                label.grid(column=0, row=0)
         else:
             label = ttk.Label(self._valid_print_area, text="MEB plan OK!")
             label.grid(column=0, row=0)
