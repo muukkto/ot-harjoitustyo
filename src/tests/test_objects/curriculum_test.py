@@ -1,12 +1,11 @@
 import unittest
 from objects.curriculum import Curriculum
 
-from config.lops21_curriculum import lops21_curriculum
-
+from config.config import CURRICULUM
 
 class TestCurriculum(unittest.TestCase):
     def setUp(self):
-        self.curriculum = Curriculum(lops21_curriculum())
+        self.curriculum = Curriculum(CURRICULUM)
 
     def test_curriculum_exports_subject_codes(self):
         self.assertIn("AI", self.curriculum.return_all_subject_codes())

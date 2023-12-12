@@ -1,13 +1,14 @@
 from objects.plan import Plan
 from objects.curriculum import Curriculum
 
-from services.validation_functions import ValidationFunctions
+from services.validation.validation_functions import ValidationFunctions
 
 
 class SpecialValidationService:
     """Luokka, joka vastaa opintosuunnitelman validioinnista 
        mikäli suunnitelma noudattaa eritysitehtävän tuntijakoa
     """
+
     def validate(self, plan: Plan, curriculum: Curriculum) -> list:
         """Validioi erityistehtväopintosuunnitelma
 
@@ -27,7 +28,8 @@ class SpecialValidationService:
 
         special_task_credits_status = self.__check_special_task_credits(
             plan, curriculum)
-        excluded_courses_status = self.__check_excluded_credits(plan, curriculum)
+        excluded_courses_status = self.__check_excluded_credits(
+            plan, curriculum)
 
         validation_problems.extend(special_task_credits_status)
         validation_problems.extend(excluded_courses_status)

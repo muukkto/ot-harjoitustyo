@@ -44,7 +44,7 @@ class Course:
 
         self._on_plan = new_status
 
-    def status(self) -> bool:
+    def get_status(self) -> bool:
         """Palauttaa kurssin nykyisen statuksen.
 
         Returns:

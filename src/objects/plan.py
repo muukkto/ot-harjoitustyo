@@ -152,11 +152,11 @@ class Plan:
         """
         found_course = self.__find_cur_course(course_code)
         if found_course:
-            return found_course.status()
+            return found_course.get_status()
 
         found_course_2 = self.__find_own_course(course_code)
         if found_course_2:
-            return found_course_2.status()
+            return found_course_2.get_status()
 
         return False
 
@@ -176,12 +176,12 @@ class Plan:
 
         if subject_code:
             for course in self._cur_courses[subject_code].values():
-                if course.status():
+                if course.get_status():
                     planned_courses.append(course)
         else:
             for subject in self._cur_courses.values():
                 for course in subject.values():
-                    if course.status():
+                    if course.get_status():
                         planned_courses.append(course)
 
         return planned_courses
@@ -286,7 +286,8 @@ class Plan:
         Returns:
             bool: Onnistuiko tallentaminen
         """
-        if exam_code in get_meb_codes(self._meb_language) and MAX_MEB_PERIODS >= examination_period > 0:
+        if (exam_code in get_meb_codes(self._meb_language)
+                and MAX_MEB_PERIODS >= examination_period > 0):
             self._meb_plan[examination_period].append(
                 exam_code)
             return True
@@ -297,13 +298,16 @@ class Plan:
         """Poistaa kokeen ylioppilastutkintosuunnitelmasta
 
         Args:
-            exam_code (str): Koekoodi (täytyy löytyä config-kansion "meb_course_codes.csv" tiedostosta)
-            examination_period (int): Kokeen suoritusajankohta (täytyy olla 0 ja MAX_MEB_PERIODS välistä)
+            exam_code (str): Koekoodi (täytyy löytyä config-kansion
+                             "meb_course_codes.csv" tiedostosta)
+            examination_period (int): Kokeen suoritusajankohta (täytyy olla 0 ja
+                                      MAX_MEB_PERIODS välistä)
 
         Returns:
             bool: Onnistuiko poistaminen
         """
-        if exam_code in get_meb_codes(self._meb_language) and MAX_MEB_PERIODS >= examination_period > 0:
+        if (exam_code in get_meb_codes(self._meb_language)
+                and MAX_MEB_PERIODS >= examination_period > 0):
             sub_list = self._meb_plan[examination_period]
             sub_list.remove(exam_code)
             self._meb_plan[examination_period] = sub_list
@@ -346,7 +350,7 @@ class Plan:
         courses = []
 
         for course in self.get_courses_on_plan():
-            if course.status():
+            if course.get_status():
                 courses.append(course.to_json())
 
         plan_json_object["courses"] = courses

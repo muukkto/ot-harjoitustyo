@@ -1,10 +1,14 @@
 from objects.plan import Plan
 from objects.curriculum import Curriculum
 
+
 class ValidationFunctions:
     """Luokkien ValidationService ja SpecialValidationService yhteiset funktiot
     """
-    def __check_mandatory_credits_one_subject(self, plan: Plan, curriculum: Curriculum, subject: str) -> int:
+
+    def __check_mandatory_credits_one_subject(self, plan: Plan,
+                                              curriculum: Curriculum,
+                                              subject: str) -> int:
         curriculum_mandatory_credits = curriculum.get_mandatory_credits_subject(
             subject)
         plan_mandatory_credits = plan.get_mandatory_credits_subject(subject)
@@ -27,11 +31,12 @@ class ValidationFunctions:
 
         return basket_rules["minimum_compulsory_total"] - plan_total_mandatory_credits
 
-    def __check_mandatory_credits_one_group(self, plan: Plan, curriculum: Curriculum, group: str) -> int:
-        subject_list = curriculum.return_rules()[group]
+    def __check_mandatory_credits_one_group(self, plan: Plan,
+                                            curriculum: Curriculum,
+                                            group_subjects: list) -> int:
         least_exluded = 9999
 
-        for subject in subject_list:
+        for subject in group_subjects:
             subject_return = self.__check_mandatory_credits_one_subject(
                 plan, curriculum, subject)
 
@@ -39,7 +44,10 @@ class ValidationFunctions:
 
         return least_exluded
 
-    def __check_mandatory_all_subjects(self, plan: Plan, curriculum: Curriculum, excluded_creds: int, subj_problems: list) -> int:
+    def __check_mandatory_normal_subjects(self, plan: Plan,
+                                          curriculum: Curriculum,
+                                          excluded_creds: int,
+                                          subj_problems: list) -> int:
         simple_subjects = curriculum.return_rules()[
             "national_mandatory_subjects"]
 
@@ -54,27 +62,27 @@ class ValidationFunctions:
 
         return excluded_creds
 
-    def __check_mandatory_all_groups(self, plan: Plan, curriculum: Curriculum, excluded_credits: int, group_problems: list) -> int:
-        group_subjects = [
-            "mother_tongue",
-            "second_national_language",
-            "long_foreign_language",
-            "maths",
-            "worldview"
-        ]
+    def __check_mandatory_all_groups(self, plan: Plan,
+                                     curriculum: Curriculum,
+                                     excluded_credits: int,
+                                     group_problems: list) -> int:
+        group_subjects = curriculum.return_rules()["group_subjects"]
 
-        for group in group_subjects:
+        for name, subjects in group_subjects.items():
             group_return = self.__check_mandatory_credits_one_group(
-                plan, curriculum, group)
+                plan, curriculum, subjects)
             if group_return > 1000:
                 group_problems.append(
-                    {"name": "problem_with_group_subjects", "details": group})
+                    {"name": "problem_with_group_subjects", "details": name})
 
             excluded_credits += group_return
 
         return excluded_credits
 
-    def __check_mandatory_all_baskets(self, plan: Plan, curriculum: Curriculum, excluded_credits: int, basket_problems: list) -> int:
+    def __check_mandatory_all_baskets(self, plan: Plan,
+                                      curriculum: Curriculum,
+                                      excluded_credits: int,
+                                      basket_problems: list) -> int:
         basket_subjects = curriculum.return_rules()["basket_subjects"]
 
         for basket in basket_subjects.items():
@@ -88,10 +96,34 @@ class ValidationFunctions:
 
         return excluded_credits
 
-    def check_total_mandatory(self, plan: Plan, curriculum: Curriculum, mandatory_courses_problems: list) -> int:
+    def check_total_mandatory(self, plan: Plan,
+                              curriculum: Curriculum,
+                              mandatory_courses_problems: list) -> int:
+        """Tarkistaa suunnitelman kaikki pakolliset opintopisteet
+
+        Pakolliset opintopisteet voidaan tarkistaa kolmen eri säännön perusteella:
+        Normaalit aineet: aineen kaikki pakolliset opintopisteet täytyy löytyä
+        Ryhmäaineet: ryhmästä yhden aineen kaikki pakolliset opintopisteet 
+                    täytyy löytyä (esim. pitkä tai lyhyt matematiikka)
+        Koriaineet: korin jokaisesta aineesta täytyy löytyä jokin vähimmäismäärä opintopisteitä
+                    ja korin kokonaisopintopisteille on oma vähimmäismäärä
+
+        Funktio palauttaa puuttuvien opintopisteiden määrän, jotta erityistehtäväpoisluku
+        voidaan tarkistaa. Mikäli jossain aineessa puuttuisi kuitenkin yli puolet pakollisista,
+        olisi paluuarvo suuruusluokkaa 10000, eli aivan liian suuri.
+
+
+        Args:
+            plan (Plan): Validioitava suunnitelma
+            curriculum (Curriculum): Opetussunnitelma, jonka sääntöjä käyetään
+            mandatory_courses_problems (list): Lista johon validiointivirheet lisätään
+
+        Returns:
+            int: Puuttuvien pakollisten opintopisteiden määrä
+        """
         excluded_credits = 0
 
-        excluded_credits = self.__check_mandatory_all_subjects(
+        excluded_credits = self.__check_mandatory_normal_subjects(
             plan, curriculum, excluded_credits, mandatory_courses_problems)
         excluded_credits = self.__check_mandatory_all_groups(
             plan, curriculum, excluded_credits, mandatory_courses_problems)

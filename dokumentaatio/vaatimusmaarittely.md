@@ -36,19 +36,16 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
     - [x] YO-suunnitelman aineet voidaan valita vetovalikosta.
     - [ ] Validiointi tulostaa "kauniit" vastaukset 
     - [x] Oman opintojakson voi syöttää käyttöliittymästä. Se ilmestyy häntäkurssina.
-- [ ] LOPS-puu voidaan ladata JSON-tiedostosta
-    - [ ] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
+- [x] LOPS-puu voidaan ladata JSON-tiedostosta
+    - [x] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
 - [ ] Ehdotukset mitä puuttuu valmistumisesta, esim `pakollisista puuttuu ENA6, BI2, BI3 ...`
 - [ ] Opintojakson yhteyteen voidaan valita suoritusaika
 - [ ] Edistyneet tilastot
     - [ ] Vuosittainen opintopistemäärä
 - [x] Tietojen tallentaminen tietokantaan
 - [x] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
-- [ ] Tietokanta polut ja muut konfiguroinnit saadaan tiedostosta
-
-
-## Edistyneitä jatkokehitysiedoita
-
-- [ ] Ylläpito-oikeudet
-    - [ ] LOPS-puun muokkaaminen vaatii ylläpito-oikeudet
-    - [ ] Valmistumiskriitereiden muuttaminen käyttöliittymästä - esim. aikuislukiot
+- [x] Tietokanta polut ja muut konfiguroinnit saadaan tiedostosta
+- [ ] Suunnitelman konfiguraatioita voidaan muuttaa
+    - [x] Noudattaako suunnitelma erityistehtän tuntijakoa
+    - [ ] YO-tutkinnon kieli
+    - [ ] Valmistumisajankohta (tällöin examination period 1 vaihtuu esim. 2024K jne.)

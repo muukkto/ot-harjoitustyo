@@ -27,7 +27,8 @@ class Files:
         filetypes = (('Plan file (*.json)', '*.json'),)
         file_path = filedialog.askopenfilename(filetypes=filetypes)
 
-        import_plan_from_json(self._plan_service, file_path)
+        plan_dict = import_plan_from_json(file_path)
+        self._plan_service.import_study_plan(plan_dict)
 
         self._curriculum_tree_reload()
         self._meb_reload()
@@ -37,4 +38,5 @@ class Files:
         filetypes = (('Plan file (*.json)', '*.json'),)
         file_path = filedialog.asksaveasfilename(filetypes=filetypes)
 
-        export_plan_to_json(self._plan_service, file_path)
+        plan_dict = self._plan_service.get_study_plan()
+        export_plan_to_json(plan_dict, file_path)

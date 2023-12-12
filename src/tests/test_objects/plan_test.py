@@ -2,12 +2,12 @@ import unittest
 from objects.plan import Plan
 from objects.curriculum import Curriculum
 
-from config.lops21_curriculum import lops21_curriculum
+from config.config import CURRICULUM
 
 
 class TestPlan(unittest.TestCase):
     def setUp(self):
-        curriculum = Curriculum(lops21_curriculum())
+        curriculum = Curriculum(CURRICULUM)
         self.plan = Plan(curriculum, "User1")
 
     def test_no_courses_exist_at_start(self):

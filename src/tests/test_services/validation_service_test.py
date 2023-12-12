@@ -1,16 +1,16 @@
 import unittest
 
-from services.validation_service import ValidationService
+from services.validation.validation_service import ValidationService
 
 from objects.curriculum import Curriculum
 from objects.plan import Plan
 
-from config.lops21_curriculum import lops21_curriculum
+from config.config import CURRICULUM
 
 
 class TestValidationService(unittest.TestCase):
     def setUp(self):
-        self.curriculum = Curriculum(lops21_curriculum())
+        self.curriculum = Curriculum(CURRICULUM)
         self.validation_service = ValidationService()
 
     def test_validate_legal_plan(self):

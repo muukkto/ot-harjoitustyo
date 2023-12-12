@@ -1,11 +1,14 @@
 import csv
+import os
 from pathlib import Path
 
-dirname = Path(__file__).parent
-file_path = dirname.joinpath("meb_course_codes.csv")
+MEB_EXAM_CODES_FILENAME = os.getenv("MEB_EXAM_CODES_FILENAME") or "meb_exam_codes.csv"
+MEB_EXAM_DAYS_FILENAME = os.getenv("MEB_EXAM_DAYS_FILENAME") or "meb_exam_days.csv"
 
+dirname = Path(__file__).parent
 
 def get_meb_codes(language: str) -> list:
+    file_path = dirname.joinpath(MEB_EXAM_CODES_FILENAME)
     with open(file_path, "r", encoding="utf-8") as meb_csv:
         data = csv.DictReader(meb_csv, delimiter=";")
 
@@ -18,7 +21,8 @@ def get_meb_codes(language: str) -> list:
     return codes
 
 
-def get_meb_names_and_codes_by_day(language: str):
+def get_meb_names_and_codes_by_day(language: str) -> dict:
+    file_path = dirname.joinpath(MEB_EXAM_CODES_FILENAME)
     with open(file_path, "r", encoding="utf-8") as meb_csv:
         data = csv.DictReader(meb_csv, delimiter=";")
 
@@ -34,7 +38,8 @@ def get_meb_names_and_codes_by_day(language: str):
     return calendar
 
 
-def get_meb_names_and_codes(language: str):
+def get_meb_names_and_codes(language: str) -> dict:
+    file_path = dirname.joinpath(MEB_EXAM_CODES_FILENAME)
     with open(file_path, "r", encoding="utf-8") as meb_csv:
         data = csv.DictReader(meb_csv, delimiter=";")
 
@@ -46,3 +51,15 @@ def get_meb_names_and_codes(language: str):
                 names_and_codes[col["KOODI"]] = col["FI"]
 
     return names_and_codes
+
+def get_meb_days(language: str) -> dict:
+    file_path = dirname.joinpath(MEB_EXAM_DAYS_FILENAME)
+    with open(file_path, "r", encoding="utf-8") as meb_days_csv:
+        data = csv.DictReader(meb_days_csv, delimiter=";")
+
+        days = {}
+
+        for col in data:
+            days[int(col["DAY"])] = col[language.upper()]
+
+    return days

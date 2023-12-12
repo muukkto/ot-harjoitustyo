@@ -1,66 +1,281 @@
 # Arkkitehtuurikuvaus
 
-## Luokat
+## Rakenne
+
+Ohjelman rakenne on alla olevan kaavion mukainen:
+```mermaid
+graph TB
+    db[(sqlite)]
+    files[(files)]
+
+    subgraph ui
+    end
+
+    subgraph services
+        subgraph validation
+            validationservice[ValidationService]
+            mebvalidation[MEBValidationService]
+            validationfunctions[ValidationFunctions]
+            specialvalidationservice[SpecialValidationService]
+        end
+        planservice[PlanService]
+        userservice[UserService]
+        fileservice[FileService]
+    end
+
+    subgraph objects
+        plan[Plan]
+        curriculum[Curriculum]
+        course[Course]
+        user[User]
+    end
+
+    subgraph repositories
+        planrepository[PlanRepository]
+    end
+
+    ui --> services
+    services --> objects
+    services --> repositories
+    repositories --> db
+    services --> files
+    
+```
+
+Käyttöliittymä (_UI_) käyttää tietorakenteita (_Objects_) palveluiden (_Services_) kautta. _Services_ hoitaa siis kaikki sovelluslogiikan tehtävät. Tietokantaoperaatiot toteutetaan _repositories_-luokkien kautta. Tiedostoon kirjoittamiselle on oma _FileService_.
+
+
+## Käyttöliittymä
+
+Graafisessa käyttöliittymässä on kolme eri päänäkymää:
+
+- Kirjautuminen
+- Uuden käyttäjän luonti
+- Suunnitelman päänäkymä
+
+Edellä mainituista päänäkymistä ainoastaan yksi on kerrallaan esillä. Suunnitelman päänäkymästä on mahdollista avata pop-up ikkunoita. Jokainen pop-up ikkuna hoitaa oman pienen tehtävän. 
+
+Päänäkymien luomisesta ja hallinnoinnista vastaa [UI](/src/ui/gui/ui.py)-luokka. Päänäkymät löytyvät [_views_](/src/ui/gui/views/)-kansiosta. Suunnitelman päänäkymä muodostuu pienistä [komponenteista](/src/ui/gui/components/). Jokainen komponentti vastaa yhdestä päänäkymän tarjoamasta toiminnallisuudesta. Jokainen komponentti toimii oman "framen" sisällä.
+
+Kun käyttäjä kirjautuu sisälle latautuu tietokannasta aikaisempi versio käyttäjän suunnitelmasta. Näin ollen suunnitelman päänäkymään voidaan esimekiksi LOPS-puuhun valita jo valmiiksi aikaisemmin suunnitellut kurssit.
+
+Käyttöliittymä ei vastaa sovelluslogiikasta. Käyttöliittymä muuttaa esimerkiksi suunnitelmaa [PlanServicen](/src/services/plan_service.py) tarjoamilla metodeilla. Käyttäjänhallinta hoituu puolestaan [UserServicen](/src/services/user_service.py) metodeilla.
+
+Käyttöliittymä tekee kuitenkin eräitä validiointeja. Esimerkiksi käyttöliittymä mahdollistaa ainoastaan yhden YO-aineen valitsemisen samalla kirjoituspäivälle.
+
+## Suunnitelman sovelluslogiikka
+
+### Perustietorakenteet
+
+Opiskelusuunnitelman tietorakenteet muodostaa kolme luokkaa: [Plan](/src/objects/plan.py), [Curriculum](/src/objects/curriculum.py) ja [Course](/src/objects/course.py).
 
 ```mermaid
 classDiagram
-        class Course {
-            bool status
-            bool on_cur
-            str code
-            str name
-            str ects
-            changeStatus(new_status)
-            status()
-            get_ects()
-        }
-        class Plan {
-            bool special_task
-            add_curriculum_course_to_plan(code)
-            add_own_course_to_plan(code, name, ects_credits)
-            delete_course_from_plan(code)
-            get_courses_on_plan()
-            get_total_credits_on_plan()
-            is_special_task()
-            change_special_task(status)
-        }
-        class Curriculum {
-            dict rules
-            dict subjects
-            get_subject_code_from_course_code(course_code)
-            get_credits_from_course_code(course_code)
-            get_status_from_course_code(course_code)
-        }
-    Course "1" <-- "*" Plan
-    Course "1" -- "1" Curriculum
-        class PlanService {
-            add_course(course_code, name, ects_credits, in_cur)
-            delete_course(course_code)
-            validate_plan()
-            print_stats()
-            print_courses()
-        }
-        class ValidationService {
-            validate(plan, curriculum)
-        }
-        class ValidationFunctions {
-            check_total_mandatory(plan, curriculum)
-        }
-        class SpecialValidationService {
-            validate(plan, curriculum)
-        }
-    ValidationService -- SpecialValidationService
-    ValidationService -- ValidationFunctions
-    SpecialValidationService -- ValidationFunctions
-    PlanService .. ValidationService
-    PlanService -- Plan
-    ValidationService -- Plan
-    ValidationService -- Curriculum
+    class Course {
+        str code
+        str subject
+        str name
+        int ects
+        bool on_plan
+        bool on_cur
+        changeStatus(new_status)
+        get_status() bool
+        get_ects() int
+        get_code() str
+        to_json() dict
+    }
+
+    class Plan {
+        dict cur_courses
+        list own_courses
+        bool special_task
+        str username
+        dict meb_plan
+        str meb_language
+        add_curriculum_course_to_plan(code) Course
+        add_own_course_to_plan(code, name, credits) Course
+        delete_course_from_plan(code) bool
+        check_if_course_on_plan(code) bool
+        get_courses_on_plan() list
+        get_own_courses_on_plan() list
+        get_credits_by_criteria(mandatory, national, subject_code) int
+        get_credits_own_course() int
+        get_total_credits_on_plan() int
+        is_special_task() bool
+        change_special_task(new_status)
+        add_exam_to_meb_plan(exam_code, examination_period) bool
+        remove_exam_from_meb_plan(exam_code, examination_period) bool
+        get_curriculum_tree() dict
+        return_study_plan() dict
+        return_meb_plan() dict
+        return_meb_language() str
+        import_study_plan(study_plan) bool
+    }
+
+    class Curriculum {
+        dict rules
+        dict subjects
+        return_all_subject_codes() list
+        get_subject_code_from_course_code(course_code) str
+        get_course_from_course_code(course_code) Course
+        get_credits_from_course_code(course_code) int
+        get_course_status_from_course_code(course_code) dict
+        get_mandatory_credits_subject(subject_code) int
+        return_all_courses_dict() dict
+        return_rules() dict
+    }
+
+    Curriculum <-- Plan
+    Curriculum .. Course
+    Plan "1" --> "*" Course
+
 ```
 
-## Toiminnallisuudet
+Jokainen opiskelusuunnitelma (_Plan_) luodaan yhden opetussuunnitelman (_Curriculum_) pohjalta. _Plan_-luokan konstruktori lataa kaikki opetussuunnitelman kurssit suorittamattomiksi. _Plan_-luokka huolehtii suunnitelman tietojen tallentamisesta. Näitä on esimerkiksi kurssien suoritusteidot, YO-suunnitelma ja konfigurointitiedot.
+Kurssitietoja varten on _Course_-luokka. Se vastaa kaikilla kursseilla tiedosta onko kurssi osa suunnitelmaa. Käyttäjän omilla kursseilla se myös vastaa kurssin nimestä ja opintopistemäärästä.
 
-### Validiointi
+Opetussuunnitelma vastaa siihen kuuluvien kurssien tiedoista, kuten pakollisuus, opintopistemäärä ja oppiaine. Käyttäjän omien kurssien tapauksessa tämä tehtävä on _Course_-luokalla.
+
+### Opintosuunnitelman hallinta
+
+[PlanService](/src/services/plan_service.py) vastaa opintosuunnitelman hallinnasta. 
+
+```mermaid
+classDiagram
+    class Plan {
+        dict cur_courses
+        list own_courses
+        bool special_task
+        str username
+        dict meb_plan
+        str meb_language
+        add_curriculum_course_to_plan(code) Course
+        add_own_course_to_plan(code, name, credits) Course
+        delete_course_from_plan(code) bool
+        check_if_course_on_plan(code) bool
+        get_courses_on_plan() list
+        get_own_courses_on_plan() list
+        get_credits_by_criteria(mandatory, national, subject_code) int
+        get_credits_own_course() int
+        get_total_credits_on_plan() int
+        is_special_task() bool
+        change_special_task(new_status)
+        add_exam_to_meb_plan(exam_code, examination_period) bool
+        remove_exam_from_meb_plan(exam_code, examination_period) bool
+        get_curriculum_tree() dict
+        return_study_plan() dict
+        return_meb_plan() dict
+        return_meb_language() str
+        import_study_plan(study_plan) bool
+    }
+
+    class PlanRepository {
+        return_plan(username) dict
+        find_user(username) bool
+        create_user(username) str
+        save_full_plan(username, plan)
+        add_course(username, course)
+        delete_course(username, code)
+        add_meb_exam(username, exam_code, exam_period)
+        delete_meb_exam(username, exam_code, exam_period)
+        change_special_task(username, new_status)
+    }
+
+    class FileService {
+        export_plan_to_json(study_plan, file_path)
+        import_plan_from_json(file_path) dict
+    }
+
+    class Curriculum {
+        dict rules
+        dict subjects
+        return_all_subject_codes() list
+        get_subject_code_from_course_code(course_code) str
+        get_course_from_course_code(course_code) Course
+        get_credits_from_course_code(course_code) int
+        get_course_status_from_course_code(course_code) dict
+        get_mandatory_credits_subject(subject_code) int
+        return_all_courses_dict() dict
+        return_rules() dict
+    }
+
+    class UI {
+
+    }
+
+    class UserService {
+        User user
+        login(username) bool
+        logout()
+        create_user(username) bool
+        get_current_username() str
+    }
+
+    class PlanService {
+        Curriculum curriculum
+        Plan plan
+        UserService user_service
+        create_empty_plan_for_user()
+        read_plan_for_user()
+        add_course(course_code, name, credits, in_cur) bool
+        delete_course(course_code) bool
+        get_curriculum_tree() -> dict
+        get_course_status() -> bool
+        get_stats() dict
+        check_reserved_codes(course_code) bool
+        validate_plan() list
+        get_course_codes() list
+        get_own_courses() list
+        add_exam_meb(exam_code, exam_period) bool
+        remove_exam_meb(exam_code, exam_period) bool
+        validate_meb() dict
+        get_study_plan() dict
+        import_study_plan(study_plan_dict) bool
+        get_meb_plan() dict
+        change_special_task_status(new_status)
+        get_config() dict
+    }
+
+    class ValidationService {
+        validate() list
+    }
+
+    class MEBValidationService {
+        validate() dict
+    }
+
+    Curriculum <-- Plan
+    PlanService --> Plan
+    PlanService --> Curriculum
+    UserService .. Plan
+    PlanService --> UserService
+    PlanService --> ValidationService
+    PlanService --> MEBValidationService
+    PlanService .. PlanRepository
+    PlanService .. FileService 
+    ValidationService .. Plan
+    ValidationService .. Curriculum
+    MEBValidationService .. Plan
+    UI --> PlanService
+    UI --> UserService
+```
+
+_PlanService_-luokalla on tallennettuna viittaus yhteen _Plan_-objektiin. Tämä objekti joko luodaan `create_empty_plan_for_user`-funktiolla tai ladataan tietokannasta `read_plan_for_user`-funktiolla. Kaikki suunnitelmaa muuttavat funktio vaativat, että käyttäjä on kirjautuneena sisälle. _PlanService_ tarkistaa tämän _UserService_:ltä. 
+
+_PlanService_ muokkaa suunnitelmaa _Plan_-objektin tarjoamilla funktioilla. _PlanService_ tekee tässä välissä muutamia validiointeja. _PlanService_ palauttaa myös tilastoja ja tietoja suunnitelmasta. _PlanServicen_ kautta tapahtuu myös suunnitelman validiointi.
+
+### Suunnitelman tallentaminen tiedostoon tai tietokantaan
+
+Jokaisella suunnitelman muokkauskutsulla _PlanService_ tekee kaksi asiaa: välittää tehtävän _Plan_-objektille ja mikäli muokkaus onnistuu, tekee vastaavan kutsun _PlanRepository_-luokalle. _PlanRepository_-luokka huolehtii suunnitelman tallentamisesta tietokantaan. Tallentaminen tapahtuu `sqlitedict` moduulilla. Tämä moduuli antaa työkalut muokata _sqlite_-tietokantaa samoilla komennoilla kuin pythonin _dict_-objektia.
+
+_PlanRepository_-luokka tarjoaa myös mahdollisuuden ladata kokosuunnitelman tietokannasta. Tätä käytetää _PlanServicen_ funktion `read_plan_for_user` yhteydessä. Tietokannan alustaminen tapahtuu invoke tehtävällä.
+
+Suunnitelman voi tallentaa myös JSON-tiedostoon. Tämän hoitaa _FileService_-luokka. Tiedostoon tallentaminen tapahtuu vain käyttäjän toiveesta, joten siitä vastaa eri luokka.
+
+## Validioinnin sovelluslogiikka
+
+Coming soon...
+
 
 ```mermaid
 sequenceDiagram

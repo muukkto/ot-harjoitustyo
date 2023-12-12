@@ -112,20 +112,6 @@ class Curriculum:
 
         return mandatory_credits
 
-    # def _return_all_courses(self):
-    #    return_list = []
-    #    for subject_key in self._subjects.keys():
-    #        for course_name in self._subjects[subject_key]["courses"].keys():
-    #            ects_credits = self._subjects[subject_key]['courses'][course_name]['credits']
-    #            pakollisuus = "pakollinen" if self._subjects[subject_key][
-    #                'courses'][course_name]['mandatory'] else "valinnainen"
-    #            valtakunnallinen = "Valtakunnallinen" if self._subjects[subject_key][
-    #                'courses'][course_name]['national'] else "Paikallinen"
-    #            return_list.append(
-    #                f"{course_name}  {ects_credits} op  {valtakunnallinen} {pakollisuus}")
-
-    #    return return_list
-
     def return_all_courses_dict(self) -> dict:
         """Palauttaa kaikki opetussuunnitelman kurssit
 

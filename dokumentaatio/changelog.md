@@ -45,3 +45,4 @@
 - Suunnitelma tallentuu tietokantaan.
 - Tietokannassa voi olla monen käyttäjän suunnitelmat.
 - Ohjelma hakee konfiguraatioita env-tiedostosta.
+- Opetussuunnitelma haetaan JSON-tiedostosta

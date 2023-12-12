@@ -1,33 +1,27 @@
 import json
 
-from services.plan_service import PlanService
-
-
-def export_plan_to_json(plan_service: PlanService, file_path: str):
+def export_plan_to_json(study_plan: dict, file_path: str):
     """Vie suunnitelman JSON-tiedostoon
 
     Args:
-        plan_service (PlanService): Suunnitelmasta vastaava PlanService
+        study_plan (dict): Opintosuunnitelma dict-objektina
         file_path (str): Vientitiedoston polku
     """
 
-    study_plan_dict = plan_service.get_study_plan()
-
-    json_object = json.dumps(study_plan_dict, indent=4)
+    json_object = json.dumps(study_plan, indent=4)
 
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(json_object)
 
 
-def import_plan_from_json(plan_service: PlanService, file_path: str) -> bool:
+def import_plan_from_json(file_path: str) -> dict:
     """Tuo suunnitelma JSON-tiedostosta
 
     Args:
-        plan_service (PlanService): Suunnitelmasta vastaava PlanService
         file_path (str): Tuontitiedoston polku
 
     Returns:
-        bool: Onnistuiko tuonti
+        dict: Opintosuunnitelman dict-objekti
     """
     with open(file_path, "r", encoding="utf-8") as file:
         import_json = file.read()
@@ -42,4 +36,12 @@ def import_plan_from_json(plan_service: PlanService, file_path: str) -> bool:
 
     import_dict["meb_plan"] = new_meb_plan
 
-    return plan_service.import_study_plan(import_dict)
+    return import_dict
+
+def import_curriculum_from_json(file_path: str) -> dict:
+    with open(file_path, "r", encoding="utf-8") as file:
+        import_json = file.read()
+
+    import_cur = json.loads(import_json)
+
+    return import_cur

@@ -2,14 +2,14 @@ import unittest
 from objects.plan import Plan
 from objects.curriculum import Curriculum
 
-from services.meb_validation_service import MebValidationService
+from services.validation.meb_validation_service import MebValidationService
 
-from config.lops21_curriculum import lops21_curriculum
+from config.config import CURRICULUM
 
 
 class TestPlan(unittest.TestCase):
     def setUp(self):
-        curriculum = Curriculum(lops21_curriculum())
+        curriculum = Curriculum(CURRICULUM)
         self.plan = Plan(curriculum, "User1")
         self.validation = MebValidationService()
 

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from config.meb_config import get_meb_names_and_codes_by_day, get_meb_names_and_codes
+from config.meb_config import get_meb_names_and_codes_by_day, get_meb_names_and_codes, get_meb_days
 from config.config import MAX_MEB_PERIODS, N_MEB_DAYS
 
 
@@ -101,21 +101,10 @@ class MEB:
 
         values = {}
 
-        day_str = {
-            1: "mother tongue",
-            2: "second national language",
-            3: "long foreign language",
-            4: "short foreign language",
-            5: "mathemtaics",
-            6: "nature sciences and humanities 1",
-            7: "nature sciences and humanities 2",
-            8: "sami as mother tongue"
-        }
-
         meb_drop_downs = tk.Frame(pop_up)
 
         for k in range(1, N_MEB_DAYS+1):
-            label = tk.Label(meb_drop_downs, text=day_str[k])
+            label = tk.Label(meb_drop_downs, text=get_meb_days("en")[k])
             label.grid(column=k, row=0)
 
         for i in range(1, MAX_MEB_PERIODS+1):

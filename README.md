@@ -34,7 +34,7 @@ Graafinen käyttöliittymä
 poetry run invoke start
 ```
 
-Tekstikäyttöliittymä
+Tekstikäyttöliittymä (ei välttämättä toimi)
 ```
 poetry run invoke start-text
 ```

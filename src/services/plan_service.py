@@ -1,10 +1,10 @@
 from objects.plan import Plan
 from objects.curriculum import Curriculum
-from config.lops21_curriculum import lops21_curriculum
+from config.config import CURRICULUM
 
 from services.user_service import UserService
-from services.validation_service import ValidationService
-from services.meb_validation_service import MebValidationService
+from services.validation.validation_service import ValidationService
+from services.validation.meb_validation_service import MebValidationService
 
 from repositories import plan_repository
 
@@ -15,11 +15,16 @@ class PlanService:
     Attributes:
         curriculum: Opetussuunnitelma, jonka pohjalta PlanService operoi
         plan: Suunnitelma, jota käsitellään
-        user_service: kirjautumiseen liittyvät metodit
+        user_service: Käyttäjänhallinta ja siihen liittyvät metodit
     """
 
     def __init__(self, user_service: UserService):
-        self._curriculum = Curriculum(lops21_curriculum())
+        """Luokan konstruktori. Luo uuden opiskelusuunnitelmasta vastaavan palvelun.
+
+        Args:
+            user_service (UserService): Käyttäjänhallinta ja siihen liittyvät metodit
+        """
+        self._curriculum = Curriculum(CURRICULUM)
         self._plan = None
         self._user_service = user_service
 
@@ -28,7 +33,7 @@ class PlanService:
 
         Tätä komentoa käytetään heti uuden käyttäjän luomisen jälkeen.
         """
-        user = self._user_service.get_current_user()
+        user = self._user_service.get_current_username()
         if user:
             self._plan = Plan(self._curriculum, user)
             plan_dict = self.get_study_plan()
@@ -39,12 +44,13 @@ class PlanService:
 
         Tätä komentoa käytetään heti sisäänkirjautumisen jälkeen.
         """
-        user = self._user_service.get_current_user()
+        user = self._user_service.get_current_username()
         if user:
             old_study = plan_repository.return_plan(user)
             self.import_study_plan(old_study)
 
-    def add_course(self, course_code: str, name: str = None, ects_credits: str = 0, in_cur: bool = True) -> bool:
+    def add_course(self, course_code: str, name: str = None,
+                   ects_credits: str = 0, in_cur: bool = True) -> bool:
         """Lisää kurssi suunnitelmaan
 
         Args:
@@ -56,7 +62,7 @@ class PlanService:
         Returns:
             bool: Onnistuiko kurssin tallennus
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             if in_cur:
                 course = self._plan.add_curriculum_course_to_plan(course_code)
@@ -79,7 +85,7 @@ class PlanService:
         Returns:
             bool: Onnistuiko poistaminen
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             if self._plan.delete_course_from_plan(course_code):
                 plan_repository.delete_course(current_user, course_code)
@@ -196,7 +202,7 @@ class PlanService:
         Returns:
             bool: Onnistuiko lisäys
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             if self._plan.add_exam_to_meb_plan(exam_code, exam_period):
                 plan_repository.add_meb_exam(
@@ -214,7 +220,7 @@ class PlanService:
         Returns:
             bool: Onnistuiko poisto
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             if self._plan.remove_exam_from_meb_plan(exam_code, exam_period):
                 plan_repository.delete_meb_exam(
@@ -254,7 +260,7 @@ class PlanService:
         Returns:
             bool: Onnistuiko tuonti
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             new_plan = Plan(self._curriculum, current_user)
             self._plan = new_plan
@@ -282,7 +288,7 @@ class PlanService:
         Args:
             new_status (bool): Uusi erityistehtävästatus
         """
-        current_user = self._user_service.get_current_user()
+        current_user = self._user_service.get_current_username()
         if current_user:
             self._plan.change_special_task(new_status)
             plan_repository.change_special_task(current_user, new_status)

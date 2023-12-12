@@ -1,8 +1,8 @@
 from objects.plan import Plan
 from objects.curriculum import Curriculum
 
-from services.special_validation_service import SpecialValidationService
-from services.validation_functions import ValidationFunctions
+from services.validation.special_validation_service import SpecialValidationService
+from services.validation.validation_functions import ValidationFunctions
 
 
 class ValidationService:
@@ -47,8 +47,8 @@ class ValidationService:
         return validation_problems
 
     def __check_total_credits(self, plan: Plan,
-                                    curriculum: Curriculum,
-                                    validation_problems: list) -> bool:
+                              curriculum: Curriculum,
+                              validation_problems: list) -> bool:
         total_credit_rule = curriculum.return_rules()["minimum_credits"]
         total_credits = plan.get_total_credits_on_plan()
 
@@ -60,8 +60,8 @@ class ValidationService:
         return True
 
     def __check_mandatory_credits(self, plan: Plan,
-                                        curriculum: Curriculum,
-                                        validation_problems: list) -> bool:
+                                  curriculum: Curriculum,
+                                  validation_problems: list) -> bool:
         validation_functions = ValidationFunctions()
         mandatory_credits_problems = []
 
@@ -73,8 +73,8 @@ class ValidationService:
                                         "details": mandatory_credits_problems})
 
     def __check_national_voluntary_credits(self, plan: Plan,
-                                                 curriculum: Curriculum,
-                                                 validation_problems: list):
+                                           curriculum: Curriculum,
+                                           validation_problems: list):
         voluntary_credit_rule = curriculum.return_rules(
         )["minimum_national_voluntary_credits"]
         voluntary_credits = plan.get_credits_by_criteria(
