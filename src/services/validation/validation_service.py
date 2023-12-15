@@ -33,7 +33,9 @@ class ValidationService:
             plan, curriculum, validation_problems)
         self.__check_mandatory_credits(plan, curriculum, validation_problems)
 
-        if plan.is_special_task() and total_credits_status:
+        special_task_status = plan.return_config()["special_task"]
+
+        if special_task_status and total_credits_status:
             special_validator = SpecialValidationService()
             special_plan_problems = special_validator.validate(
                 plan, curriculum)

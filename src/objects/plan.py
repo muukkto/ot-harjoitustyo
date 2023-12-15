@@ -1,10 +1,11 @@
+import re
+
 from objects.course import Course
 from objects.curriculum import Curriculum
 
 from config.meb_config import get_meb_codes
 
 from config.config import MAX_MEB_PERIODS
-
 
 class Plan:
     """Luokka, joka vastaa opiskelusuunnitelmasta 
@@ -43,6 +44,9 @@ class Plan:
 
         self._username = username
 
+        self._meb_language = "fi"
+        self._graduation_period = None
+
         self._meb_plan = {}
         for i in range(1, MAX_MEB_PERIODS+1):
             self._meb_plan[i] = []
@@ -56,8 +60,6 @@ class Plan:
             for course in subject_courses["courses"]:
                 self._cur_courses[subject_code][course] = Course(
                     course, subject_code, True)
-
-        self._meb_language = "fi"
 
     def get_curriculum_tree(self) -> dict:
         """Palauttaa suunnitelmaan liittyvän opetusuunnitelman.
@@ -260,22 +262,6 @@ class Plan:
 
         return total_credits
 
-    def is_special_task(self) -> bool:
-        """Palauttaa tiedon noudattaako suunnitelma erityistehtävän tuntijakoa
-
-        Returns:
-            bool: Noudattaako suunnitelma erityistehtävän tuntijakoa
-        """
-        return self._special_task
-
-    def change_special_task(self, status: bool):
-        """Muuttaa suunnitelman erityistehtävästatuksen
-
-        Args:
-            status (bool): Uusi status
-        """
-        self._special_task = status
-
     def add_exam_to_meb_plan(self, exam_code: str, examination_period: int) -> bool:
         """Lisää kokeen ylioppilastutkintosuunnitelmaan
 
@@ -324,20 +310,69 @@ class Plan:
         """
         return self._meb_plan
 
-    def return_meb_language(self) -> str:
-        """Palauttaa YO-tutkinnon kielen
+    def change_special_task(self, status: bool):
+        """Muuttaa suunnitelman erityistehtävästatuksen
+
+        Args:
+            status (bool): Uusi status
+        """
+        self._special_task = status
+
+    def change_meb_language(self, language: str) -> bool:
+        """Muuttaa yo-tutkinnon kielen. 
+        
+        Sallitut vaihtoehdot ovat "fi" ja "sv".
+
+        Args:
+            language (str): Uusi kieli
 
         Returns:
-            str: YO-tutkinnon kieli (fi tai sv)
+            bool: Onnistuiko vaihtaminen
+        """        
+
+        if language in ("fi", "sv"):
+            self._meb_language = language
+            return True
+
+        return False
+
+    def change_graduation_period(self, new_period) -> bool:
+        """Vaihtaa valmistumisajankohdan.
+
+        Uuden ajankohdan täytyy olla muotoa 2023S tai 2024K
+
+        Args:
+            new_period (_type_): Uusi ajankohta
+
+        Returns:
+            bool: Onnistuiko muutos
+        """        
+
+        if re.fullmatch(r"20\d{2}[KS]", new_period):
+            self._graduation_period = new_period
+            return True
+
+        return False
+
+    def return_config(self) -> dict:
+        """Palauttaa suunnitelman konffaustiedot
+
+        Vastauksessa on avaimet:
+        "special_task"
+        "meb_language"
+        "graduation_period"
+
+        Returns:
+            dict: configtiedot sanakirjana
         """
 
-        return self._meb_language
+        return {"special_task": self._special_task, "meb_language": self._meb_language, "graduation_period": self._graduation_period}
 
     def return_study_plan(self) -> dict:
         """Palauttaa koko opiskelusuunnitelman
 
         Suunnitelma muodostuu kolmesta osasta:
-        - Tieto eritystehtävästä
+        - Konffaustiedot
         - Suunnitelmaan kuuluvat kurssit
         - YO-suunnitelma
 
@@ -345,7 +380,7 @@ class Plan:
             dict: Opiskelusuunnitelma dict-objektina
         """
         plan_json_object = {}
-        plan_json_object["special_task"] = self._special_task
+        plan_json_object["config"] = self.return_config()
 
         courses = []
 
@@ -383,7 +418,9 @@ class Plan:
         Returns:
             bool: Onnistuiko tuonti
         """
-        self._special_task = study_plan["special_task"]
+        self._special_task = study_plan["config"]["special_task"]
+        self._meb_language = study_plan["config"]["meb_language"]
+        self._graduation_period = study_plan["config"]["graduation_period"]
 
         courses = study_plan["courses"]
         for course in courses:

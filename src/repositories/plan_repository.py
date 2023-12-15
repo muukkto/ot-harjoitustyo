@@ -97,11 +97,11 @@ def delete_meb_exam(username, exam_code, exam_period):
     db.commit()
 
 
-def change_special_task(username, new_status):
+def change_config(username, new_config):
     db = connection
 
     users_plan = db[username]
-    users_plan["special_task"] = new_status
+    users_plan["config"] = new_config
 
     db[username] = users_plan
 

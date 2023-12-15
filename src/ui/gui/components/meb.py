@@ -1,3 +1,5 @@
+import re
+
 import tkinter as tk
 from tkinter import ttk
 
@@ -13,12 +15,10 @@ class MEB:
         self._print_area = None
         self._valid_print_area = None
 
-        self._plan_config = plan_service.get_config()
+        self._plan_config = None
 
-        self._options = get_meb_names_and_codes_by_day(
-            self._plan_config["meb_language"])
-        self._meb_names_codes = get_meb_names_and_codes(
-            self._plan_config["meb_language"])
+        self._options = None
+        self._meb_names_codes = None
 
         title = ttk.Label(self._root, text="Matriculation examination")
         title.grid(column=0, row=0)
@@ -40,10 +40,12 @@ class MEB:
         self._print_area = ttk.Frame(self._root)
         self._print_area.grid(column=0, row=1)
 
+        examination_periods = self._examination_period_prints()
+
         meb_plan = self._plan_service.get_meb_plan()
         for i in range(1, MAX_MEB_PERIODS+1):
             exams = " ".join(meb_plan[i])
-            text = f"Examination period {i}: {exams}"
+            text = f"{examination_periods[i]}: {exams}"
             label = ttk.Label(self._print_area, text=text)
             label.grid(column=0, row=i-1)
 
@@ -99,16 +101,24 @@ class MEB:
         pop_up = tk.Toplevel(self._root)
         pop_up.geometry("750x250")
 
+        self._plan_config = self._plan_service.get_config()
+        self._options = get_meb_names_and_codes_by_day(
+            self._plan_config["meb_language"])
+        self._meb_names_codes = get_meb_names_and_codes(
+            self._plan_config["meb_language"])
+
         values = {}
 
         meb_drop_downs = tk.Frame(pop_up)
+
+        examination_periods = self._examination_period_prints()
 
         for k in range(1, N_MEB_DAYS+1):
             label = tk.Label(meb_drop_downs, text=get_meb_days("en")[k])
             label.grid(column=k, row=0)
 
         for i in range(1, MAX_MEB_PERIODS+1):
-            label = ttk.Label(meb_drop_downs, text=f"Examination period {i}")
+            label = ttk.Label(meb_drop_downs, text=examination_periods[i])
             label.grid(column=0, row=i)
 
             values[i] = {}
@@ -131,3 +141,32 @@ class MEB:
         button = tk.Button(pop_up, text="Save",
                            command=lambda: self.save_exams(pop_up, values))
         button.grid(column=0, row=1)
+
+    def _examination_period_prints(self):
+        graduation_period = self._plan_service.get_config()["graduation_period"]
+
+        if graduation_period:
+            graduation_year = int(re.split(r"([SK])", graduation_period)[0])
+            graduation_semester = re.split(r"([SK])", graduation_period)[1]
+
+            meb_periods = {}
+
+            for i in range(0, MAX_MEB_PERIODS):
+                if graduation_semester == "S":
+                    exam_semester = "S" if i % 2 == 0 else "K"
+                    exam_year = graduation_year - (i // 2)
+                else:
+                    exam_semester = "K" if i % 2 == 0 else "S"
+                    exam_year = graduation_year - ((i+1) // 2)
+
+                meb_periods[MAX_MEB_PERIODS-i] = f"{exam_year}{exam_semester}"
+
+            return meb_periods
+
+        else:
+            generic_periods = {}
+
+            for i in range(1, MAX_MEB_PERIODS+1):
+                generic_periods[i] = f"Examination period {i}"
+
+            return generic_periods

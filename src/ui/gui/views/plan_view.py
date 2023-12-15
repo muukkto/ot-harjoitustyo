@@ -63,7 +63,7 @@ class PlanView:
         self._stats = Statistics(stats_frame, self._plan_service)
         Validate(validate_frame, self._plan_service)
         self._meb = MEB(meb_frame, self._plan_service)
-        Config(config_frame, self._plan_service)
+        Config(config_frame, self._plan_service, self._reload_meb_plan)
         Files(files_frame, self._plan_service,
               self._reload_curriculum_tree,
               self._reload_meb_plan,

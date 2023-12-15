@@ -33,7 +33,7 @@ def get_meb_names_and_codes_by_day(language: str) -> dict:
 
         for col in data:
             if col["EXAM_LANGUAGE"] == language.upper() or col["EXAM_LANGUAGE"] == "BOTH":
-                calendar[int(col["DAY"])][col["FI"]] = col["KOODI"]
+                calendar[int(col["DAY"])][col[language.upper()]] = col["KOODI"]
 
     return calendar
 
@@ -47,8 +47,8 @@ def get_meb_names_and_codes(language: str) -> dict:
 
         for col in data:
             if col["EXAM_LANGUAGE"] == language.upper() or col["EXAM_LANGUAGE"] == "BOTH":
-                names_and_codes[col["FI"]] = col["KOODI"]
-                names_and_codes[col["KOODI"]] = col["FI"]
+                names_and_codes[col[language.upper()]] = col["KOODI"]
+                names_and_codes[col["KOODI"]] = col[language.upper()]
 
     return names_and_codes
 

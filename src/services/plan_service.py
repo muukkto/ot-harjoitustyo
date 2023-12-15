@@ -291,17 +291,33 @@ class PlanService:
         current_user = self._user_service.get_current_username()
         if current_user:
             self._plan.change_special_task(new_status)
-            plan_repository.change_special_task(current_user, new_status)
+            plan_repository.change_config(current_user, self._plan.return_config())
 
-    def get_special_task_status(self) -> bool:
-        """Palauttaa suunnitelman erityistehtävästatuksen
+    def change_meb_language(self, new_meb_language: str):
+        """Muuta YO-suunnitelman kieli
 
-        Tämä funktio korvataan funktiolla get_config
+        Vaihtoedhto sv ja fi
 
-        Returns:
-            bool: Erityistehtävästatus
-        """
-        return self._plan.is_special_task()
+        Args:
+            new_meb_language (str): Uusi kieli
+        """        
+        current_user = self._user_service.get_current_username()
+        if current_user:
+            self._plan.change_meb_language(new_meb_language)
+            plan_repository.change_config(current_user, self._plan.return_config())
+
+    def change_graduation_period(self, new_period: str):
+        """Muuta valmistumisajnakohdan
+
+        Vaihtoehdot muotoa 2023S tai 2023K
+
+        Args:
+            new_period (str): Uusi ajankohta
+        """        
+        current_user = self._user_service.get_current_username()
+        if current_user:
+            self._plan.change_graduation_period(new_period)
+            plan_repository.change_config(current_user, self._plan.return_config())
 
     def get_config(self) -> dict:
         """Palauttaa suunnitelman konfigurointitiedot
@@ -309,9 +325,9 @@ class PlanService:
         Saatavilla on tiedot:
         special_task
         meb_language
+        graduation_period
 
         Returns:
             dict: Konfigurointiedot
         """
-        return {"special_task": self._plan.is_special_task(),
-                "meb_language": self._plan.return_meb_language()}
+        return self._plan.return_config()

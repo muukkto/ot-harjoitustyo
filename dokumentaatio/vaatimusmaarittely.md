@@ -45,7 +45,7 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 - [x] Tietojen tallentaminen tietokantaan
 - [x] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
 - [x] Tietokanta polut ja muut konfiguroinnit saadaan tiedostosta
-- [ ] Suunnitelman konfiguraatioita voidaan muuttaa
+- [x] Suunnitelman konfiguraatioita voidaan muuttaa
     - [x] Noudattaako suunnitelma erityistehtän tuntijakoa
-    - [ ] YO-tutkinnon kieli
-    - [ ] Valmistumisajankohta (tällöin examination period 1 vaihtuu esim. 2024K jne.)
+    - [x] YO-tutkinnon kieli
+    - [x] Valmistumisajankohta (tällöin examination period 1 vaihtuu esim. 2024K jne.)
