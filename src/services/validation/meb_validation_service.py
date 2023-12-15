@@ -65,8 +65,8 @@ class MebValidationService:
     def _check_exam_structure(self, plan: Plan) -> list:
         lang = "fi"
 
-        base_url = f"https://ilmo.ylioppilastutkinto.fi/api/v1/validate?teachingLanguage={
-            lang}"
+        base_url = (f"https://ilmo.ylioppilastutkinto.fi/api/v1/"
+                    f"validate?teachingLanguage={lang}")
         exam_parameters = ""
 
         list_subjects = plan.return_exams_in_meb_plan()

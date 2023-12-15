@@ -8,8 +8,11 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 
 [Viikon 5 julkaisu](https://github.com/muukkto/ot-harjoitustyo/releases/viikko5)
 
+[Viikon 6 julkaisu](https://github.com/muukkto/ot-harjoitustyo/releases/viikko6)
+
 ## Dokumentaatio
 
+- [Käyttöohjeet](dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 - [Changelog](dokumentaatio/changelog.md)
@@ -21,7 +24,12 @@ Ohjelma joka pitää kirjaa lukion opintosuunnitelmasta ja tarkistaa riittääk�
 poetry install
 ```
 
-2. Graafisen käyttöliittymän saa käynnistettyä komennolla:
+2. Alustustoimnepiteet ajetaan komennolla:
+```
+poetry run invoke build
+```
+
+3. Graafisen käyttöliittymän saa käynnistettyä komennolla:
 ```
 poetry run invoke start
 ```
