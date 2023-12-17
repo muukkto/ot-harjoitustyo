@@ -7,6 +7,7 @@ from config.meb_config import get_meb_codes
 
 from config.config import MAX_MEB_PERIODS
 
+
 class Plan:
     """Luokka, joka vastaa opiskelusuunnitelmasta 
 
@@ -320,7 +321,7 @@ class Plan:
 
     def change_meb_language(self, language: str) -> bool:
         """Muuttaa yo-tutkinnon kielen. 
-        
+
         Sallitut vaihtoehdot ovat "fi" ja "sv".
 
         Args:
@@ -328,7 +329,7 @@ class Plan:
 
         Returns:
             bool: Onnistuiko vaihtaminen
-        """        
+        """
 
         if language in ("fi", "sv"):
             self._meb_language = language
@@ -346,7 +347,7 @@ class Plan:
 
         Returns:
             bool: Onnistuiko muutos
-        """        
+        """
 
         if re.fullmatch(r"20\d{2}[KS]", new_period):
             self._graduation_period = new_period

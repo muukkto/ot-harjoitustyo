@@ -1,7 +1,7 @@
 import re
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from config.meb_config import get_meb_names_and_codes_by_day, get_meb_names_and_codes, get_meb_days
 from config.config import MAX_MEB_PERIODS, N_MEB_DAYS
@@ -13,7 +13,7 @@ class MEB:
 
         self._root = root
         self._print_area = None
-        self._valid_print_area = None
+        #self._valid_print_area = None
 
         self._plan_config = None
 
@@ -49,24 +49,31 @@ class MEB:
             label = ttk.Label(self._print_area, text=text)
             label.grid(column=0, row=i-1)
 
+    def return_error_text(self, problem):
+        if problem == "meb-api-not-working":
+            return "Cannot connect to MEB validation server. Check that you have selected atleast 1 exam!"
+        elif problem == "too-few-subjects":
+            return "Not a valid combination: less than 5 exams"
+        elif problem == "no-advanced-exam":
+            return "Not a valid combination: at least one advanced exam is required"
+        elif problem == "not-enough-groups":
+            return "Not a valid combination: less than 3 exam groups selected. Groups are: maths, second national language, foreign language and real subjects."
+        elif problem == "no-native-language":
+            return "Not a valid combination: no native language selected"
+        
+        return "Unknown problem"
+
     def validate_plan(self):
-        if self._valid_print_area:
-            self._valid_print_area.destroy()
-
-        self._valid_print_area = ttk.Frame(self._root)
-        self._valid_print_area.grid(column=0, row=4)
-
         validation_status = self._plan_service.validate_meb()
 
         if validation_status:
             if "structure_problems" in validation_status.keys():
-                problem = validation_status["structure_problems"]
-                label = ttk.Label(self._valid_print_area,
-                                  text=problem)
-                label.grid(column=0, row=0)
+                error_message = self.return_error_text(validation_status["structure_problems"])
+
+                messagebox.showerror("Validation status", error_message)
         else:
-            label = ttk.Label(self._valid_print_area, text="MEB plan OK!")
-            label.grid(column=0, row=0)
+            messagebox.showinfo("Validation status",
+                                "MEB plan OK! You can complete matriculation examination with this plan!")
 
     def save_exams(self, pop_up, values):
         for i in range(1, MAX_MEB_PERIODS+1):
@@ -142,7 +149,8 @@ class MEB:
         button.grid(column=0, row=1)
 
     def _examination_period_prints(self):
-        graduation_period = self._plan_service.get_config()["graduation_period"]
+        graduation_period = self._plan_service.get_config()[
+            "graduation_period"]
 
         if graduation_period:
             graduation_year = int(re.split(r"([SK])", graduation_period)[0])

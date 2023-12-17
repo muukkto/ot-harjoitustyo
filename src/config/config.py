@@ -17,6 +17,7 @@ DATABASE_FILENAME = os.getenv("DATABASE_FILENAME") or "database.sqlite"
 MAX_MEB_PERIODS = int(os.getenv("MAX_MEB_PERIODS")) or 3
 N_MEB_DAYS = len(get_meb_days("EN"))
 
-CURRICULUM_FILENAME = os.getenv("CURRICULUM_FILENAME") or "lops21_curriculum.json"
+CURRICULUM_FILENAME = os.getenv(
+    "CURRICULUM_FILENAME") or "lops21_curriculum.json"
 CURRICULUM_PATH = dirname.joinpath(CURRICULUM_FILENAME)
 CURRICULUM = import_curriculum_from_json(CURRICULUM_PATH)

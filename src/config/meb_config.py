@@ -2,10 +2,13 @@ import csv
 import os
 from pathlib import Path
 
-MEB_EXAM_CODES_FILENAME = os.getenv("MEB_EXAM_CODES_FILENAME") or "meb_exam_codes.csv"
-MEB_EXAM_DAYS_FILENAME = os.getenv("MEB_EXAM_DAYS_FILENAME") or "meb_exam_days.csv"
+MEB_EXAM_CODES_FILENAME = os.getenv(
+    "MEB_EXAM_CODES_FILENAME") or "meb_exam_codes.csv"
+MEB_EXAM_DAYS_FILENAME = os.getenv(
+    "MEB_EXAM_DAYS_FILENAME") or "meb_exam_days.csv"
 
 dirname = Path(__file__).parent
+
 
 def get_meb_codes(language: str) -> list:
     file_path = dirname.joinpath(MEB_EXAM_CODES_FILENAME)
@@ -51,6 +54,7 @@ def get_meb_names_and_codes(language: str) -> dict:
                 names_and_codes[col["KOODI"]] = col[language.upper()]
 
     return names_and_codes
+
 
 def get_meb_days(language: str) -> dict:
     file_path = dirname.joinpath(MEB_EXAM_DAYS_FILENAME)

@@ -3,6 +3,7 @@ from objects.curriculum import Curriculum
 
 from config.config import CURRICULUM
 
+
 class TestCurriculum(unittest.TestCase):
     def setUp(self):
         self.curriculum = Curriculum(CURRICULUM)

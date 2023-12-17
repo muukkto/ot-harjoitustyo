@@ -1,9 +1,9 @@
 DAY;FI;SV;EN
-1;äidinkieli;modersmål;mother tongue
+1;äidinkieli;modersmål;native language
 2;toinen kotimainen;;second national language
 3;pitkä vieras kieli;;long foreign language
 4;lyhyt vieras kieli;;short foreign language
 5;matematiikka;;mathematics
-6;reaalikoe 1;;nature sciences and humanities 1
-7;reaalikoe 2;;nature sciences and humanities 2
-8;saame äidinkielenä;;sami as mother tongue
+6;reaalikoe 1;;real subjects 1
+7;reaalikoe 2;;real subjects 2
+8;saame äidinkielenä;;sami as native language

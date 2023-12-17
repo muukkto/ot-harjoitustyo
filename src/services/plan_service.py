@@ -145,20 +145,6 @@ class PlanService:
 
         return return_stats
 
-    def check_reserved_codes(self, course_code: str) -> bool:
-        """Tarkistaa onko kurssikoodi varattu opetussuunnitelman kurssille
-
-        Args:
-            course_code (str): Kurssikoodi
-
-        Returns:
-            bool: True = kurssikoodi on varattu, False = kurssikoodi on vapaa
-        """
-        if self._curriculum.get_subject_code_from_course_code(course_code):
-            return True
-
-        return False
-
     def validate_plan(self) -> list:
         """Validioi suunnitelman
 
@@ -170,19 +156,6 @@ class PlanService:
             self._plan, self._curriculum)
 
         return validation_status
-
-    def get_course_codes(self) -> list:
-        """Palauttaa listan kaikista suunnitelmalta löytyvistä kursseista
-
-        Returns:
-            list: Lista kurssikoodeista
-        """
-        return_codes = []
-        courses = self._plan.get_courses_on_plan()
-        for course in courses:
-            return_codes.append(course.get_code())
-
-        return return_codes
 
     def get_own_courses(self) -> list:
         """Palauttaa listan suunnitelman omista kursseista
@@ -291,7 +264,8 @@ class PlanService:
         current_user = self._user_service.get_current_username()
         if current_user:
             self._plan.change_special_task(new_status)
-            plan_repository.change_config(current_user, self._plan.return_config())
+            plan_repository.change_config(
+                current_user, self._plan.return_config())
 
     def change_meb_language(self, new_meb_language: str):
         """Muuta YO-suunnitelman kieli
@@ -300,11 +274,12 @@ class PlanService:
 
         Args:
             new_meb_language (str): Uusi kieli
-        """        
+        """
         current_user = self._user_service.get_current_username()
         if current_user:
             self._plan.change_meb_language(new_meb_language)
-            plan_repository.change_config(current_user, self._plan.return_config())
+            plan_repository.change_config(
+                current_user, self._plan.return_config())
 
     def change_graduation_period(self, new_period: str):
         """Muuta valmistumisajnakohdan
@@ -313,11 +288,12 @@ class PlanService:
 
         Args:
             new_period (str): Uusi ajankohta
-        """        
+        """
         current_user = self._user_service.get_current_username()
         if current_user:
             self._plan.change_graduation_period(new_period)
-            plan_repository.change_config(current_user, self._plan.return_config())
+            plan_repository.change_config(
+                current_user, self._plan.return_config())
 
     def get_config(self) -> dict:
         """Palauttaa suunnitelman konfigurointitiedot

@@ -46,3 +46,9 @@
 - Tietokannassa voi olla monen käyttäjän suunnitelmat.
 - Ohjelma hakee konfiguraatioita env-tiedostosta.
 - Opetussuunnitelma haetaan JSON-tiedostosta
+
+## Viikko 7
+
+- Graafisesta käyttöliittymästä voi muuttaa YO-tukinnon kielen ja valmistumisajankohdan.
+- Graafinen käyttöliittymä mukautuu kielen ja valmistumisajankohdan mukaisesti.
+- Validioinnin tulokset tulostuu kauniisti.

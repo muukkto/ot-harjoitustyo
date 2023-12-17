@@ -56,15 +56,16 @@ class SpecialValidationService:
 
         validation_functions = ValidationFunctions()
 
-        excluded_courses_problems = []
+        excluded_courses_problems = {"full_credits": [], "half_credits": []}
         excluded_credits = validation_functions.check_total_mandatory(
             plan, curriculum, excluded_courses_problems)
 
-        if len(excluded_courses_problems) == 0:
+        if len(excluded_courses_problems["half_credits"]) == 0:
             if excluded_credits <= mandatory_courses_excluded_rule:
                 return []
 
-            excluded_courses_problems.append("too_much_excluded_courses")
+            return [{"name": "too_much_total_excluded_credits",
+                     "details": excluded_credits}]
 
-        return [{"name": "too_much_excluded_courses",
-                 "details": excluded_courses_problems}]
+        return [{"name": "too_much_excluded_credits_per_subject",
+                 "details": excluded_courses_problems["half_credits"]}]

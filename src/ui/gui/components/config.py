@@ -4,6 +4,7 @@ from tkinter import ttk
 from bidict import bidict
 import time
 
+
 class Config:
     def __init__(self, root, plan_service, reload_meb_plan):
         self._plan_service = plan_service
@@ -19,7 +20,8 @@ class Config:
         edit_button.grid(column=0, row=2)
 
     def save_config(self, pop_up, variables):
-        new_special_task = self.special_task_options_text_to_bool[variables["special_task"].get()]
+        new_special_task = self.special_task_options_text_to_bool[variables["special_task"].get(
+        )]
         new_meb_language = variables["meb_language"].get()
         new_period = variables["graduation_period"].get()
 
@@ -57,7 +59,8 @@ class Config:
         old_config = self._plan_service.get_config()
 
         old_special_task_status = old_config["special_task"]
-        special_task_default_value = self.special_task_options_bool_to_text[old_special_task_status]
+        special_task_default_value = self.special_task_options_bool_to_text[
+            old_special_task_status]
 
         old_meb_language = old_config["meb_language"]
 
@@ -81,10 +84,9 @@ class Config:
                            command=lambda: self.save_config(pop_up, variables))
         button.grid(column=0, row=1)
 
-
     def _calculate_graduation_period_options(self) -> list:
-        current_year = 2024 #time.localtime()[0]
-        current_month = 1 #time.localtime()[1]
+        current_year = 2024  # time.localtime()[0]
+        current_month = 1  # time.localtime()[1]
 
         options = []
 

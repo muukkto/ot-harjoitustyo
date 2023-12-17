@@ -1,4 +1,4 @@
-from tkinter import ttk, filedialog
+from tkinter import ttk, filedialog, messagebox
 
 from services.file_service import export_plan_to_json, import_plan_from_json
 
@@ -27,16 +27,24 @@ class Files:
         filetypes = (('Plan file (*.json)', '*.json'),)
         file_path = filedialog.askopenfilename(filetypes=filetypes)
 
-        plan_dict = import_plan_from_json(file_path)
-        self._plan_service.import_study_plan(plan_dict)
+        try:
+            plan_dict = import_plan_from_json(file_path)
+            self._plan_service.import_study_plan(plan_dict)
 
-        self._curriculum_tree_reload()
-        self._meb_reload()
-        self._stats_reload()
+            self._curriculum_tree_reload()
+            self._meb_reload()
+            self._stats_reload()
+        except FileNotFoundError:
+            messagebox.showerror(
+                "File not found",  "Error: file path is invalid")
 
     def _export_json(self):
         filetypes = (('Plan file (*.json)', '*.json'),)
         file_path = filedialog.asksaveasfilename(filetypes=filetypes)
 
-        plan_dict = self._plan_service.get_study_plan()
-        export_plan_to_json(plan_dict, file_path)
+        try:
+            plan_dict = self._plan_service.get_study_plan()
+            export_plan_to_json(plan_dict, file_path)
+        except FileNotFoundError:
+            messagebox.showerror(
+                "File not found",  "Error: file path is invalid")

@@ -1,5 +1,6 @@
 import json
 
+
 def export_plan_to_json(study_plan: dict, file_path: str):
     """Vie suunnitelman JSON-tiedostoon
 
@@ -37,6 +38,7 @@ def import_plan_from_json(file_path: str) -> dict:
     import_dict["meb_plan"] = new_meb_plan
 
     return import_dict
+
 
 def import_curriculum_from_json(file_path: str) -> dict:
     with open(file_path, "r", encoding="utf-8") as file:

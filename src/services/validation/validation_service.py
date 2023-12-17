@@ -31,7 +31,6 @@ class ValidationService:
             plan, curriculum, validation_problems)
         self.__check_national_voluntary_credits(
             plan, curriculum, validation_problems)
-        self.__check_mandatory_credits(plan, curriculum, validation_problems)
 
         special_task_status = plan.return_config()["special_task"]
 
@@ -45,6 +44,10 @@ class ValidationService:
                                             "details": special_plan_problems})
             else:
                 validation_problems = []
+
+        else:
+            self.__check_mandatory_credits(
+                plan, curriculum, validation_problems)
 
         return validation_problems
 
@@ -65,14 +68,14 @@ class ValidationService:
                                   curriculum: Curriculum,
                                   validation_problems: list) -> bool:
         validation_functions = ValidationFunctions()
-        mandatory_credits_problems = []
+        mandatory_credits_problems = {"full_credits": [], "half_credits": []}
 
         missing_credits = validation_functions.check_total_mandatory(
             plan, curriculum, mandatory_credits_problems)
 
         if missing_credits != 0:
             validation_problems.append({"name": "not_all_compulsory_credits",
-                                        "details": mandatory_credits_problems})
+                                        "details": mandatory_credits_problems["full_credits"]})
 
     def __check_national_voluntary_credits(self, plan: Plan,
                                            curriculum: Curriculum,

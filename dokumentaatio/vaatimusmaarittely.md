@@ -31,14 +31,14 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 
 ## Jatkokehitysideat
 
-- [ ] Graafinen käyttöliittymä
+- [x] Graafinen käyttöliittymä
     - [x] Opintojaksot voidaan kliksutella LOPS-puusta
     - [x] YO-suunnitelman aineet voidaan valita vetovalikosta.
-    - [ ] Validiointi tulostaa "kauniit" vastaukset 
+    - [x] Validiointi tulostaa "kauniit" vastaukset 
     - [x] Oman opintojakson voi syöttää käyttöliittymästä. Se ilmestyy häntäkurssina.
 - [x] LOPS-puu voidaan ladata JSON-tiedostosta
     - [x] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
-- [ ] Ehdotukset mitä puuttuu valmistumisesta, esim `pakollisista puuttuu ENA6, BI2, BI3 ...`
+- [x] Validiointi kertoo missä aineissa on ongelmia
 - [ ] Opintojakson yhteyteen voidaan valita suoritusaika
 - [ ] Edistyneet tilastot
     - [ ] Vuosittainen opintopistemäärä

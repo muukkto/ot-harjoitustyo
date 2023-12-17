@@ -54,9 +54,12 @@ class ValidationFunctions:
         for subject in simple_subjects:
             subject_return = self.__check_mandatory_credits_one_subject(
                 plan, curriculum, subject)
+            if subject_return > 0:
+                subj_problems["full_credits"] = (subj_problems["full_credits"] +
+                                [{"name": "problem_with_simple_subjects", "details": subject}])
             if subject_return > 1000:
-                subj_problems.append(
-                    {"name": "problem_with_simple_subjects", "details": subject})
+                subj_problems["half_credits"] = (subj_problems["half_credits"] +
+                                [{"name": "problem_with_simple_subjects", "details": subject}])
 
             excluded_creds += subject_return
 
@@ -71,9 +74,12 @@ class ValidationFunctions:
         for name, subjects in group_subjects.items():
             group_return = self.__check_mandatory_credits_one_group(
                 plan, curriculum, subjects)
+            if group_return > 0:
+                group_problems["full_credits"] = (group_problems["full_credits"] +
+                                        [{"name": "problem_with_group_subjects", "details": name}])
             if group_return > 1000:
-                group_problems.append(
-                    {"name": "problem_with_group_subjects", "details": name})
+                group_problems["half_credits"] = (group_problems["half_credits"] +
+                                        [{"name": "problem_with_group_subjects", "details": name}])
 
             excluded_credits += group_return
 
@@ -82,15 +88,18 @@ class ValidationFunctions:
     def __check_mandatory_all_baskets(self, plan: Plan,
                                       curriculum: Curriculum,
                                       excluded_credits: int,
-                                      basket_problems: list) -> int:
+                                      basket_problems: dict) -> int:
         basket_subjects = curriculum.return_rules()["basket_subjects"]
 
         for basket in basket_subjects.items():
             basket_return = self.__check_mandatory_credits_one_basket(
                 plan, basket)
+            if basket_return > 0:
+                basket_problems["full_credits"] = (basket_problems["full_credits"] +
+                                [{"name": "problem_with_basket_subjects", "details": basket[0]}])
             if basket_return > 1000:
-                basket_problems.append(
-                    {"name": "problem_with_basket_subjects", "details": basket[0]})
+                basket_problems["half_credits"] = (basket_problems["half_credits"] +
+                                [{"name": "problem_with_basket_subjects", "details": basket[0]}])
 
             excluded_credits += basket_return
 
@@ -98,7 +107,7 @@ class ValidationFunctions:
 
     def check_total_mandatory(self, plan: Plan,
                               curriculum: Curriculum,
-                              mandatory_courses_problems: list) -> int:
+                              mandatory_courses_problems: dict) -> int:
         """Tarkistaa suunnitelman kaikki pakolliset opintopisteet
 
         Pakolliset opintopisteet voidaan tarkistaa kolmen eri säännön perusteella:
@@ -116,7 +125,7 @@ class ValidationFunctions:
         Args:
             plan (Plan): Validioitava suunnitelma
             curriculum (Curriculum): Opetussunnitelma, jonka sääntöjä käyetään
-            mandatory_courses_problems (list): Lista johon validiointivirheet lisätään
+            mandatory_courses_problems (dict): Kaksi lista johon validiointivirheet lisätään
 
         Returns:
             int: Puuttuvien pakollisten opintopisteiden määrä

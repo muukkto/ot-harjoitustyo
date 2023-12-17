@@ -90,3 +90,24 @@ class TestPlan(unittest.TestCase):
         self.plan.add_curriculum_course_to_plan("MAA4")
 
         self.assertEqual(self.plan.get_total_credits_on_plan(), 8)
+    
+    def test_get_curriculum_tree_returns_correct_format(self):
+        cur_tree = self.plan.get_curriculum_tree()
+
+        self.assertIn("AI", cur_tree.keys())
+        self.assertIn("ENA", cur_tree.keys())
+        self.assertIn("PS", cur_tree.keys())
+        self.assertIn("courses", cur_tree["FY"])
+
+    def test_change_mab_language_to_swedish(self):
+        self.assertTrue(self.plan.change_meb_language("sv"))
+
+    def test_change_meb_language_to_france_doesnt_work(self):
+        self.assertFalse(self.plan.change_meb_language("fr"))
+
+    def test_change_graduation_period_works_with_legal_input(self):
+        self.assertTrue(self.plan.change_graduation_period("2025K"))
+
+    def test_change_graduation_period_doesnt_work_with_illegal_input(self):
+        self.assertFalse(self.plan.change_graduation_period("2023U"))
+
