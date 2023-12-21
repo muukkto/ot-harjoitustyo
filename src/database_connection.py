@@ -12,6 +12,11 @@ database_path = dirname.joinpath(DATABASE_FILENAME)
 
 connection = SqliteDict(database_path)
 
+def get_database_connection() -> SqliteDict:
+    """Palauttaa tietokantayhteyden
 
-def get_database_connection():
+    Returns:
+        SqliteDict: Tietokantayhteys jota voi hallinnoida samoilla komennoilla, kuin dict-objektia.
+    """
+
     return connection

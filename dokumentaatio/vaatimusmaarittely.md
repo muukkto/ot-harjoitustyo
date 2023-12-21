@@ -39,9 +39,6 @@ Ohjelmaan pystyy kirjaamaan oman lukion opintosuunnitelman. Ohjelma tarkistaa ri
 - [x] LOPS-puu voidaan ladata JSON-tiedostosta
     - [x] Mahdollisuus oppilaitoskohtaisiin valinnaisiin opintojaksoihin
 - [x] Validiointi kertoo missä aineissa on ongelmia
-- [ ] Opintojakson yhteyteen voidaan valita suoritusaika
-- [ ] Edistyneet tilastot
-    - [ ] Vuosittainen opintopistemäärä
 - [x] Tietojen tallentaminen tietokantaan
 - [x] Ohjelmaa pystyy käyttämään moni käyttäjä - alussa valitaan käyttäjätunnuksen perusteella oma suunnitelma
 - [x] Tietokanta polut ja muut konfiguroinnit saadaan tiedostosta

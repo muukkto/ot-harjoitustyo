@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-from bidict import bidict
 import time
+from bidict import bidict
 
 
 class Config:
@@ -85,8 +85,8 @@ class Config:
         button.grid(column=0, row=1)
 
     def _calculate_graduation_period_options(self) -> list:
-        current_year = 2024  # time.localtime()[0]
-        current_month = 1  # time.localtime()[1]
+        current_year = time.localtime()[0]
+        current_month = time.localtime()[1]
 
         options = []
 

@@ -52,15 +52,16 @@ class Plan:
         for i in range(1, MAX_MEB_PERIODS+1):
             self._meb_plan[i] = []
 
-        for subject in curriculum.return_all_courses_dict().items():
-            subject_code = subject[0]
-            subject_courses = subject[1]
+        for subject in curriculum.return_all_subjects():
+            subject_code = subject["name"]
+            subject_courses = subject["courses"]
 
             self._cur_courses[subject_code] = {}
 
-            for course in subject_courses["courses"]:
-                self._cur_courses[subject_code][course] = Course(
-                    course, subject_code, True)
+            for course in subject_courses:
+                course_name = course["name"]
+                self._cur_courses[subject_code][course_name] = Course(
+                    course_name, subject_code, True)
 
     def get_curriculum_tree(self) -> dict:
         """Palauttaa suunnitelmaan liittyvän opetusuunnitelman.
@@ -68,9 +69,30 @@ class Plan:
         Returns:
             dict: Kaikki opetussuunnitelman kurssit sisältävä dict-objekti.
         """
-        return self._curriculum.return_all_courses_dict()
+        return self._curriculum.return_all_subjects()
 
-    def add_curriculum_course_to_plan(self, code: str) -> Course:
+    def add_course_to_plan(self, code: str,
+                                 name: str = None,
+                                 ects_credits: int = 0,
+                                 on_cur: bool = True) -> Course:
+        """Lisää kurssin suunnitelmaan
+
+        Args:
+            code (str): Kurssikoodi
+            name (str, optional): Kurssin nimi. Oletuksena None.
+            ects_credits (int, optional): Opintopistemäärä. Oletuksena 0.
+            on_cur (bool, optional): Kuuluuko kurssi opetussuunnitelmaan. Oletuksena True.
+
+        Returns:
+            Course: Lisätty kurssiobjekti. Palauttaa None mikäli kurssin lisääminen ei onnistu.
+        """
+
+        if on_cur:
+            return self._add_curriculum_course_to_plan(code)
+
+        return self._add_own_course_to_plan(code, name, ects_credits)
+
+    def _add_curriculum_course_to_plan(self, code: str) -> Course:
         """Lisää opetussuunnitelmasta löytyvän kurssin suunnitelmaan.
 
         Args:
@@ -86,7 +108,7 @@ class Plan:
 
         return None
 
-    def add_own_course_to_plan(self, code: str, name: str, ects_credits: int) -> Course:
+    def _add_own_course_to_plan(self, code: str, name: str, ects_credits: int) -> Course:
         """Lisää oman kurssin suunnitelmaan.
 
         Args:
@@ -296,10 +318,11 @@ class Plan:
         if (exam_code in get_meb_codes(self._meb_language)
                 and MAX_MEB_PERIODS >= examination_period > 0):
             sub_list = self._meb_plan[examination_period]
-            sub_list.remove(exam_code)
-            self._meb_plan[examination_period] = sub_list
+            if exam_code in sub_list:
+                sub_list.remove(exam_code)
+                self._meb_plan[examination_period] = sub_list
 
-            return True
+                return True
 
         return False
 
@@ -367,7 +390,9 @@ class Plan:
             dict: configtiedot sanakirjana
         """
 
-        return {"special_task": self._special_task, "meb_language": self._meb_language, "graduation_period": self._graduation_period}
+        return ({"special_task": self._special_task,
+                 "meb_language": self._meb_language,
+                 "graduation_period": self._graduation_period})
 
     def return_study_plan(self) -> dict:
         """Palauttaa koko opiskelusuunnitelman
@@ -426,10 +451,10 @@ class Plan:
         courses = study_plan["courses"]
         for course in courses:
             if course["on_cur"]:
-                self.add_curriculum_course_to_plan(course["code"])
+                self.add_course_to_plan(course["code"], on_cur=True)
             else:
-                self.add_own_course_to_plan(
-                    course["code"], course["name"], course["ects"])
+                self.add_course_to_plan(
+                    course["code"], course["name"], course["ects"], on_cur=False)
 
         meb_plan = study_plan["meb_plan"]
         for (period, exams) in meb_plan.items():

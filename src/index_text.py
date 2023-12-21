@@ -13,7 +13,7 @@ user_service = UserService()
 plan_service = PlanService(user_service)
 
 
-def print_commands():
+def _print_commands():
     print("1: modify your plan")
     print("2: update matriculation examination plan")
     print("3: import plan from file")
@@ -24,11 +24,11 @@ def print_commands():
     print("10: exit the program")
 
 
-def main_page():
+def _main_page():
     while True:
         match int(input("Choose command (0 for help): ")):
             case 0:
-                print_commands()
+                _print_commands()
             case 1:
                 plan_editor(plan_service)
             case 2:
@@ -50,6 +50,8 @@ def main_page():
 
 
 def main():
+    """Käynnistää tekstikäyttöliittymän. Tätä funktiota ei tuota aktiivisesti.
+    """
     username = input("Choose username: ")
 
     if user_service.login(username):
@@ -59,7 +61,7 @@ def main():
         user_service.create_user(new_username)
         plan_service.create_empty_plan_for_user()
 
-    main_page()
+    _main_page()
 
 
 if __name__ == "__main__":

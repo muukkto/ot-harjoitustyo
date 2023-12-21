@@ -8,6 +8,8 @@ from services.validation.meb_validation_service import MebValidationService
 
 from repositories import plan_repository
 
+from exceptions import ConfigError
+
 
 class PlanService:
     """Luokka, joka vastaa opiskelusuunnitelman sovelluslogiikasta.
@@ -24,9 +26,12 @@ class PlanService:
         Args:
             user_service (UserService): Käyttäjänhallinta ja siihen liittyvät metodit
         """
-        self._curriculum = Curriculum(CURRICULUM)
-        self._plan = None
-        self._user_service = user_service
+        if CURRICULUM:
+            self._curriculum = Curriculum(CURRICULUM)
+            self._plan = None
+            self._user_service = user_service
+        else:
+            raise ConfigError("Curriculum couldn't be imported!")
 
     def create_empty_plan_for_user(self):
         """Luo tyhjän suunnitelman
@@ -64,11 +69,8 @@ class PlanService:
         """
         current_user = self._user_service.get_current_username()
         if current_user:
-            if in_cur:
-                course = self._plan.add_curriculum_course_to_plan(course_code)
-            else:
-                course = self._plan.add_own_course_to_plan(
-                    course_code, name, ects_credits)
+            course = self._plan.add_course_to_plan(
+                    course_code, name, ects_credits, in_cur)
 
             if course:
                 plan_repository.add_course(current_user, course)

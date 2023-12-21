@@ -48,7 +48,7 @@ class PlanView:
         self._login_view()
 
     def start(self):
-        self.curriculum_container()
+        self._curriculum_container()
 
         container = ttk.Frame(self._main_frame)
         container.grid(column=1, row=0, sticky=tk.N+tk.E+tk.S)
@@ -76,7 +76,7 @@ class PlanView:
             container, text="logout", command=self._handle_logout)
         logout_button.grid(column=0, row=4, columnspan=2)
 
-    def curriculum_container(self):
+    def _curriculum_container(self):
         container = ttk.Frame(self._main_frame)
         canvas = tk.Canvas(container)
         scrollbar_v = ttk.Scrollbar(

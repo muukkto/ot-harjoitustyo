@@ -25,4 +25,5 @@
 | 12.12.2023  | 4 | Koodin dokumentoinin jatkaminen. Käyttöohjeet ja arkkitehtuurikuvaus. Konfiguraatio tiedoston parantaminen. |
 | 15.12.2023  | 2 | Suunnitelman konffauksen refaktorointi ja toiminnallisuuksien lisääminen käyttöliittymään |
 | 17.12.2023  | 3 | Validiointi tulostukset selkeiksi. Testien lisääminen. |
-| **Summa**  | 64 ||
+| 22.12.2023  | 3 | Viimeiset koodin refaktroinnnit ja poikkeustapausten käsittelyä. |
+| **Summa**  | 67 ||

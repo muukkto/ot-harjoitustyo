@@ -17,8 +17,8 @@ class CurriculumTree:
         curriculum = self._plan_service.get_curriculum_tree()
         curriculum_courses_frame = tk.Frame(self._print_area)
 
-        for i, (subject, data) in enumerate(curriculum.items()):
-            self.subject(curriculum_courses_frame, i, subject, data)
+        for i, subject in enumerate(curriculum):
+            self.subject(curriculum_courses_frame, i, subject)
 
         curriculum_courses_frame.grid(column=0, row=0)
 
@@ -73,9 +73,9 @@ class CurriculumTree:
 
         return course_frame
 
-    def course(self, code, master_frame, information):
-        if information["national"]:
-            if information["mandatory"]:
+    def course(self, master_frame, course):
+        if course["national"]:
+            if course["mandatory"]:
                 bg = "blue"
             else:
                 bg = "red"
@@ -85,11 +85,12 @@ class CurriculumTree:
         course_frame = tk.Frame(
             master_frame, bg=bg, highlightbackground="black", highlightthickness=1)
 
-        course_status = self._plan_service.get_course_status(code)
+        course_status = self._plan_service.get_course_status(course["name"])
         if course_status:
-            label = tk.Label(master=course_frame, text=code, bg="grey")
+            label = tk.Label(master=course_frame,
+                             text=course["name"], bg="grey")
         else:
-            label = tk.Label(master=course_frame, text=code, bg=bg)
+            label = tk.Label(master=course_frame, text=course["name"], bg=bg)
 
         label.grid(row=0, column=0)
 
@@ -97,16 +98,16 @@ class CurriculumTree:
 
         return course_frame
 
-    def subject(self, master_frame, index, subject, data):
+    def subject(self, master_frame, index, subject):
         subject_frame = tk.Frame(master=master_frame)
 
-        subject_label = tk.Label(master=subject_frame, text=subject)
+        subject_label = tk.Label(master=subject_frame, text=subject["name"])
 
-        courses = data["courses"]
+        courses = subject["courses"]
         courses_frame = tk.Frame(master=subject_frame)
 
-        for j, (code, information) in enumerate(courses.items()):
-            courses_obj = self.course(code, courses_frame, information)
+        for j, course in enumerate(courses):
+            courses_obj = self.course(courses_frame, course)
             courses_obj.grid(row=1, column=j)
 
         subject_label.grid(row=0, column=0, sticky=tk.W)

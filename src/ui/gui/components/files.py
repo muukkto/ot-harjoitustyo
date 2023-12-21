@@ -29,11 +29,17 @@ class Files:
 
         try:
             plan_dict = import_plan_from_json(file_path)
-            self._plan_service.import_study_plan(plan_dict)
 
-            self._curriculum_tree_reload()
-            self._meb_reload()
-            self._stats_reload()
+            if plan_dict:
+                self._plan_service.import_study_plan(plan_dict)
+
+                self._curriculum_tree_reload()
+                self._meb_reload()
+                self._stats_reload()
+            else:
+                messagebox.showerror(
+                    "Invalid plan file",  "Error: imported file is invalid")
+
         except FileNotFoundError:
             messagebox.showerror(
                 "File not found",  "Error: file path is invalid")

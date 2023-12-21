@@ -27,7 +27,7 @@ class TestValidationService(unittest.TestCase):
                          "ET1", "ET2", "TE1", "TE2", "TE3", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertFalse(self.validation_service.validate(
             plan, self.curriculum))
@@ -48,7 +48,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertFalse(self.validation_service.validate(
             plan, self.curriculum))
@@ -69,7 +69,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -90,7 +90,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -111,7 +111,7 @@ class TestValidationService(unittest.TestCase):
                            "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in illegal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -132,7 +132,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -152,7 +152,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -173,7 +173,7 @@ class TestValidationService(unittest.TestCase):
                          "ERI1", "ERI2", "ERI3", "ERI4", "ERI5", "ERI6", "ERI7", "ERI8", "ERI9", "ERI10", "ERI11", "ERI12"]
 
         for course in legal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -192,7 +192,7 @@ class TestValidationService(unittest.TestCase):
                            "ET1", "ET2", "TE1", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2"]
 
         for course in illegal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -214,7 +214,7 @@ class TestValidationService(unittest.TestCase):
                            "VAPA21", "VAPA22", "VAPA23", "VAPA24", "VAPA25"]
 
         for course in illegal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -232,7 +232,7 @@ class TestValidationService(unittest.TestCase):
                            "ET1", "ET2", "TE1", "TE2", "TE3", "LI1", "LI2", "MU1", "KU1", "KU2", "OP1", "OP2"]
 
         for course in illegal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))
@@ -251,7 +251,7 @@ class TestValidationService(unittest.TestCase):
                            "ET1", "ET2", "TE1", "TE2", "TE3", "LI1", "LI2", "MU1", "KU1", "OP1", "OP2"]
 
         for course in illegal_courses:
-            plan.add_curriculum_course_to_plan(course)
+            plan.add_course_to_plan(course)
 
         self.assertTrue(
             self.validation_service.validate(plan, self.curriculum))

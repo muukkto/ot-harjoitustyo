@@ -1,20 +1,46 @@
 from database_connection import connection
 
+from objects.course import Course
 
-def return_plan(username):
+
+def return_plan(username: str) -> dict:
+    """Palauttaa suunnitelman tietokannasta
+
+    Args:
+        username (str): Suunnitelman käyttäjänimi
+
+    Returns:
+        dict: Suunnitelma dict-objektina
+    """
     db = connection
 
     return db[username]
 
 
-def find_user(username):
+def find_user(username: str) -> bool:
+    """Tarkistaa löytyykö käyttäjätunnus jo tietokannasta
+
+    Args:
+        username (str): Kysytty käyttäjätunnus
+
+    Returns:
+        bool: Kyselyn tulos
+    """
     if username in connection.keys():
         return True
 
     return False
 
 
-def create_user(username):
+def create_user(username: str) -> str:
+    """Luo uuden käyttäjän
+
+    Args:
+        username (str): Uuden käyttäjän tunnus
+
+    Returns:
+        str: Tietokantaan tallennettu käyttäjätunnus
+    """
     db = connection
 
     db[username] = {}
@@ -24,7 +50,13 @@ def create_user(username):
     return username
 
 
-def save_full_plan(username, plan_dict):
+def save_full_plan(username: str, plan_dict: dict):
+    """Tallentaa koko suunnitelman tietokantaan
+
+    Args:
+        username (str): Käyttäjätunnus jonka alle suunnitelma tallennetaan
+        plan_dict (dict): Tallennettava suunnitelma
+    """
     db = connection
 
     db[username] = plan_dict
@@ -32,7 +64,13 @@ def save_full_plan(username, plan_dict):
     db.commit()
 
 
-def add_course(username, course):
+def add_course(username: str, course: Course):
+    """Lisää yhden kurssin tietokantaan
+
+    Args:
+        username (str): Käyttäjätunnus jonka alle kurssi tallennetaan
+        course (Course): Kurssin tiedot
+    """
     db = connection
 
     users_plan = db[username]
@@ -47,7 +85,13 @@ def add_course(username, course):
     db.commit()
 
 
-def delete_course(username, code):
+def delete_course(username: str, code: str):
+    """Poistaa kurssin tietokannasta
+
+    Args:
+        username (str): Käyttäjä jonka suunnitelmasta kurssi poistetaan
+        code (str): Poistettavan kurssin koodi
+    """
     db = connection
 
     users_plan = db[username]
@@ -65,7 +109,14 @@ def delete_course(username, code):
     db.commit()
 
 
-def add_meb_exam(username, exam_code, exam_period):
+def add_meb_exam(username: str, exam_code: str, exam_period: int):
+    """Lisää YO-kokeen tietokantaan
+
+    Args:
+        username (str): Käyttäjätunnus jonka alle koe lisätään
+        exam_code (str): Lisättävän kokeen koodi
+        exam_period (int): Lisättävän kokeen koeperiodi
+    """
     db = connection
 
     users_plan = db[username]
@@ -81,7 +132,14 @@ def add_meb_exam(username, exam_code, exam_period):
     db.commit()
 
 
-def delete_meb_exam(username, exam_code, exam_period):
+def delete_meb_exam(username: str, exam_code: str, exam_period: int):
+    """Poistaa YO-kokeen tietokannasta
+
+    Args:
+        username (str): Käyttäjätunnus jonka alta koe poistetaan
+        exam_code (str): Poistettavan kokeen koodi
+        exam_period (int): Poistettavan kokeen koeperiodi
+    """
     db = connection
 
     users_plan = db[username]
@@ -97,7 +155,13 @@ def delete_meb_exam(username, exam_code, exam_period):
     db.commit()
 
 
-def change_config(username, new_config):
+def change_config(username: str, new_config: dict):
+    """Päivitetään suunnitelman konffaustiedot tietokantaan
+
+    Args:
+        username (str): Käyttäjätunnus jonka tietoja muutetaan
+        new_config (dict): Uudet tiedot dict-objektina
+    """
     db = connection
 
     users_plan = db[username]

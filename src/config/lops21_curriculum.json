@@ -1,56 +1,1721 @@
 {
-    "rules": {
-        "minimum_credits": 150,
-        "minimum_national_voluntary_credits": 20,
-        "minimum_special_task_credits": 24,
-        "maximum_excluded_credits_special_task": 16,
-        "group_subjects": {
-            "mother_tongue": ["AI", "S2"],
-            "second_national_language": ["RUA", "RUB"],
-            "long_foreign_language": ["ENA", "RAA", "SAA", "VEA"],
-            "worldview": ["UE", "ET", "UO", "UK", "UI", "UJ"],
-            "maths": ["MAA", "MAB"]
+  "rules": {
+    "minimum_credits": 150,
+    "minimum_national_voluntary_credits": 20,
+    "minimum_special_task_credits": 24,
+    "maximum_excluded_credits_special_task": 16,
+    "group_subjects": [
+      {
+        "name": "mother_tongue",
+        "subjects": [
+          "AI",
+          "S2"
+        ]
+      },
+      {
+        "name": "second_national_language",
+        "subjects": [
+          "RUA",
+          "RUB"
+        ]
+      },
+      {
+        "name": "long_foreign_language",
+        "subjects": [
+          "ENA",
+          "RAA",
+          "SAA",
+          "VEA"
+        ]
+      },
+      {
+        "name": "worldview",
+        "subjects": [
+          "UE",
+          "ET",
+          "UO",
+          "UK",
+          "UI",
+          "UJ"
+        ]
+      },
+      {
+        "name": "maths",
+        "subjects": [
+          "MAA",
+          "MAB"
+        ]
+      }
+    ],
+    "national_mandatory_subjects": [
+      "BI",
+      "GE",
+      "FY",
+      "KE",
+      "PS",
+      "FI",
+      "HI",
+      "YH",
+      "TE",
+      "LI",
+      "OP"
+    ],
+    "basket_subjects": [
+      {
+        "name": "arts",
+        "subjects": [
+          "KU",
+          "MU"
+        ],
+        "minimum_compulsory_total": 6,
+        "minimum_compulsory_per_subject": 2
+      }
+    ],
+    "national_voluntary_subjects": [
+      "EAB3",
+      "RAB3",
+      "SAB3",
+      "VEB3",
+      "LAB3",
+      "IAB3",
+      "KIB3",
+      "JPB3"
+    ],
+    "special_task_code": "ERI",
+    "own_courses_codes": [
+      "VAPA"
+    ]
+  },
+  "subjects": [
+    {
+      "name": "AI",
+      "courses": [
+        {
+          "name": "AI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
         },
-        "national_mandatory_subjects": ["BI", "GE", "FY", "KE", "PS", "FI", "HI", "YH", "TE", "LI", "OP"],
-        "basket_subjects": {
-            "arts": {"subjects": ["KU", "MU"], "minimum_compulsory_total": 6, "minimum_compulsory_per_subject": 2}
+        {
+          "name": "AI2",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
         },
-        "national_voluntary_subjects": ["EAB3", "RAB3", "SAB3", "VEB3", "LAB3", "IAB3", "KIB3", "JPB3"],
-        "special_task_code": "ERI",
-        "own_courses_codes": ["VAPA"]
+        {
+          "name": "AI3",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI6",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI7",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI8",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "AI9",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "AI10",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "AI11",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "AI14",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
     },
-    "subjects": {
-        "AI": {"courses": {"AI1": {"credits": 2, "mandatory": true, "national": true}, "AI2": {"credits": 1, "mandatory": true, "national": true}, "AI3": {"credits": 1, "mandatory": true, "national": true}, "AI4": {"credits": 2, "mandatory": true, "national": true}, "AI5": {"credits": 2, "mandatory": true, "national": true}, "AI6": {"credits": 1, "mandatory": true, "national": true}, "AI7": {"credits": 1, "mandatory": true, "national": true}, "AI8": {"credits": 2, "mandatory": true, "national": true}, "AI9": {"credits": 2, "mandatory": false, "national": true}, "AI10": {"credits": 2, "mandatory": false, "national": true}, "AI11": {"credits": 2, "mandatory": false, "national": true}, "AI14": {"credits": 2, "mandatory": false, "national": false}}},
-        "S2": {"courses": {"S21": {"credits": 2, "mandatory": true, "national": true}, "S22": {"credits": 1, "mandatory": true, "national": true}, "S23": {"credits": 1, "mandatory": true, "national": true}, "S24": {"credits": 2, "mandatory": true, "national": true}, "S25": {"credits": 2, "mandatory": true, "national": true}, "S26": {"credits": 1, "mandatory": true, "national": true}, "S27": {"credits": 1, "mandatory": true, "national": true}, "S28": {"credits": 2, "mandatory": true, "national": true}, "S29": {"credits": 2, "mandatory": false, "national": true}, "S210": {"credits": 2, "mandatory": false, "national": true}, "S211": {"credits": 2, "mandatory": false, "national": true}}},
-        "RUA": {"courses": {"RUA1": {"credits": 1, "mandatory": true, "national": true}, "RUA2": {"credits": 3, "mandatory": true, "national": true}, "RUA3": {"credits": 2, "mandatory": true, "national": true}, "RUA4": {"credits": 2, "mandatory": true, "national": true}, "RUA5": {"credits": 2, "mandatory": true, "national": true}, "RUA6": {"credits": 2, "mandatory": true, "national": true}, "RUA7": {"credits": 2, "mandatory": false, "national": true}, "RUA8": {"credits": 2, "mandatory": false, "national": true}}},
-        "RUB": {"courses": {"RUB1": {"credits": 1, "mandatory": true, "national": true}, "RUB2": {"credits": 3, "mandatory": true, "national": true}, "RUB3": {"credits": 2, "mandatory": true, "national": true}, "RUB4": {"credits": 2, "mandatory": true, "national": true}, "RUB5": {"credits": 2, "mandatory": true, "national": true}, "RUB6": {"credits": 2, "mandatory": false, "national": true}, "RUB7": {"credits": 2, "mandatory": false, "national": true}}},
-        "ENA": {"courses": {"ENA1": {"credits": 1, "mandatory": true, "national": true}, "ENA2": {"credits": 3, "mandatory": true, "national": true}, "ENA3": {"credits": 2, "mandatory": true, "national": true}, "ENA4": {"credits": 2, "mandatory": true, "national": true}, "ENA5": {"credits": 2, "mandatory": true, "national": true}, "ENA6": {"credits": 2, "mandatory": true, "national": true}, "ENA7": {"credits": 2, "mandatory": false, "national": true}, "ENA8": {"credits": 2, "mandatory": false, "national": true},  "ENA10": {"credits": 2, "mandatory": false, "national": false}}},
-        "RAA": {"courses": {"RAA1": {"credits": 1, "mandatory": true, "national": true}, "RAA2": {"credits": 3, "mandatory": true, "national": true}, "RAA3": {"credits": 2, "mandatory": true, "national": true}, "RAA4": {"credits": 2, "mandatory": true, "national": true}, "RAA5": {"credits": 2, "mandatory": true, "national": true}, "RAA6": {"credits": 2, "mandatory": true, "national": true}, "RAA7": {"credits": 2, "mandatory": false, "national": true}, "RAA8": {"credits": 2, "mandatory": false, "national": true}}},
-        "SAA": {"courses": {"SAA1": {"credits": 1, "mandatory": true, "national": true}, "SAA2": {"credits": 3, "mandatory": true, "national": true}, "SAA3": {"credits": 2, "mandatory": true, "national": true}, "SAA4": {"credits": 2, "mandatory": true, "national": true}, "SAA5": {"credits": 2, "mandatory": true, "national": true}, "SAA6": {"credits": 2, "mandatory": true, "national": true}, "SAA7": {"credits": 2, "mandatory": false, "national": true}, "SAA8": {"credits": 2, "mandatory": false, "national": true}}},
-        "VEA": {"courses": {"VEA1": {"credits": 1, "mandatory": true, "national": true}, "VEA2": {"credits": 3, "mandatory": true, "national": true}, "VEA3": {"credits": 2, "mandatory": true, "national": true}, "VEA4": {"credits": 2, "mandatory": true, "national": true}, "VEA5": {"credits": 2, "mandatory": true, "national": true}, "VEA6": {"credits": 2, "mandatory": true, "national": true}, "VEA7": {"credits": 2, "mandatory": false, "national": true}, "VEA8": {"credits": 2, "mandatory": false, "national": true}}},
-        "RAB3": {"courses": {"RAB31": {"credits": 2, "mandatory": false, "national": true}, "RAB32": {"credits": 2, "mandatory": false, "national": true}, "RAB33": {"credits": 2, "mandatory": false, "national": true}, "RAB34": {"credits": 2, "mandatory": false, "national": true}, "RAB35": {"credits": 2, "mandatory": false, "national": true}, "RAB36": {"credits": 2, "mandatory": false, "national": true}, "RAB37": {"credits": 2, "mandatory": false, "national": true}, "RAB38": {"credits": 2, "mandatory": false, "national": true}}},
-        "MAA": {"courses": {"MAA1": {"credits": 2, "mandatory": true, "national": true}, "MAA2": {"credits": 3, "mandatory": true, "national": true}, "MAA3": {"credits": 2, "mandatory": true, "national": true}, "MAA4": {"credits": 3, "mandatory": true, "national": true}, "MAA5": {"credits": 2, "mandatory": true, "national": true}, "MAA6": {"credits": 3, "mandatory": true, "national": true}, "MAA7": {"credits": 2, "mandatory": true, "national": true}, "MAA8": {"credits": 2, "mandatory": true, "national": true}, "MAA9": {"credits": 1, "mandatory": true, "national": true}, "MAA10": {"credits": 2, "mandatory": false, "national": true}, "MAA11": {"credits": 2, "mandatory": false, "national": true}, "MAA12": {"credits": 2, "mandatory": false, "national": true}, "MAA14": {"credits": 2, "mandatory": false, "national": false}}},
-        "MAB": {"courses": {"MAB1": {"credits": 2, "mandatory": true, "national": true}, "MAB2": {"credits": 2, "mandatory": true, "national": true}, "MAB3": {"credits": 2, "mandatory": true, "national": true}, "MAB4": {"credits": 2, "mandatory": true, "national": true}, "MAB5": {"credits": 2, "mandatory": true, "national": true}, "MAB6": {"credits": 1, "mandatory": true, "national": true}, "MAB7": {"credits": 1, "mandatory": true, "national": true}, "MAB8": {"credits": 2, "mandatory": false, "national": true}, "MAB9": {"credits": 2, "mandatory": false, "national": true}, "MAB11": {"credits": 2, "mandatory": false, "national": false}}},
-        "UE": {"courses": {"UE1": {"credits": 2, "mandatory": true, "national": true}, "UE2": {"credits": 2, "mandatory": true, "national": true}, "UE3": {"credits": 2, "mandatory": false, "national": true}, "UE4": {"credits": 2, "mandatory": false, "national": true}, "UE5": {"credits": 2, "mandatory": false, "national": true}, "UE6": {"credits": 2, "mandatory": false, "national": true}}},
-        "UO": {"courses": {"UO1": {"credits": 2, "mandatory": true, "national": true}, "UO2": {"credits": 2, "mandatory": true, "national": true}, "UO3": {"credits": 2, "mandatory": false, "national": true}, "UO4": {"credits": 2, "mandatory": false, "national": true}, "UO5": {"credits": 2, "mandatory": false, "national": true}, "UO6": {"credits": 2, "mandatory": false, "national": true}}},
-        "UK": {"courses": {"UK1": {"credits": 2, "mandatory": true, "national": true}, "UK2": {"credits": 2, "mandatory": true, "national": true}, "UK3": {"credits": 2, "mandatory": false, "national": true}, "UK4": {"credits": 2, "mandatory": false, "national": true}, "UK5": {"credits": 2, "mandatory": false, "national": true}, "UK6": {"credits": 2, "mandatory": false, "national": true}}},
-        "UI": {"courses": {"UI1": {"credits": 2, "mandatory": true, "national": true}, "UI2": {"credits": 2, "mandatory": true, "national": true}, "UI3": {"credits": 2, "mandatory": false, "national": true}, "UI4": {"credits": 2, "mandatory": false, "national": true}, "UI5": {"credits": 2, "mandatory": false, "national": true}, "UI6": {"credits": 2, "mandatory": false, "national": true}}},
-        "UJ": {"courses": {"UJ1": {"credits": 2, "mandatory": true, "national": true}, "UJ2": {"credits": 2, "mandatory": true, "national": true}, "UJ3": {"credits": 2, "mandatory": false, "national": true}, "UJ4": {"credits": 2, "mandatory": false, "national": true}, "UJ5": {"credits": 2, "mandatory": false, "national": true}, "UJ6": {"credits": 2, "mandatory": false, "national": true}}},
-        "ET": {"courses": {"ET1": {"credits": 2, "mandatory": true, "national": true}, "ET2": {"credits": 2, "mandatory": true, "national": true}, "ET3": {"credits": 2, "mandatory": false, "national": true}, "ET4": {"credits": 2, "mandatory": false, "national": true}, "ET5": {"credits": 2, "mandatory": false, "national": true}, "ET6": {"credits": 2, "mandatory": false, "national": true}}},
-        "BI": {"courses": {"BI1": {"credits": 2, "mandatory": true, "national": true}, "BI2": {"credits": 1, "mandatory": true, "national": true}, "BI3": {"credits": 1, "mandatory": true, "national": true}, "BI4": {"credits": 2, "mandatory": false, "national": true}, "BI5": {"credits": 2, "mandatory": false, "national": true}, "BI6": {"credits": 2, "mandatory": false, "national": true}, "BI8": {"credits": 2, "mandatory": false, "national": false}}},
-        "GE": {"courses": {"GE1": {"credits": 2, "mandatory": true, "national": true}, "GE2": {"credits": 2, "mandatory": false, "national": true}, "GE3": {"credits": 2, "mandatory": false, "national": true}, "GE4": {"credits": 2, "mandatory": false, "national": true}, "GE6": {"credits": 2, "mandatory": false, "national": false}}},
-        "FY": {"courses": {"FY1": {"credits": 1, "mandatory": true, "national": true}, "FY2": {"credits": 1, "mandatory": true, "national": true}, "FY3": {"credits": 2, "mandatory": false, "national": true}, "FY4": {"credits": 2, "mandatory": false, "national": true}, "FY5": {"credits": 2, "mandatory": false, "national": true}, "FY6": {"credits": 2, "mandatory": false, "national": true}, "FY7": {"credits": 2, "mandatory": false, "national": true}, "FY8": {"credits": 2, "mandatory": false, "national": true}, "FY10": {"credits": 2, "mandatory": false, "national": false}}},
-        "KE": {"courses": {"KE1": {"credits": 1, "mandatory": true, "national": true}, "KE2": {"credits": 1, "mandatory": true, "national": true}, "KE3": {"credits": 2, "mandatory": false, "national": true}, "KE4": {"credits": 2, "mandatory": false, "national": true}, "KE5": {"credits": 2, "mandatory": false, "national": true}, "KE6": {"credits": 2, "mandatory": false, "national": true}, "KE8": {"credits": 2, "mandatory": false, "national": false}}},
-        "PS": {"courses": {"PS1": {"credits": 2, "mandatory": true, "national": true}, "PS2": {"credits": 2, "mandatory": false, "national": true}, "PS3": {"credits": 2, "mandatory": false, "national": true}, "PS4": {"credits": 2, "mandatory": false, "national": true}, "PS5": {"credits": 2, "mandatory": false, "national": true}, "PS7": {"credits": 2, "mandatory": false, "national": false}}},
-        "FI": {"courses": {"FI1": {"credits": 2, "mandatory": true, "national": true}, "FI2": {"credits": 2, "mandatory": true, "national": true}, "FI3": {"credits": 2, "mandatory": false, "national": true}, "FI4": {"credits": 2, "mandatory": false, "national": true}, "FI6": {"credits": 2, "mandatory": false, "national": false}}},
-        "HI": {"courses": {"HI1": {"credits": 2, "mandatory": true, "national": true}, "HI2": {"credits": 2, "mandatory": true, "national": true}, "HI3": {"credits": 2, "mandatory": true, "national": true}, "HI4": {"credits": 2, "mandatory": false, "national": true}, "HI5": {"credits": 2, "mandatory": false, "national": true}, "HI6": {"credits": 2, "mandatory": false, "national": true}, "HI8": {"credits": 2, "mandatory": false, "national": false}}},
-        "YH": {"courses": {"YH1": {"credits": 2, "mandatory": true, "national": true}, "YH2": {"credits": 2, "mandatory": true, "national": true}, "YH3": {"credits": 2, "mandatory": true, "national": true}, "YH4": {"credits": 2, "mandatory": false, "national": true}, "YH6": {"credits": 2, "mandatory": false, "national": false}}},
-        "TE": {"courses": {"TE1": {"credits": 2, "mandatory": true, "national": true}, "TE2": {"credits": 2, "mandatory": false, "national": true}, "TE3": {"credits": 2, "mandatory": false, "national": true}, "TE5": {"credits": 2, "mandatory": false, "national": false}}},
-        "LI": {"courses": {"LI1": {"credits": 2, "mandatory": true, "national": true}, "LI2": {"credits": 2, "mandatory": true, "national": true}, "LI3": {"credits": 2, "mandatory": false, "national": true}, "LI4": {"credits": 2, "mandatory": false, "national": true}, "LI5": {"credits": 2, "mandatory": false, "national": true}}},
-        "OP": {"courses": {"OP1": {"credits": 2, "mandatory": true, "national": true}, "OP2": {"credits": 2, "mandatory": true, "national": true}}},
-        "KU": {"courses": {"KU1": {"credits": 2, "mandatory": true, "national": true}, "KU2": {"credits": 2, "mandatory": true, "national": true}, "KU3": {"credits": 2, "mandatory": false, "national": true}, "KU4": {"credits": 2, "mandatory": false, "national": true}}},
-        "MU": {"courses": {"MU1": {"credits": 2, "mandatory": true, "national": true}, "MU2": {"credits": 2, "mandatory": true, "national": true}, "MU3": {"credits": 2, "mandatory": false, "national": true}, "MU4": {"credits": 2, "mandatory": false, "national": true}}},
-        "ERI": {"courses": {"ERI1": {"credits": 2, "mandatory": false, "national": false}, "ERI2": {"credits": 2, "mandatory": false, "national": false}, "ERI3": {"credits": 2, "mandatory": false, "national": false}, "ERI4": {"credits": 2, "mandatory": false, "national": false}, "ERI5": {"credits": 2, "mandatory": false, "national": false}, "ERI6": {"credits": 2, "mandatory": false, "national": false}, "ERI7": {"credits": 2, "mandatory": false, "national": false}, "ERI8": {"credits": 2, "mandatory": false, "national": false}, "ERI9": {"credits": 2, "mandatory": false, "national": false}, "ERI10": {"credits": 2, "mandatory": false, "national": false}, "ERI11": {"credits": 2, "mandatory": false, "national": false}, "ERI12": {"credits": 2, "mandatory": false, "national": false}}},
-        "VAPA": {"courses": {"VAPA1": {"credits": 2, "mandatory": false, "national": false}, "VAPA2": {"credits": 2, "mandatory": false, "national": false}, "VAPA3": {"credits": 2, "mandatory": false, "national": false}, "VAPA4": {"credits": 2, "mandatory": false, "national": false}, "VAPA5": {"credits": 2, "mandatory": false, "national": false}, "VAPA6": {"credits": 2, "mandatory": false, "national": false}, "VAPA7": {"credits": 2, "mandatory": false, "national": false}, "VAPA8": {"credits": 2, "mandatory": false, "national": false}, "VAPA9": {"credits": 2, "mandatory": false, "national": false}, "VAPA10": {"credits": 2, "mandatory": false, "national": false}, "VAPA11": {"credits": 2, "mandatory": false, "national": false}, "VAPA12": {"credits": 2, "mandatory": false, "national": false}, "VAPA13": {"credits": 2, "mandatory": false, "national": false}, "VAPA14": {"credits": 2, "mandatory": false, "national": false}, "VAPA15": {"credits": 2, "mandatory": false, "national": false}, "VAPA16": {"credits": 2, "mandatory": false, "national": false}, "VAPA17": {"credits": 2, "mandatory": false, "national": false}, "VAPA18": {"credits": 2, "mandatory": false, "national": false}, "VAPA19": {"credits": 2, "mandatory": false, "national": false}, "VAPA20": {"credits": 2, "mandatory": false, "national": false}, "VAPA21": {"credits": 2, "mandatory": false, "national": false}, "VAPA22": {"credits": 2, "mandatory": false, "national": false}, "VAPA23": {"credits": 2, "mandatory": false, "national": false}, "VAPA24": {"credits": 2, "mandatory": false, "national": false}, "VAPA25": {"credits": 2, "mandatory": false, "national": false}}}
+    {
+      "name": "S2",
+      "courses": [
+        {
+          "name": "S21",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S22",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S23",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S24",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S25",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S26",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S27",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S28",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "S29",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "S210",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "S211",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "RUA",
+      "courses": [
+        {
+          "name": "RUA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RUA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "RUB",
+      "courses": [
+        {
+          "name": "RUB1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUB2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUB3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUB4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUB5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RUB6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RUB7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "ENA",
+      "courses": [
+        {
+          "name": "ENA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ENA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "ENA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "ENA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "RAA",
+      "courses": [
+        {
+          "name": "RAA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "RAA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "SAA",
+      "courses": [
+        {
+          "name": "SAA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "SAA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "VEA",
+      "courses": [
+        {
+          "name": "VEA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "VEA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "VEA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "RAB3",
+      "courses": [
+        {
+          "name": "RAB31",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB32",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB33",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB34",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB35",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB36",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB37",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "RAB38",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "MAA",
+      "courses": [
+        {
+          "name": "MAA1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA4",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA6",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA7",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA8",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA9",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MAA11",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MAA12",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MAA14",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "MAB",
+      "courses": [
+        {
+          "name": "MAB1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB6",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB7",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MAB8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MAB9",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MAB11",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "UE",
+      "courses": [
+        {
+          "name": "UE1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UE2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UE3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UE4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UE5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UE6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "UO",
+      "courses": [
+        {
+          "name": "UO1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UO2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UO3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UO4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UO5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UO6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "UK",
+      "courses": [
+        {
+          "name": "UK1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UK2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UK3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UK4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UK5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UK6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "UI",
+      "courses": [
+        {
+          "name": "UI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UI2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UI3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UI5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "UJ",
+      "courses": [
+        {
+          "name": "UJ1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UJ2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "UJ3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UJ4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UJ5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "UJ6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "ET",
+      "courses": [
+        {
+          "name": "ET1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ET2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "ET3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "ET4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "ET5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "ET6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "BI",
+      "courses": [
+        {
+          "name": "BI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "BI2",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "BI3",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "BI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "BI5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "BI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "BI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "GE",
+      "courses": [
+        {
+          "name": "GE1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "GE2",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "GE3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "GE4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "GE6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "FY",
+      "courses": [
+        {
+          "name": "FY1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "FY2",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "FY3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FY10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "KE",
+      "courses": [
+        {
+          "name": "KE1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "KE2",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "KE3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "KE4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "KE5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "KE6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "KE8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "PS",
+      "courses": [
+        {
+          "name": "PS1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "PS2",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "PS3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "PS4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "PS5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "PS7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "FI",
+      "courses": [
+        {
+          "name": "FI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "FI2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "FI3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "FI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "HI",
+      "courses": [
+        {
+          "name": "HI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "HI2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "HI3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "HI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "HI5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "HI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "HI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "YH",
+      "courses": [
+        {
+          "name": "YH1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "YH2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "YH3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "YH4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "YH6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "TE",
+      "courses": [
+        {
+          "name": "TE1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "TE2",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "TE3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "TE5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "LI",
+      "courses": [
+        {
+          "name": "LI1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "LI2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "LI3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "LI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "LI5",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "OP",
+      "courses": [
+        {
+          "name": "OP1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "OP2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "KU",
+      "courses": [
+        {
+          "name": "KU1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "KU2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "KU3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "KU4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "MU",
+      "courses": [
+        {
+          "name": "MU1",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MU2",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "MU3",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "MU4",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        }
+      ]
+    },
+    {
+      "name": "ERI",
+      "courses": [
+        {
+          "name": "ERI1",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI2",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI3",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI4",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI11",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ERI12",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "VAPA",
+      "courses": [
+        {
+          "name": "VAPA1",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA2",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA3",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA4",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA11",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA12",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA13",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA14",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA15",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA16",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA17",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA18",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA19",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA20",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA21",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA22",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA23",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA24",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "VAPA25",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
     }
+  ]
 }

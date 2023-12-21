@@ -13,7 +13,6 @@ class MEB:
 
         self._root = root
         self._print_area = None
-        #self._valid_print_area = None
 
         self._plan_config = None
 
@@ -60,7 +59,7 @@ class MEB:
             return "Not a valid combination: less than 3 exam groups selected. Groups are: maths, second national language, foreign language and real subjects."
         elif problem == "no-native-language":
             return "Not a valid combination: no native language selected"
-        
+
         return "Unknown problem"
 
     def validate_plan(self):
@@ -68,7 +67,8 @@ class MEB:
 
         if validation_status:
             if "structure_problems" in validation_status.keys():
-                error_message = self.return_error_text(validation_status["structure_problems"])
+                error_message = self.return_error_text(
+                    validation_status["structure_problems"])
 
                 messagebox.showerror("Validation status", error_message)
         else:

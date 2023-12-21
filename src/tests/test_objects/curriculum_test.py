@@ -22,6 +22,10 @@ class TestCurriculum(unittest.TestCase):
         self.assertEqual(
             self.curriculum.get_subject_code_from_course_code("TÄH7"), None)
 
+    def test_curriculum_cannot_get_course_from_broken_course_code(self):
+        self.assertFalse(
+            self.curriculum.get_course_from_course_code("MITÄ4"))
+
     def test_get_credits_from_subject_code(self):
         self.assertEqual(
             self.curriculum.get_credits_from_course_code("MAA2"), 3)

@@ -1,6 +1,3 @@
-from objects.course import Course
-
-
 class Curriculum:
     """Luokka, joka hallitsee opetussuunnitelmasta riippuvia toiminnallisuuksia.
 
@@ -17,7 +14,9 @@ class Curriculum:
         """
 
         self._rules = cur_config["rules"]
-        self._subjects = cur_config["subjects"]
+
+        subject_list = cur_config["subjects"]
+        self._subjects = subject_list
 
     def return_all_subject_codes(self) -> list:
         """Palauttaa kaikki opetussuunnitelmasta löytyvät oppiainekoodit. 
@@ -30,7 +29,8 @@ class Curriculum:
         all_subject_codes = []
 
         for subject in self._subjects:
-            all_subject_codes.append(subject)
+            subject_name = subject["name"]
+            all_subject_codes.append(subject_name)
 
         return all_subject_codes
 
@@ -51,17 +51,24 @@ class Curriculum:
 
         return None
 
-    def get_course_from_course_code(self, course_code: str) -> Course:
-        """Palauttaa Course-objektin kurssikoodin perusteella.
+    def get_course_from_course_code(self, course_code: str) -> dict:
+        """Palauttaa kurssintiedot kurssikoodin perusteella.
 
         Args:
             course_code (str): Kurssikoodi
 
         Returns:
-            Course: Course-objekti
+            dict: kurssitiedot
         """
         subject_code = self.get_subject_code_from_course_code(course_code)
-        return self._subjects[subject_code]["courses"][course_code]
+
+        for subject in self._subjects:
+            if subject_code == subject["name"]:
+                for course in subject["courses"]:
+                    if course_code == course["name"]:
+                        return course
+
+        return None
 
     def get_credits_from_course_code(self, course_code: str) -> int:
         """Palauttaa opintopistemäärän kurssikoodin perusteella.
@@ -73,6 +80,7 @@ class Curriculum:
             int: opintopistemäärä
         """
         course = self.get_course_from_course_code(course_code)
+
         return course["credits"]
 
     def get_course_status_from_course_code(self, course_code: str) -> dict:
@@ -103,22 +111,26 @@ class Curriculum:
         Returns:
             int: Pakollisten opintopisteiden määrä.
         """
-        subject_courses = self._subjects[subject_code]["courses"]
+
         mandatory_credits = 0
 
-        for course_code in subject_courses:
-            if subject_courses[course_code]["mandatory"]:
-                mandatory_credits += subject_courses[course_code]["credits"]
+        for subject in self._subjects:
+            if subject["name"] == subject_code:
+                subject_courses = subject["courses"]
+
+        for course in subject_courses:
+            if course["mandatory"]:
+                mandatory_credits += course["credits"]
 
         return mandatory_credits
 
-    def return_all_courses_dict(self) -> dict:
+    def return_all_subjects(self) -> list:
         """Palauttaa kaikki opetussuunnitelman kurssit
 
-        Kurssit on järjestetty dict-objektiin oppiaineitain.
+        Kurssit on järjestetty listaan oppiaineitain.
 
         Returns:
-            dict: Kaikki kurssi sisältävä dict-objekti
+            dict: Kaikki kurssi sisältävä lista dict-objekteja
         """
         return self._subjects
 

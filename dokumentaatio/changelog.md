@@ -52,3 +52,4 @@
 - Graafisesta käyttöliittymästä voi muuttaa YO-tukinnon kielen ja valmistumisajankohdan.
 - Graafinen käyttöliittymä mukautuu kielen ja valmistumisajankohdan mukaisesti.
 - Validioinnin tulokset tulostuu kauniisti.
+- Tiedostosta ladattavan opetussuunnitelman täytyy vastata määritettyä skeemaa.

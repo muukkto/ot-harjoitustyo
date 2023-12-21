@@ -20,16 +20,15 @@ class ValidationFunctions:
 
     def __check_mandatory_credits_one_basket(self, plan: Plan, basket: dict) -> int:
         plan_total_mandatory_credits = 0
-        basket_rules = basket[1]
 
-        for subject in basket_rules["subjects"]:
+        for subject in basket["subjects"]:
             ects_credits = plan.get_mandatory_credits_subject(subject)
-            if ects_credits < basket_rules["minimum_compulsory_per_subject"]/2:
+            if ects_credits < basket["minimum_compulsory_per_subject"]/2:
                 return 9999
 
             plan_total_mandatory_credits += ects_credits
 
-        return basket_rules["minimum_compulsory_total"] - plan_total_mandatory_credits
+        return basket["minimum_compulsory_total"] - plan_total_mandatory_credits
 
     def __check_mandatory_credits_one_group(self, plan: Plan,
                                             curriculum: Curriculum,
@@ -56,10 +55,10 @@ class ValidationFunctions:
                 plan, curriculum, subject)
             if subject_return > 0:
                 subj_problems["full_credits"] = (subj_problems["full_credits"] +
-                                [{"name": "problem_with_simple_subjects", "details": subject}])
+                            [{"name": "problem_with_simple_subjects", "details": subject}])
             if subject_return > 1000:
                 subj_problems["half_credits"] = (subj_problems["half_credits"] +
-                                [{"name": "problem_with_simple_subjects", "details": subject}])
+                            [{"name": "problem_with_simple_subjects", "details": subject}])
 
             excluded_creds += subject_return
 
@@ -71,15 +70,15 @@ class ValidationFunctions:
                                      group_problems: list) -> int:
         group_subjects = curriculum.return_rules()["group_subjects"]
 
-        for name, subjects in group_subjects.items():
+        for group in group_subjects:
             group_return = self.__check_mandatory_credits_one_group(
-                plan, curriculum, subjects)
+                plan, curriculum, group["subjects"])
             if group_return > 0:
                 group_problems["full_credits"] = (group_problems["full_credits"] +
-                                        [{"name": "problem_with_group_subjects", "details": name}])
+                            [{"name": "problem_with_group_subjects", "details": group["name"]}])
             if group_return > 1000:
                 group_problems["half_credits"] = (group_problems["half_credits"] +
-                                        [{"name": "problem_with_group_subjects", "details": name}])
+                            [{"name": "problem_with_group_subjects", "details": group["name"]}])
 
             excluded_credits += group_return
 
@@ -91,15 +90,15 @@ class ValidationFunctions:
                                       basket_problems: dict) -> int:
         basket_subjects = curriculum.return_rules()["basket_subjects"]
 
-        for basket in basket_subjects.items():
+        for basket in basket_subjects:
             basket_return = self.__check_mandatory_credits_one_basket(
                 plan, basket)
             if basket_return > 0:
                 basket_problems["full_credits"] = (basket_problems["full_credits"] +
-                                [{"name": "problem_with_basket_subjects", "details": basket[0]}])
+                            [{"name": "problem_with_basket_subjects", "details": basket["name"]}])
             if basket_return > 1000:
                 basket_problems["half_credits"] = (basket_problems["half_credits"] +
-                                [{"name": "problem_with_basket_subjects", "details": basket[0]}])
+                            [{"name": "problem_with_basket_subjects", "details": basket["name"]}])
 
             excluded_credits += basket_return
 
