@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 
-from bidict import bidict
-
-
 class OwnCourse:
     def __init__(self, root, plan_service, curriculum_tree, stats):
         self._plan_service = plan_service

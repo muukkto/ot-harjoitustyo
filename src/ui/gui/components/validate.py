@@ -16,7 +16,6 @@ class Validate:
 
     def subject_error_list(self, subject_problems):
         list_items = []
-        print(subject_problems)
         for problem_subject in subject_problems:
             if problem_subject["name"] == "problem_with_simple_subjects":
                 list_items.append(f"\tsubject: {problem_subject['details']}")
