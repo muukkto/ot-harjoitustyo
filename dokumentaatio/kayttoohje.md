@@ -29,6 +29,10 @@ DAY;FI;SV;EN
 > [!IMPORTANT]
 > Jotta ohjelma toimisi, täytyy _config_-hakemistosta löytyä yllä mainitut tiedostot _curriculum.json_, _meb_exam_codes.csv_ ja _meb_exam_days.csv_.
 
+> [!CAUTION]
+> YO-tutkintoon liittyviä konfiguraatiotietoja ei pidä muuttaa, ellei Ylioppilastutkintolautakunta muuta tutkinnon [määräyksiä](https://www.ylioppilastutkinto.fi/fi/tutkinnon-toimeenpano/maaraykset-ja-ohjeet). Mikäli konfiguraatioita muutetaan, antaa YO-suunnitelman validiointi virheellisiä tuloksia. Esimerkiksi nykyisten määräysten mukaan fysiikkaa ja biologiaa ei voi suorittaa samalla tutkintokerralla.
+
+
 ## Ohjelman käynnistäminen
 
 1. Riipuvuudet täytyy asentaa komennolla:
@@ -47,9 +51,6 @@ poetry run invoke start
 ```
 
 ## Kirjautuminen
-
-> [!CAUTION]
-> Sovellus ei osaa vielä toimia epäkelpojen syötteiden kanssa. Nämä voivat kaataa ohjelman.
 
 Sovellus kysyy aluksi käyttäjätunnusta.
 
@@ -84,9 +85,6 @@ Näkymästä löytyy seuraavat toiminnallisuudet:
 10.  Uloskirjautuminen.
 
 ## Omien kurssien lisääminen
-
-> [!CAUTION]
-> Sovellus ei osaa vielä toimia epäkelpojen syötteiden kanssa. Nämä voivat kaataa ohjelman.
 
 Omia kursseja pystyy lisäämään klikkaamalla "Add own course"-painiketta. Tällöin avautuu alla olevan kuvan mukainen ikkuna.
 
