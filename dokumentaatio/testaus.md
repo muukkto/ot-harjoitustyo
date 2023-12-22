@@ -29,7 +29,7 @@ Testaamatta jää muun muassa konfigurointiin ja tietokantoihin liittyviä funkt
 
 ### Asennus ja konfigurointi
 
-Sovelluksen asentaminen ja konfigurointi on testattu manuaalisesti. Sovelluksen suorittaminen onnistuu Cubbli Linuxilla, jos kaikki [käyttöohjeissa](/dokumentaatio/käyttöohje.md) määritetyt konfigurointitiedostot löytyvät.
+Sovelluksen asentaminen ja konfigurointi on testattu manuaalisesti. Sovelluksen suorittaminen onnistuu Cubbli Linuxilla, jos kaikki [käyttöohjeissa](/dokumentaatio/kayttoohje.md) määritetyt konfigurointitiedostot löytyvät.
 
 Sovelluksen käynnistäminen on testattu sekä heti tietokantojen alustamisen jälkeen että myös tilanteessa jossa tietokantoihin oli jo tallennettu tietoja.
 
