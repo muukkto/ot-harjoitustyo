@@ -76,11 +76,11 @@ Näkymästä löytyy seuraavat toiminnallisuudet:
 1. LOPS-puu, josta voi klikkaamalla valita kursseja osaksi suunnitelmaa.
 2. Tilastoja suunnitelmasta.
 3. YO-suunnitelma - kokeet ilmestyy koekoodeina.
-4. Suunnitelman validiointi. Validioinnin tulos ilmestyy napin alle.
+4. Suunnitelman validiointi. Validioinnin tulos ilmestyy ruudulle.
 5. Omien kurssien lisääminen. Nappia painamalla ilmestyy näkymä omien kurssien lisäämiseksi.
 6. YO-suunnitelman päivittäminen. Nappia painamalla ilmestyy näkymä YO-suunnitelman päivittämiseksi.
-7. YO-suunnitelman validiointi. Validioinnin tulos ilmestyy napin alle.
-8. Suunnitelman konfiguraatioiden muuttaminen. Toistaiseksi mahdollisuutena on muuttaa suunnitelma noudattamaan erityistehtävän tuntijakoa.
+7. YO-suunnitelman validiointi. Validioinnin tulos ilmestyy ruudulle.
+8. Suunnitelman konfiguraatioiden muuttaminen. Nappia painamalla ilmestyy näkymä konfiguraatioiden muuttamiseksi.
 9. Suunnitelman vienti/tuonti JSON-tiedostoon. Nappia painamalla avautuu näkymä tiedoston avaamiseen/tallentamiseen.
 10.  Uloskirjautuminen.
 
@@ -103,3 +103,7 @@ YO-suunnitelmaa pääsee muokkaamaan klikkaamalla "Update exams"-painiketta.
 Muokkausnäkymästä löytyy taulukko kirjoitettavista kokeista. Vaakariveillä on kirjoituskerrat ja pystyriveillä on eri päivien kokeet. Vetovalikosta saa valittua haluamansa kokeen.
 
 ![YO-suunnitelma muokkausnäkymä](kuvat/yo_suunnitelman_päivittäminen.png)
+
+## Suunnitelman konfiguraation muuttaminen
+
+Coming soon...
