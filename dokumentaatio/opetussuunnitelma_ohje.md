@@ -10,7 +10,7 @@
       - **`name`** *(merkkijono, pakollinen)* Oppiaineryhmän nimi.
       - **`subjects`** *(lista, pakollinen)*: *Täytyy sisältää vähintään yhden jäsenen 1.* Oppiaineryhmään kuuluvat oppimäärät.
         - **Jäsenet** *(merkkijono)* Oppimäärän tunnus.
-  - **`basket_subjects`** *(lista, pakollinen)* Oppiaineryhmät joista täytyy käydä kaikista oppiaineista minimimäärä opintopisteitä ja yhteensä toinen minimäärä opintopisteitä.
+  - **`basket_subjects`** *(lista, pakollinen)* Oppiaineryhmät joista täytyy käydä kaikista oppiaineista minimimäärä opintopisteitä ja yhteensä toinen minimäärä opintopisteitä (esim. kuviksesta ja musiikista molemmista vähintään 2 op ja yhdessä vähintään 6 op).
     - **Jäsenet** *(objekti)*: *Ei saa sisältää ylimääräisiä tietoja.* Yksi oppiaineryhmä.
       - **`name`** *(merkkijono, pakollinen)* Oppiaineryhmän nimi.
       - **`subjects`** *(lista, pakollinen)*: *Täytyy sisältää vähintään yhden jäsenen 1.* Oppiaineryhmään kuuluvat oppimäärät.
