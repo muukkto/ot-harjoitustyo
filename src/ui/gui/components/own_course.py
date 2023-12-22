@@ -33,17 +33,21 @@ class OwnCourse:
         self._error_label.grid_remove()
 
     def _save_course(self, code, name, ects, pop_up):
-        try:
-            if self._plan_service.add_course(code, name, int(ects), in_cur=False):
-                pop_up.destroy()
+        if code:
+            try:
+                if self._plan_service.add_course(code, name, int(ects), in_cur=False):
+                    pop_up.destroy()
 
-                self._curriculum_tree_reload()
-                self._stats_reload()
-            else:
-                self._show_error(
-                    "Cannot add own course with same subject code as in curriculum!")
-        except ValueError:
-            self._show_error("Couldn't add own course, check your input!")
+                    self._curriculum_tree_reload()
+                    self._stats_reload()
+                else:
+                    self._show_error(
+                        "Cannot add own course with same subject code as in curriculum!")
+            except ValueError:
+                self._show_error("Couldn't add own course, check your input!")
+        else:
+            self._show_error("To add a course you need to give a course code!")
+
 
     def _add_course(self):
         pop_up = tk.Toplevel(self._root)
