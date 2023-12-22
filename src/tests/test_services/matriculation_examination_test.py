@@ -7,7 +7,7 @@ from services.validation.meb_validation_service import MebValidationService
 from config.config import CURRICULUM
 
 
-class TestPlan(unittest.TestCase):
+class TestMebPlan(unittest.TestCase):
     def setUp(self):
         curriculum = Curriculum(CURRICULUM)
         self.plan = Plan(curriculum, "User1")
