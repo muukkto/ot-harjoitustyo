@@ -7,6 +7,20 @@ from ui.gui.views.create_user_view import CreateUserView
 
 
 class UI:
+    """Graafisen käyttöliittymän rungosta vastaava luokka
+
+    Käyttöliittymässä on 3 päänäkymää.
+     - kirjautuminen
+     - uuden käyttäjän luominen
+     - suunnitelman muokkaaminen
+
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        current_view: Mikä näkymä on tällä htekellä käytössä.
+        user_service: Kirjautumisesta vastaava luokka.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+
+    """
     def __init__(self, root):
         self._root = root
         self._root.rowconfigure(0, weight=1)
@@ -21,6 +35,11 @@ class UI:
         self._current_view = None
 
     def start(self):
+        """Funktio käynnistää graafisen käyttöliittymän
+
+        Aluksi näytetään kirjautumisnäkymä.
+
+        """
         self._show_login_view()
 
     def _show_login_view(self):

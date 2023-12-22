@@ -11,6 +11,14 @@ from ui.gui.components.own_course import OwnCourse
 
 
 class PlanView:
+    """Luokka joka vastaa suunnitelman päänäkymästä
+
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        user_service: Kirjautumisesta vastaava luokka.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+        login_view: Funktio joka suoritetaan kun halutaan siirtyä kirjautumisnäkymään.
+    """
     def __init__(self, root, plan_service, user_service, login_view):
         self._root = root
         self._main_frame = ttk.Frame(self._root)
@@ -24,9 +32,11 @@ class PlanView:
         self._main_frame.grid(row=0, column=0, sticky='ns')
         self._main_frame.rowconfigure(0, weight=1)
 
-        self.start()
+        self._start()
 
     def destroy(self):
+        """Funktio piilottaa suunnitelman päänäkymän
+        """
         self._main_frame.destroy()
 
     def _reload_curriculum_tree(self):
@@ -47,18 +57,18 @@ class PlanView:
         self._user_service.logout()
         self._login_view()
 
-    def start(self):
+    def _start(self):
         self._curriculum_container()
 
         container = ttk.Frame(self._main_frame)
         container.grid(column=1, row=0, sticky=tk.N+tk.E+tk.S)
 
         stats_frame = self._create_frame(container, 0, 0)
-        validate_frame = self._create_frame(container, 1, 0)
+        validate_frame = self._create_frame(container, 2, 0)
         meb_frame = self._create_frame(container, 0, 1)
         config_frame = self._create_frame(container, 1, 1)
         files_frame = self._create_frame(container, 2, 1)
-        own_course_frame = self._create_frame(container, 2, 0)
+        own_course_frame = self._create_frame(container, 1, 0)
 
         self._stats = Statistics(stats_frame, self._plan_service)
         Validate(validate_frame, self._plan_service)

@@ -76,7 +76,11 @@ class MebValidationService:
 
         request_url = base_url + exam_parameters
 
-        response = requests.get(request_url, timeout=5)
+        try:
+            response = requests.get(request_url, timeout=5)
+        except requests.ConnectionError:
+            return "connection-error"
+
 
         if response.status_code == 200:
             validation_result = response.json()["validationResult"]

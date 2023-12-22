@@ -6,6 +6,14 @@ from bidict import bidict
 
 
 class Config:
+    """Komponentti joka vastaa suunnitelman asetusetn muuttamisesta graafisessa käyttöliittymässä
+
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+        reload_meb_plan: Funktio joka kutstutaan kun halutaan päivittää YO-suunnitelman näkymä.
+
+    """
     def __init__(self, root, plan_service, reload_meb_plan):
         self._plan_service = plan_service
         self._reload_meb_plan = reload_meb_plan
@@ -16,10 +24,10 @@ class Config:
         title.grid(column=0, row=0)
 
         edit_button = ttk.Button(
-            self._root, command=self.edit_config, text="Edit plan config")
+            self._root, command=self._edit_config, text="Edit plan config")
         edit_button.grid(column=0, row=2)
 
-    def save_config(self, pop_up, variables):
+    def _save_config(self, pop_up, variables):
         new_special_task = self.special_task_options_text_to_bool[variables["special_task"].get(
         )]
         new_meb_language = variables["meb_language"].get()
@@ -33,7 +41,7 @@ class Config:
 
         pop_up.destroy()
 
-    def edit_config(self):
+    def _edit_config(self):
         pop_up = tk.Toplevel(self._root)
         pop_up.geometry("200x100")
 
@@ -76,12 +84,22 @@ class Config:
             config_frame, variables["graduation_period"], old_graduation_period, *graduation_period_options)
 
         config_frame.grid(column=0, row=0)
-        special_task_drop.grid(column=0, row=0)
-        meb_language_drop.grid(column=0, row=1)
-        graduation_period_drop.grid(column=0, row=2)
+
+        special_task_label = ttk.Label(config_frame, text="Task type")
+        meb_language_label = ttk.Label(config_frame, text="MEB language")
+        graduation_period_label = ttk.Label(config_frame, text="Graduation period")
+
+
+        special_task_label.grid(column=0, row=0, sticky=tk.W)
+        meb_language_label.grid(column=0, row=1, sticky=tk.W)
+        graduation_period_label.grid(column=0, row=2, sticky=tk.W)
+
+        special_task_drop.grid(column=1, row=0)
+        meb_language_drop.grid(column=1, row=1)
+        graduation_period_drop.grid(column=1, row=2)
 
         button = tk.Button(pop_up, text="Save",
-                           command=lambda: self.save_config(pop_up, variables))
+                           command=lambda: self._save_config(pop_up, variables))
         button.grid(column=0, row=1)
 
     def _calculate_graduation_period_options(self) -> list:

@@ -1,13 +1,19 @@
 import re
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 
 from config.meb_config import get_meb_names_and_codes_by_day, get_meb_names_and_codes, get_meb_days
 from config.config import MAX_MEB_PERIODS, N_MEB_DAYS
 
 
 class MEB:
+    """Komponentti joka vastaa YO-suunnitelman hallinnasta graafisessa käyttöliittymässä
+    
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+    """
     def __init__(self, root, plan_service):
         self._plan_service = plan_service
 
@@ -25,14 +31,12 @@ class MEB:
         self.print_meb_plan()
 
         add_button = ttk.Button(
-            self._root, command=self.change_exams, text="Update exams")
+            self._root, command=self._change_exams, text="Update exams")
         add_button.grid(column=0, row=2)
 
-        validate_button = ttk.Button(
-            self._root, command=self.validate_plan, text="Validate MEB plan")
-        validate_button.grid(column=0, row=3)
-
     def print_meb_plan(self):
+        """Hakee YO-suunnitelman ja esittää sen
+        """        
         if self._print_area:
             self._print_area.destroy()
 
@@ -48,39 +52,12 @@ class MEB:
             label = ttk.Label(self._print_area, text=text)
             label.grid(column=0, row=i-1)
 
-    def return_error_text(self, problem):
-        if problem == "meb-api-not-working":
-            return "Cannot connect to MEB validation server. Check that you have selected atleast 1 exam!"
-        elif problem == "too-few-subjects":
-            return "Not a valid combination: less than 5 exams"
-        elif problem == "no-advanced-exam":
-            return "Not a valid combination: at least one advanced exam is required"
-        elif problem == "not-enough-groups":
-            return "Not a valid combination: less than 3 exam groups selected. Groups are: maths, second national language, foreign language and real subjects."
-        elif problem == "no-native-language":
-            return "Not a valid combination: no native language selected"
-
-        return "Unknown problem"
-
-    def validate_plan(self):
-        validation_status = self._plan_service.validate_meb()
-
-        if validation_status:
-            if "structure_problems" in validation_status.keys():
-                error_message = self.return_error_text(
-                    validation_status["structure_problems"])
-
-                messagebox.showerror("Validation status", error_message)
-        else:
-            messagebox.showinfo("Validation status",
-                                "MEB plan OK! You can complete matriculation examination with this plan!")
-
-    def save_exams(self, pop_up, values):
+    def _save_exams(self, pop_up, values):
         for i in range(1, MAX_MEB_PERIODS+1):
             for j in range(1, N_MEB_DAYS+1):
                 exam_name = values[i][j].get()
 
-                old_exam = self.get_current_exam(i, j)
+                old_exam = self._get_current_exam(i, j)
                 if old_exam:
                     old_exam_code = self._meb_names_codes[old_exam]
                     self._plan_service.remove_exam_meb(old_exam_code, i)
@@ -92,7 +69,7 @@ class MEB:
         self.print_meb_plan()
         pop_up.destroy()
 
-    def get_current_exam(self, period, day):
+    def _get_current_exam(self, period, day):
         old_meb_plan = self._plan_service.get_meb_plan()
 
         old_course = set(old_meb_plan[period]).intersection(
@@ -103,15 +80,18 @@ class MEB:
 
         return None
 
-    def change_exams(self):
+    def _change_exams(self):
         pop_up = tk.Toplevel(self._root)
         pop_up.geometry("750x250")
 
         self._plan_config = self._plan_service.get_config()
+
+        meb_language = self._plan_config["meb_language"]
+
         self._options = get_meb_names_and_codes_by_day(
-            self._plan_config["meb_language"])
+                                    meb_language)
         self._meb_names_codes = get_meb_names_and_codes(
-            self._plan_config["meb_language"])
+                                    meb_language)
 
         values = {}
 
@@ -120,7 +100,7 @@ class MEB:
         examination_periods = self._examination_period_prints()
 
         for k in range(1, N_MEB_DAYS+1):
-            label = tk.Label(meb_drop_downs, text=get_meb_days("en")[k])
+            label = tk.Label(meb_drop_downs, text=get_meb_days(meb_language)[k])
             label.grid(column=k, row=0)
 
         for i in range(1, MAX_MEB_PERIODS+1):
@@ -131,7 +111,7 @@ class MEB:
 
             for j in range(1, 9):
                 default_value = "(none)"
-                old_course = self.get_current_exam(i, j)
+                old_course = self._get_current_exam(i, j)
 
                 if old_course:
                     default_value = old_course
@@ -145,7 +125,7 @@ class MEB:
         meb_drop_downs.grid(column=0, row=0)
 
         button = tk.Button(pop_up, text="Save",
-                           command=lambda: self.save_exams(pop_up, values))
+                           command=lambda: self._save_exams(pop_up, values))
         button.grid(column=0, row=1)
 
     def _examination_period_prints(self):

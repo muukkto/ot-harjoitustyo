@@ -2,6 +2,14 @@ import tkinter as tk
 
 
 class CurriculumTree:
+    """Komponentti joka vastaa LOPS-puun näyttämisestä ja muuttamisesta graafisessa käyttöliittymässä
+
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+        stats_reload: Funktio joka kutstutaan kun halutaan päivittää tilastojen näkymä.
+
+    """
     def __init__(self, root, plan_service, stats_reload):
         self._root = root
         self._print_area = None
@@ -9,6 +17,8 @@ class CurriculumTree:
         self._stats_reload = stats_reload
 
     def init_curriculum_tree(self):
+        """Alustaa LOPS-puun lataamalla suunnitelman tiedot
+        """        
         if self._print_area:
             self._print_area.destroy()
 
@@ -18,7 +28,7 @@ class CurriculumTree:
         curriculum_courses_frame = tk.Frame(self._print_area)
 
         for i, subject in enumerate(curriculum):
-            self.subject(curriculum_courses_frame, i, subject)
+            self._subject(curriculum_courses_frame, i, subject)
 
         curriculum_courses_frame.grid(column=0, row=0)
 
@@ -30,14 +40,14 @@ class CurriculumTree:
 
         own_courses = self._plan_service.get_own_courses()
         for i, course in enumerate(own_courses):
-            gui_block = self.own_course(course, own_courses_frame)
+            gui_block = self._own_course(course, own_courses_frame)
             gui_block.grid(column=i, row=1)
 
         own_courses_frame.grid(row=1, column=0, sticky=tk.W)
 
         self._print_area.grid(column=0, row=0)
 
-    def change_status(self, event):
+    def _change_status(self, event):
         course_code = event.widget.cget("text")
         course_status = self._plan_service.get_course_status(course_code)
 
@@ -50,13 +60,13 @@ class CurriculumTree:
 
         self._stats_reload()
 
-    def remove_own_course(self, event):
+    def _remove_own_course(self, event):
         self._plan_service.delete_course(event.widget["text"])
         self.init_curriculum_tree()
 
         self._stats_reload()
 
-    def own_course(self, course_object, master_frame):
+    def _own_course(self, course_object, master_frame):
         bg = "grey"
 
         course_frame = tk.Frame(
@@ -69,11 +79,11 @@ class CurriculumTree:
         title_label.grid(column=0, row=0)
         ects_label.grid(column=0, row=1)
 
-        title_label.bind('<Button-1>', self.remove_own_course)
+        title_label.bind('<Button-1>', self._remove_own_course)
 
         return course_frame
 
-    def course(self, master_frame, course):
+    def _course(self, master_frame, course):
         if course["national"]:
             if course["mandatory"]:
                 bg = "blue"
@@ -94,11 +104,11 @@ class CurriculumTree:
 
         label.grid(row=0, column=0)
 
-        label.bind('<Button-1>', self.change_status)
+        label.bind('<Button-1>', self._change_status)
 
         return course_frame
 
-    def subject(self, master_frame, index, subject):
+    def _subject(self, master_frame, index, subject):
         subject_frame = tk.Frame(master=master_frame)
 
         subject_label = tk.Label(master=subject_frame, text=subject["name"])
@@ -107,7 +117,7 @@ class CurriculumTree:
         courses_frame = tk.Frame(master=subject_frame)
 
         for j, course in enumerate(courses):
-            courses_obj = self.course(courses_frame, course)
+            courses_obj = self._course(courses_frame, course)
             courses_obj.grid(row=1, column=j)
 
         subject_label.grid(row=0, column=0, sticky=tk.W)

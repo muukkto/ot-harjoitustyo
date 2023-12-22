@@ -4,11 +4,20 @@ from services.file_service import export_plan_to_json, import_plan_from_json
 
 
 class Files:
-    def __init__(self, root, plan_service, curriculum_tree, meb, stats):
+    """Komponentti joka vastaa tiedostojen lataamisesta ja tallentamisesta graafisessa käyttöliittymässä
+    
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+        reload_curriculum_tree: Funktio joka kutstutaan kun halutaan päivittää LOPS-puun näkymä.
+        reload_meb: Funktio joka kutstutaan kun halutaan päivittää YO-suunnitelman näkymä.
+        reload_stats: Funktio joka kutstutaan kun halutaan päivittää tilastojen näkymä.
+    """
+    def __init__(self, root, plan_service, reload_curriculum_tree, reload_meb, reload_stats):
         self._plan_service = plan_service
-        self._curriculum_tree_reload = curriculum_tree
-        self._meb_reload = meb
-        self._stats_reload = stats
+        self._curriculum_tree_reload = reload_curriculum_tree
+        self._meb_reload = reload_meb
+        self._stats_reload = reload_stats
 
         self._root = root
 

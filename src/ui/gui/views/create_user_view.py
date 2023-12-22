@@ -3,6 +3,15 @@ import tkinter as tk
 
 
 class CreateUserView:
+    """Luokka joka vastaa uuden käyttäjän luomisen graafisesta käyttöliittumästä
+
+    Attributes:
+        root: Juuriobjekti, jonka sisälle asetetaan kaikki Tkinter-objektit.
+        user_service: Kirjautumisesta vastaava luokka.
+        plan_service: Suunnitelman hallinnasta vastaava luokka.
+        plan_view: Funktio joka suoritetaan kun halutaan siirtyä suunnitelman päänäkymään.
+        login_view: Funktio joka suoritetaan kun halutaan siirtyä kirjautumisnäkymään.
+    """
     def __init__(self, root, user_service, plan_service, plan_view, login_view):
         self._root = root
         self._user_service = user_service
@@ -19,6 +28,8 @@ class CreateUserView:
         self._create_view()
 
     def destroy(self):
+        """Funktio piilottaa käyttäjän luomisen näkymän
+        """
         self._frame.destroy()
 
     def _show_error(self, message):
