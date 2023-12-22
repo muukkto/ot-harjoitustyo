@@ -66,7 +66,7 @@ Uuden käyttäjän voi luoda "Create user"-näkymässä. Uusi käyttäjä luodaa
 
 ![Kuvakaappaus käyttäjän luomisesta](kuvat/uusi_käyttäjä.png)
 
-## Suunnitelmanäkymä
+## Ohjelman toiminnallisuudet
 
 Alla on kuva ohjelman päänäkymästä.
 
@@ -84,7 +84,22 @@ Näkymästä löytyy seuraavat toiminnallisuudet:
 9. Suunnitelman vienti/tuonti JSON-tiedostoon. Nappia painamalla avautuu näkymä tiedoston avaamiseen/tallentamiseen.
 10.  Uloskirjautuminen.
 
-## Omien kurssien lisääminen
+### Opiskelusuunnitelman muokkaaminen
+
+Opetussuunnitelman kautta ladattuja kursseja voi valita LOPS-puusta. Klikkaamalla kurssin nimeä, kurssi lisätään suunnitelmaan. 
+
+Kursseja on neljää eri väriä:
+
+__Sininen__: Kurssi on valtakunnallinen pakollinen
+
+__Punainen__: Kurssi on valtakunnallinen valinnainen
+
+__Valkoinen__: Kurssi on koulukohtainen
+
+__Harmaa__: Kurssi on jo valittu suunnitelmaan
+
+
+### Omien kurssien lisääminen
 
 Omia kursseja pystyy lisäämään klikkaamalla "Add own course"-painiketta. Tällöin avautuu alla olevan kuvan mukainen ikkuna.
 
@@ -96,7 +111,7 @@ Omat kurssit ilmestyvät LOPS-puun loppuun niin kutsuttuina häntäkursseina. Om
 
 ![Häntäkurssit](kuvat/hantakurssit.png)
 
-## YO-suunnitelman muokkaaminen
+### YO-suunnitelman muokkaaminen
 
 YO-suunnitelmaa pääsee muokkaamaan klikkaamalla "Update exams"-painiketta.
 
@@ -104,6 +119,34 @@ Muokkausnäkymästä löytyy taulukko kirjoitettavista kokeista. Vaakariveillä 
 
 ![YO-suunnitelma muokkausnäkymä](kuvat/yo_suunnitelman_päivittäminen.png)
 
-## Suunnitelman konfiguraation muuttaminen
+### Suunnitelmien validiointi
 
-Coming soon...
+Opiskelusuunnitelman ja YO-suunnitelman validioineille on omat painikkeet. 
+
+Klikkaamalla painiketta näytölle ilmestyy validiointitulos uudessa ikkunassa. Validiointi tulos kertoo mikäli suunnitelma vaatii korjaamista.
+
+<figure markdown>
+    ![Hyväksytty opikselusuunnitelma](kuvat/study_plan_ok.png)
+    ![Hyväksytty YO-suunnitelma](kuvat/meb_ok.png)
+    <figcaption>Suunnitelmien validiointi onnistui<figcaption>
+</figure>
+
+<figure markdown>
+    ![Hylätty opikselusuunnitelma](kuvat/study_plan_not_ok.png)
+    ![Hylätty YO-suunnitelma](kuvat/meb_no_ok.png)
+    <figcaption>Suunnitelmien validiointi epäonnistui. Validiointi tulos kertoo mitä pitäisi muuttaa.<figcaption>
+</figure>
+
+### Suunnitelman konfiguraation muuttaminen
+
+Suunnitelman asetuksia/konfiguraatiota pääsee muokkaamaan klikkaamalla "Edit plan config"-painiketta.
+
+Asetuksista voi muuttaa seuravia tietoja:
+
+__Suunnitelman tyyppi__: Noudattaako suunnitelma normaalia lukion tuntijakoa vai eritysitehtävä tuntijakoa.
+
+__YO-tutkinnon kieli__: Millä kielellä YO-tutkinto suoritetaan. Tämä vaikuttaa tarjolla oleviin kokeisiin.
+
+__Valmistumisajankohta__: Milloin tutkinto valmistuu. Mikäli valmistumisajankohta on valittu, näkyy tutkintoperiodien tunnukset YO-suunnitelmassa.
+
+![Suunnitelman tietojen muokaaminen](kuvat/suunnitelma_konffaus.png)
