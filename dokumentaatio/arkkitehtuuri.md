@@ -266,55 +266,123 @@ _PlanService_ muokkaa suunnitelmaa _Plan_-objektin tarjoamilla funktioilla. _Pla
 
 ### Suunnitelman tallentaminen tiedostoon tai tietokantaan
 
-Jokaisella suunnitelman muokkauskutsulla _PlanService_ tekee kaksi asiaa: välittää tehtävän _Plan_-objektille ja mikäli muokkaus onnistuu, tekee vastaavan kutsun _PlanRepository_-luokalle. _PlanRepository_-luokka huolehtii suunnitelman tallentamisesta tietokantaan. Tallentaminen tapahtuu `sqlitedict` moduulilla. Tämä moduuli antaa työkalut muokata _sqlite_-tietokantaa samoilla komennoilla kuin pythonin _dict_-objektia.
+Jokaisella suunnitelman muokkauskutsulla _PlanService_ tekee kaksi asiaa: välittää tehtävän _Plan_-objektille ja mikäli muokkaus onnistuu, tekee vastaavan kutsun [PlanRepository](/src/repositories/plan_repository.py)-luokalle. _PlanRepository_-luokka huolehtii suunnitelman tallentamisesta tietokantaan. Tallentaminen tapahtuu `sqlitedict` moduulilla. Tämä moduuli antaa työkalut muokata _sqlite_-tietokantaa samoilla komennoilla kuin pythonin _dict_-objektia.
 
 _PlanRepository_-luokka tarjoaa myös mahdollisuuden ladata kokosuunnitelman tietokannasta. Tätä käytetää _PlanServicen_ funktion `read_plan_for_user` yhteydessä. Tietokannan alustaminen tapahtuu invoke tehtävällä.
 
-Suunnitelman voi tallentaa myös JSON-tiedostoon. Tämän hoitaa _FileService_-luokka. Tiedostoon tallentaminen tapahtuu vain käyttäjän toiveesta, joten siitä vastaa eri luokka.
+Suunnitelman voi tallentaa myös JSON-tiedostoon. Tämän hoitaa [FileService](/src/services/file_service.py)-luokka. Tiedostoon tallentaminen tapahtuu vain käyttäjän toiveesta, joten siitä vastaa eri luokka.
 
 ## Validioinnin sovelluslogiikka
 
-Coming soon...
+Sovelluksessa on kaksi erilaista validiointia. Opiskelusuunnitelman validioinnista vastaa [ValidationService](/src/services/validation/validation_service.py). YO-suunnitelman validioinnille on oma [MEBValidationService](/src/services/validation/meb_validation_service.py).
 
+### Opiskelusuunnitelman validiointi
+
+Opiskelusuunnitelman validiointia varten _ValidationService_-luokka tarjoaa funktion `validate`. Funktio ottaa argumenteiksi _Plan_ ja _Curriculum_ -objektit. Validioinnin säännöt saadaan _Curriculum_ -objektista. _Plan_-objekti palauttaa puolestaan validioinnin vaatimat tiedot opintopisteistä ja suunnitelman konfiguraatiosta.
+
+Validiointi tarkistaa seuraavat asiat:
+- Suunnitelmalla on yhteensä tarpeeksi opintopisteitä
+- Suunnitelmalla on tarpeeksi valtakunnallisia valinnaisia opintopisteitä
+- Suunnitelmaan kuuluu kaikki pakolliset opintopisteet (tämän toiminnallisuuden yksityiskohdat riippuvat suunnitelman tyypistä)
+
+Suunnitelmalla on kaksi mahdollista tyyppiä: normaali suunnitelma ja erityistehtäväsuunnitelma. Erityistehtäväsuunnitelmaa varten pakollisten opintopisteiden tarkastaminen tehdään luokan [SpecialValidationService](/src/services/validation/special_validation_service.py) kautta. Tämä luokka tarkistaa ensiksi, että löytyykö tarpeeksi erityistehtäväopintopisteitä, jotta poislukuoikeus voidaan ansaita. Tämän jälkeen pakolliset opintopisteet tarkistetaan seuraavilla ehdoilla:
+- Jokaisesta oppiaineesta täytyy suorittaa vähintään puolet pakollisista opintopisteistä.
+- Yhteensä puuttuvia pakollisia opintopisteitä saa olla opetusuunnitelman säännön `maximum_excluded_credits_special_task` määrittämä määrä. 
+
+Normaalin suunnitelman pakolliset opintopisteet tarkistetaan luokan _ValidationService_-toimesta. Molemmat tavat hyödyntävät luokan [ValidationFunctions](/src/services/validation/validation_functions.py) funktioita pakollisten opintopisteiden laskemiseen. 
+
+Lopuksi _ValidationService_ palauttaa validoinnin tulokset _dict_-objektina. Käyttöliittymä tulostaa tulokset ihmisluettavassa muodossa.
 
 ```mermaid
 sequenceDiagram
 actor User
 participant UI
 User ->> UI: click "validate plan" button
+
 participant PlanService
 UI ->> PlanService: validate_plan()
 participant ValidationService
 PlanService ->> ValidationService: validate(plan, curriculum)
+
+participant Curriculum
 participant Plan
+ValidationService ->> Curriculum: return_rules()
+Curriculum --> ValidationService: return rules_dict 
 ValidationService ->> Plan: get_total_credits_on_plan()
 Plan --> ValidationService: return total_credits
 ValidationService ->> Plan: get_credits_by_criteria(mandatory=False,national=True)
 Plan --> ValidationService: return credits
-participant ValidationFunctions
-ValidationService ->> ValidationFunctions: check_total_mandatory(plan, curriculum, problem_list)
-loop all subjects
-    ValidationFunctions ->> Plan: get_mandatory_credits_subject(subject)
-    Plan --> ValidationFunctions: return credits
-end
-ValidationFunctions --> ValidationService: return missing_credits
-ValidationService ->> Plan: is_special_task
-Plan --> ValidationService: return bool
-alt if special_task
+
+ValidationService ->> Plan: return_config()
+Plan --> ValidationService: return config_dict
+
+alt if config_dict["special_task"]
     participant SpecialValidationService
     ValidationService ->> SpecialValidationService: validate(plan, curriculum)
-    SpecialValidationService ->> Plan: get_credits_by_criteria(mandatory=False, national=False, subject="ERI)
+
+    SpecialValidationService ->> Curriculum: return_rules()
+    Curriculum --> SpecialValidationService: return rules_dict 
+    SpecialValidationService ->> Plan: get_credits_by_criteria(mandatory=False, national=False, subject="ERI")
     Plan --> SpecialValidationService: return credits
+
+    participant ValidationFunctions
     SpecialValidationService ->> ValidationFunctions: check_total_mandatory(plan, curriculum, problem_list)
     loop all subjects
         ValidationFunctions ->> Plan: get_mandatory_credits_subject(subject)
         Plan --> ValidationFunctions: return credits
     end
-    ValidationFunctions --> SpecialValidationService: return missing_credits
+
+    ValidationFunctions --> SpecialValidationService: return excluded_credits
     SpecialValidationService --> ValidationService: return validation_problems
+
+else
+    participant ValidationFunctions
+    ValidationService ->> ValidationFunctions: check_total_mandatory(plan, curriculum, problem_list)
+
+    loop all subjects
+        ValidationFunctions ->> Plan: get_mandatory_credits_subject(subject)
+        Plan --> ValidationFunctions: return credits
+    end
+
+    ValidationFunctions --> ValidationService: return excluded_credits
+
 end
+
 ValidationService --> PlanService: return validation_problems
 PlanService --> UI: return validation_problems
-UI --> User: print validation problems
+UI --> User: open validation result as pop-up
+
+```
+
+### YO-suunnitelman validiointi
+
+YO-suunnitelma validioidaan _MebValidationService_ luokan `validate`-funktiolla. Funktio tekee kaksi erilaista tarkistusta:
+- Funktio tarkistaa paikallisesti, että suunnitelmalle ei ole valittu kahta tai useampaa koetta samalle koepäivälle.
+- Tutkinnon rakenne tarkistetaan Ylioppilastutkintolautakunnan [palvelun](https://ilmo.ylioppilastutkinto.fi/v1/api-docs/) avulla.
+
+Validoinnin tulokset palautetaan _dict_-objektina. Käyttöliittymä tulostaa tulokset ihmisluettavassa muodossa.
+
+```mermaid
+sequenceDiagram
+actor User
+participant UI
+User ->> UI: click "validate MEB plan" button
+
+participant PlanService
+UI ->> PlanService: validate_meb_plan()
+participant MebValidationService
+PlanService ->> MebValidationService: validate(plan)
+
+participant Plan
+MebValidationService ->> Plan: return_meb_plan()
+Plan --> MebValidationService: return meb_plan_dict
+
+participant MEB api service (internet)
+MebValidationService ->> MEB api service (internet): request
+MEB api service (internet) --> MebValidationService: reponse
+
+MebValidationService --> PlanService: return validation_result
+PlanService --> UI: return validation_result
+UI --> User: open validation result as pop-up
 
 ```
