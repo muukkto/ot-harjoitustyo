@@ -6,9 +6,9 @@ plan_schema = {
             "properties": {
                 "special_task": {"type": "boolean"},
                 "meb_language": {"type": "string"},
-                "graduation_period": {"type": "string"}
+                "graduation_period": {"type": ["string", "null"]}
             },
-            "required": ["config", "courses"],
+            "required": ["special_task", "meb_language", "graduation_period"],
             "additionalProperties": False
         },
         "courses": {
@@ -18,8 +18,8 @@ plan_schema = {
                 "properties": {
                     "on_cur": {"type": "boolean"},
                     "code": {"type": "string"},
-                    "subject": {"type": "string"},
-                    "name": {"type": "string"},
+                    "subject": {"type": ["string", "null"]},
+                    "name": {"type": ["string", "null"]},
                     "ects": {"type": "integer"}
                 },
                 "required": ["on_cur", "code", "subject", "name", "ects"],
