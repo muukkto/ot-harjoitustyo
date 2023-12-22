@@ -25,7 +25,8 @@
           "ENA",
           "RAA",
           "SAA",
-          "VEA"
+          "VEA",
+          "EAA"
         ]
       },
       {
@@ -81,9 +82,9 @@
       "KIB3",
       "JPB3"
     ],
-    "special_task_code": "ERI",
+    "special_task_code": "URVA",
     "own_courses_codes": [
-      "VAPA"
+      "VA", "TOA", "MOS"
     ]
   },
   "subjects": [
@@ -155,6 +156,30 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "AI12",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "AI14",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "AI17",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "AI18",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -226,6 +251,12 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "S212",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -279,6 +310,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "RUA9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "RUA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -326,6 +369,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "RUB8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "RUB9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -379,6 +434,89 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "ENA9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ENA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ENA11",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "ENA12",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "EAA",
+      "courses": [
+        {
+          "name": "EAA1",
+          "credits": 1,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA2",
+          "credits": 3,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA3",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA4",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA5",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA6",
+          "credits": 2,
+          "mandatory": true,
+          "national": true
+        },
+        {
+          "name": "EAA7",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAA8",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -432,6 +570,12 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "RAA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -485,6 +629,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "SAA9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "SAA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -538,6 +694,12 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "VEA10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -591,6 +753,130 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "RAB310",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "EAB3",
+      "courses": [
+        {
+          "name": "EAB31",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB32",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB33",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB34",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB35",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB36",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB37",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB38",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "EAB310",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        }
+      ]
+    },
+    {
+      "name": "SAB3",
+      "courses": [
+        {
+          "name": "SAB31",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB32",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB33",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB34",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB35",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB36",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB37",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB38",
+          "credits": 2,
+          "mandatory": false,
+          "national": true
+        },
+        {
+          "name": "SAB310",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -668,6 +954,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "MAA13",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "MAA14",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -727,6 +1025,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "MAB10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "MAB11",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -768,6 +1078,12 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "UE8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -973,6 +1289,12 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "ET8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1014,6 +1336,24 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "BI7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "BI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "BI9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1043,6 +1383,24 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "GE5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "GE6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "GE7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1096,6 +1454,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "FY9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "FY10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1137,6 +1507,24 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "KE7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KE8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KE9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1172,6 +1560,36 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "PS6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "PS7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "PS8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "PS9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "PS10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1201,6 +1619,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "FI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "FI7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1242,6 +1672,24 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "HI7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "HI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "HI9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1271,6 +1719,30 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "YH5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "YH6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "YH7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "YH8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1294,6 +1766,18 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "TE4",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "TE5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1329,6 +1813,30 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "LI6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "LI7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "LI8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "LI10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1346,6 +1854,18 @@
           "credits": 2,
           "mandatory": true,
           "national": true
+        },
+        {
+          "name": "OP4",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "OP10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1375,6 +1895,42 @@
           "credits": 2,
           "mandatory": false,
           "national": true
+        },
+        {
+          "name": "KU5",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KU6",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KU7",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KU8",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KU9",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
+        },
+        {
+          "name": "KU10",
+          "credits": 2,
+          "mandatory": false,
+          "national": false
         }
       ]
     },
@@ -1404,80 +1960,39 @@
           "credits": 2,
           "mandatory": false,
           "national": true
-        }
-      ]
-    },
-    {
-      "name": "ERI",
-      "courses": [
+        },
         {
-          "name": "ERI1",
+          "name": "MU5",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "ERI2",
+          "name": "MU6",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "ERI3",
+          "name": "MU7",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "ERI4",
+          "name": "MU9",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "ERI5",
+          "name": "MU10",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "ERI6",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI7",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI8",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI9",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI10",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI11",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "ERI12",
+          "name": "MU11",
           "credits": 2,
           "mandatory": false,
           "national": false
@@ -1485,159 +2000,222 @@
       ]
     },
     {
-      "name": "VAPA",
+      "name": "URVA",
       "courses": [
         {
-          "name": "VAPA1",
+          "name": "URVA1",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA2",
+          "name": "URVA2",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA3",
+          "name": "URVA3",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA4",
+          "name": "URVA4",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA5",
+          "name": "URVA5",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA6",
+          "name": "URVA6",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA7",
+          "name": "URVA7",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA8",
+          "name": "URVA8",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA9",
+          "name": "URVA9",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA10",
+          "name": "URVA10",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA11",
+          "name": "URVA11",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA12",
+          "name": "URVA12",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA13",
+          "name": "URVA13",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA14",
+          "name": "URVA14",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA15",
+          "name": "URVA15",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA16",
+          "name": "URVA16",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA17",
+          "name": "URVA17",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA18",
+          "name": "URVA18",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA19",
+          "name": "URVA19",
           "credits": 2,
           "mandatory": false,
           "national": false
         },
         {
-          "name": "VAPA20",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "VAPA21",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "VAPA22",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "VAPA23",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "VAPA24",
-          "credits": 2,
-          "mandatory": false,
-          "national": false
-        },
-        {
-          "name": "VAPA25",
+          "name": "URVA20",
           "credits": 2,
           "mandatory": false,
           "national": false
         }
       ]
+    },
+    {
+        "name": "VA",
+        "courses": [
+            {
+                "name": "VA1",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "VA2",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "VA3",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "VA4",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            }
+        ]
+    },
+    {
+        "name": "TOA",
+        "courses": [
+            {
+                "name": "TOA1",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "TOA2",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "TOA3",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "TOA4",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "TOA5",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            }
+        ]
+    },
+    {
+        "name": "MOS",
+        "courses": [
+            {
+                "name": "MOS1",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "MOS2",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "MOS3",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            },
+            {
+                "name": "MOS4",
+                "credits": 2,
+                "mandatory": false,
+                "national": false
+            }
+        ]
     }
   ]
 }

@@ -1,0 +1,575 @@
+{
+    "config": {
+        "special_task": true,
+        "meb_language": "fi",
+        "graduation_period": "2023S"
+    },
+    "courses": [
+        {
+            "on_cur": true,
+            "code": "AI1",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI2",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI3",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI4",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI5",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI6",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI7",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "AI8",
+            "subject": "AI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "RUB1",
+            "subject": "RUB",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "RUB2",
+            "subject": "RUB",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "RUB3",
+            "subject": "RUB",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA1",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA2",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA3",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA4",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA5",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ENA6",
+            "subject": "ENA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA1",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA2",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA3",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA4",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA5",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA6",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA7",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA8",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA9",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA10",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA11",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MAA12",
+            "subject": "MAA",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "UE1",
+            "subject": "UE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI1",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI2",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI3",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI4",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI5",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "BI6",
+            "subject": "BI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "GE1",
+            "subject": "GE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "GE2",
+            "subject": "GE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "GE3",
+            "subject": "GE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "GE4",
+            "subject": "GE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY1",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY2",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY3",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY4",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY5",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY6",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY7",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FY8",
+            "subject": "FY",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE1",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE2",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE3",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE4",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE5",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KE6",
+            "subject": "KE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "PS1",
+            "subject": "PS",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "FI1",
+            "subject": "FI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "HI1",
+            "subject": "HI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "HI2",
+            "subject": "HI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "YH1",
+            "subject": "YH",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "YH2",
+            "subject": "YH",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "TE1",
+            "subject": "TE",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "LI1",
+            "subject": "LI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "LI2",
+            "subject": "LI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "OP1",
+            "subject": "OP",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "OP2",
+            "subject": "OP",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "KU1",
+            "subject": "KU",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "MU1",
+            "subject": "MU",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI1",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI2",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI3",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI4",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI5",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI6",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI7",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI8",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI9",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI10",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI11",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        },
+        {
+            "on_cur": true,
+            "code": "ERI12",
+            "subject": "ERI",
+            "name": null,
+            "ects": 0
+        }
+    ],
+    "meb_plan": {
+        "1": [
+            "BI"
+        ],
+        "2": [
+            "EA",
+            "N"
+        ],
+        "3": [
+            "A",
+            "TE"
+        ]
+    }
+}
