@@ -125,17 +125,13 @@ Opiskelusuunnitelman ja YO-suunnitelman validioineille on omat painikkeet.
 
 Klikkaamalla painiketta näytölle ilmestyy validiointitulos uudessa ikkunassa. Validiointi tulos kertoo mikäli suunnitelma vaatii korjaamista.
 
-<figure markdown>
-    ![Hyväksytty opikselusuunnitelma](kuvat/study_plan_ok.png)
-    ![Hyväksytty YO-suunnitelma](kuvat/meb_ok.png)
-    <figcaption>Suunnitelmien validiointi onnistui<figcaption>
-</figure>
+![Hyväksytty opikselusuunnitelma](kuvat/study_plan_ok.png) ![Hyväksytty YO-suunnitelma](kuvat/meb_plan_ok.png)
 
-<figure markdown>
-    ![Hylätty opikselusuunnitelma](kuvat/study_plan_not_ok.png)
-    ![Hylätty YO-suunnitelma](kuvat/meb_no_ok.png)
-    <figcaption>Suunnitelmien validiointi epäonnistui. Validiointi tulos kertoo mitä pitäisi muuttaa.<figcaption>
-</figure>
+Suunnitelmien validiointi on mennyt yllä olevissa kuvissa läpi.
+
+![Hylätty opikselusuunnitelma](kuvat/study_plan_not_ok.png) ![Hylätty YO-suunnitelma](kuvat/meb_not_ok.png)
+
+Suunnitelmien validiointi puolestaan epäonnistui yllä olevissa kuvissa. Validiointi tulos kertoo mitä pitäisi muuttaa.
 
 ### Suunnitelman konfiguraation muuttaminen
 
